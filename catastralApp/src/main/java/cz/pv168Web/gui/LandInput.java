@@ -5,7 +5,7 @@
  */
 package cz.pv168Web.gui;
 
-import cz.pv168Web.model.Person;
+import cz.pv168Web.model.Land;
 
 /**
  *
@@ -13,26 +13,48 @@ import cz.pv168Web.model.Person;
  */
 public class LandInput extends javax.swing.JDialog {
 
-
+    private Land land;
     private Boolean valid;
     private Boolean update = false;
 
     /**
-     * Creates new form PersonInput
+     * Creates new form LandInput
      */
     public LandInput(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        labelErrorSize.setVisible(false);
+        labelErrorBuildUpArea.setVisible(false);
+        labelErrorNotes.setVisible(false);
+        
+        setTypeComboBox();
+        setCatastralAreaComboBox();
     }
 
-    public LandInput(java.awt.Frame parent, boolean modal, Person updatePerson) {
+    public LandInput(java.awt.Frame parent, boolean modal, Land updateLand) {
         super(parent, modal);
         initComponents();
-        update = true;        
+        update = true;  
+        land = updateLand;
+        
+        System.out.println(land.toString());
+        textLandSize.setText(Double.toString(land.getSize()));
+        textLandBuildUpArea.setText(Double.toString(land.getBuildUpArea()));
+        textLandNotes.setText(land.getNotes());
+        
+        labelErrorSize.setVisible(false);
+        labelErrorBuildUpArea.setVisible(false);
+        labelErrorNotes.setVisible(false);
+        
+        setTypeComboBox();
+        setCatastralAreaComboBox();
     }
     public Boolean getValid(){
         return valid;
+    }
+    
+    public Land getLand(){
+        return land;
     }
  
     
@@ -49,21 +71,20 @@ public class LandInput extends javax.swing.JDialog {
 
         buttonCancel = new javax.swing.JButton();
         buttonAdd = new javax.swing.JButton();
-        datePicker = new org.jdesktop.swingx.JXDatePicker();
-        textPersonName = new javax.swing.JTextField();
-        labelName = new javax.swing.JLabel();
-        labelSurname = new javax.swing.JLabel();
-        textPersonSurname = new javax.swing.JTextField();
-        textPersonBirthNumber = new javax.swing.JTextField();
-        labelBirthNumber = new javax.swing.JLabel();
-        comboState = new javax.swing.JComboBox();
-        labelState = new javax.swing.JLabel();
+        textLandSize = new javax.swing.JTextField();
+        labelSize = new javax.swing.JLabel();
+        labelBuildUpArea = new javax.swing.JLabel();
+        textLandBuildUpArea = new javax.swing.JTextField();
+        labelCatastralArea = new javax.swing.JLabel();
+        comboType = new javax.swing.JComboBox();
+        labelType = new javax.swing.JLabel();
         labelTitleNewPerson = new javax.swing.JLabel();
-        labelBirthDate = new javax.swing.JLabel();
-        labelErrorSurname = new javax.swing.JLabel();
-        labelErrorBirthNumber = new javax.swing.JLabel();
-        labelErrorName = new javax.swing.JLabel();
-        labelErrorDate = new javax.swing.JLabel();
+        labelNotes = new javax.swing.JLabel();
+        labelErrorBuildUpArea = new javax.swing.JLabel();
+        labelErrorSize = new javax.swing.JLabel();
+        labelErrorNotes = new javax.swing.JLabel();
+        textLandNotes = new javax.swing.JTextField();
+        comboCatastralArea = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -82,7 +103,7 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         getContentPane().add(buttonCancel, gridBagConstraints);
 
-        buttonAdd.setText("Add new Person");
+        buttonAdd.setText("Add new Land");
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddActionPerformed(evt);
@@ -96,19 +117,9 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         getContentPane().add(buttonAdd, gridBagConstraints);
 
-        datePicker.addFocusListener(new java.awt.event.FocusAdapter() {
+        textLandSize.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                datePickerFocusGained(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 1;
-        getContentPane().add(datePicker, gridBagConstraints);
-
-        textPersonName.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                textPersonNameFocusGained(evt);
+                textLandSizeFocusGained(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -117,29 +128,29 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(textPersonName, gridBagConstraints);
+        getContentPane().add(textLandSize, gridBagConstraints);
 
-        labelName.setText("Name");
+        labelSize.setText("Size");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 18;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(labelName, gridBagConstraints);
+        getContentPane().add(labelSize, gridBagConstraints);
 
-        labelSurname.setText("Surname");
+        labelBuildUpArea.setText("Build-up area");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.ipadx = 18;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(labelSurname, gridBagConstraints);
+        getContentPane().add(labelBuildUpArea, gridBagConstraints);
 
-        textPersonSurname.addFocusListener(new java.awt.event.FocusAdapter() {
+        textLandBuildUpArea.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                textPersonSurnameFocusGained(evt);
+                textLandBuildUpAreaFocusGained(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -148,49 +159,41 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(textPersonSurname, gridBagConstraints);
+        getContentPane().add(textLandBuildUpArea, gridBagConstraints);
 
-        textPersonBirthNumber.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                textPersonBirthNumberFocusGained(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 53;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(textPersonBirthNumber, gridBagConstraints);
-
-        labelBirthNumber.setText("Birth Number");
+        labelCatastralArea.setText("Catastral area");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 18;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(labelBirthNumber, gridBagConstraints);
+        getContentPane().add(labelCatastralArea, gridBagConstraints);
 
-        comboState.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTypeActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(comboState, gridBagConstraints);
+        getContentPane().add(comboType, gridBagConstraints);
 
-        labelState.setText("State");
+        labelType.setText("Type");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 18;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(labelState, gridBagConstraints);
+        getContentPane().add(labelType, gridBagConstraints);
 
         labelTitleNewPerson.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        labelTitleNewPerson.setText("New Person");
+        labelTitleNewPerson.setText("New Land");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -198,37 +201,48 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         getContentPane().add(labelTitleNewPerson, gridBagConstraints);
 
-        labelBirthDate.setText("Birth Date");
+        labelNotes.setText("Notes");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 33, 0, 33);
-        getContentPane().add(labelBirthDate, gridBagConstraints);
+        getContentPane().add(labelNotes, gridBagConstraints);
 
-        labelErrorSurname.setText("Error");
+        labelErrorBuildUpArea.setText("Error");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
-        getContentPane().add(labelErrorSurname, gridBagConstraints);
+        getContentPane().add(labelErrorBuildUpArea, gridBagConstraints);
 
-        labelErrorBirthNumber.setText("Error");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        getContentPane().add(labelErrorBirthNumber, gridBagConstraints);
-
-        labelErrorName.setText("Error");
+        labelErrorSize.setText("Error");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
-        getContentPane().add(labelErrorName, gridBagConstraints);
+        getContentPane().add(labelErrorSize, gridBagConstraints);
 
-        labelErrorDate.setText("Error");
+        labelErrorNotes.setText("Error");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 12, 0, 0);
-        getContentPane().add(labelErrorDate, gridBagConstraints);
+        getContentPane().add(labelErrorNotes, gridBagConstraints);
+
+        textLandNotes.setPreferredSize(new java.awt.Dimension(100, 20));
+        textLandNotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textLandNotesActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        getContentPane().add(textLandNotes, gridBagConstraints);
+
+        comboCatastralArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCatastralArea.setPreferredSize(new java.awt.Dimension(105, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        getContentPane().add(comboCatastralArea, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -243,22 +257,22 @@ public class LandInput extends javax.swing.JDialog {
         
     }//GEN-LAST:event_buttonAddActionPerformed
 
-    private void textPersonNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textPersonNameFocusGained
+    private void textLandSizeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textLandSizeFocusGained
 
 
-    }//GEN-LAST:event_textPersonNameFocusGained
+    }//GEN-LAST:event_textLandSizeFocusGained
 
-    private void textPersonSurnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textPersonSurnameFocusGained
+    private void textLandBuildUpAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textLandBuildUpAreaFocusGained
 
-    }//GEN-LAST:event_textPersonSurnameFocusGained
+    }//GEN-LAST:event_textLandBuildUpAreaFocusGained
 
-    private void textPersonBirthNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textPersonBirthNumberFocusGained
- 
-    }//GEN-LAST:event_textPersonBirthNumberFocusGained
+    private void comboTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboTypeActionPerformed
 
-    private void datePickerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerFocusGained
-      
-    }//GEN-LAST:event_datePickerFocusGained
+    private void textLandNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textLandNotesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textLandNotesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,21 +319,35 @@ public class LandInput extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonCancel;
-    private javax.swing.JComboBox comboState;
-    private org.jdesktop.swingx.JXDatePicker datePicker;
-    private javax.swing.JLabel labelBirthDate;
-    private javax.swing.JLabel labelBirthNumber;
-    private javax.swing.JLabel labelErrorBirthNumber;
-    private javax.swing.JLabel labelErrorDate;
-    private javax.swing.JLabel labelErrorName;
-    private javax.swing.JLabel labelErrorSurname;
-    private javax.swing.JLabel labelName;
-    private javax.swing.JLabel labelState;
-    private javax.swing.JLabel labelSurname;
+    private javax.swing.JComboBox comboCatastralArea;
+    private javax.swing.JComboBox comboType;
+    private javax.swing.JLabel labelBuildUpArea;
+    private javax.swing.JLabel labelCatastralArea;
+    private javax.swing.JLabel labelErrorBuildUpArea;
+    private javax.swing.JLabel labelErrorNotes;
+    private javax.swing.JLabel labelErrorSize;
+    private javax.swing.JLabel labelNotes;
+    private javax.swing.JLabel labelSize;
     private javax.swing.JLabel labelTitleNewPerson;
-    private javax.swing.JTextField textPersonBirthNumber;
-    private javax.swing.JTextField textPersonName;
-    private javax.swing.JTextField textPersonSurname;
+    private javax.swing.JLabel labelType;
+    private javax.swing.JTextField textLandBuildUpArea;
+    private javax.swing.JTextField textLandNotes;
+    private javax.swing.JTextField textLandSize;
     // End of variables declaration//GEN-END:variables
 
+    private void setTypeComboBox(){
+        
+       comboType.setModel(new DefaultComboBoxModel(Type.getStateArray()));
+            
+        
+        
+    }
+    
+    private void setCatastralAreaComboBox(){
+        
+       comboCatastralArea.setModel(new DefaultComboBoxModel(CatastralArea.getStateArray()));
+            
+        
+        
+    }
 }

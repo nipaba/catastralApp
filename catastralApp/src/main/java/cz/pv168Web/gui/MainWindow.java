@@ -7,6 +7,8 @@ package cz.pv168Web.gui;
 
 import cz.pv168Web.mainPack.MainManager;
 import cz.pv168Web.model.Person;
+import cz.pv168Web.model.Land;
+import cz.pv168Web.model.Ownership;
 import cz.pv168Web.utils.DatabaseException;
 import java.util.List;
 import java.util.logging.Level;
@@ -131,7 +133,6 @@ public class MainWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
@@ -991,7 +992,25 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDBrestartActionPerformed
 
     private void buttonAddLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddLandActionPerformed
-        // TODO add your handling code here:
+        LandInput landInput = new LandInput(this, true);
+        landInput.show();
+        if (landInput.getValid()) {
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (mainManager) {
+                        try {
+                            mainManager.createLand(landInput.getLand());
+                            refreshLandTable();
+                        } catch (DatabaseException ex) {
+                            printError(ex.toString());
+                        }
+                    }
+                }
+            };
+
+            new Thread(r).start();
+        }
     }//GEN-LAST:event_buttonAddLandActionPerformed
 
     private void buttonUpdateLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateLandActionPerformed
@@ -1161,6 +1180,23 @@ public class MainWindow extends javax.swing.JFrame {
             List<Person> list = mainManager.getPersolList();
             for (Person p : list) {
                 personTableModel.addRow(p.toArray());
+            }
+
+        } catch (DatabaseException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void refreshLandTable() {
+        try {
+            // clear table 
+            while (landTableModel.getRowCount() > 0) {
+                landTableModel.removeRow(landTableModel.getRowCount() - 1);
+            }
+
+            List<Land> list = mainManager.getLandList();
+            for (Land l : list) {
+                landTableModel.addRow(p.toArray());
             }
 
         } catch (DatabaseException ex) {

@@ -5,12 +5,17 @@
  */
 package cz.pv168Web.enums;
 
+
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Tomas
  */
 public enum LandType {
     
+    STAVEBNI_PARCELA("Stavebni parcela");
+    STAVEBNI_PARCELA("Stavebni parcela");
     STAVEBNI_PARCELA("Stavebni parcela");
     
     private String landType;
@@ -23,6 +28,15 @@ public enum LandType {
         return landType;
     }
     
+    public static String[] getLandTypeArray() {
+        String[] results = new String[LandType.values().length];
+        int count = 0;
+        for (LandType landType  : LandType.values()) {
+            results[count] = landType.getCode();
+            count++;
+        }
+        return results;
+    }
     
 }
 

@@ -134,5 +134,18 @@ public class MainManager {
     }
     return personArray;
     }
+    
+    public String [] getLandIDArray() throws DatabaseException {
+    
+    List <Land> landList = landManager.getLandList();
+    String [] landArray = new String[landList.size()];
+    int n = 0;
+    
+    for (Land l : landList){
+        landArray[n] = l.getLandID()+"";
+    }
+    return landArray;
+    }
+
 
 }

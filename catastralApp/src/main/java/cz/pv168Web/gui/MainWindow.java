@@ -1112,7 +1112,7 @@ public class MainWindow extends javax.swing.JFrame {
             Long ownershipId = Long.parseLong(ownershipTableModel.getValueAt(rownNumber, 0).toString());
             try {
                 o = mainManager.getOwnershipById(ownershipId);
-                OwnershipInput ownershipInput = new OwnershipInput(this, true, p);
+                OwnershipInput ownershipInput = new OwnershipInput(this, true, o);
                 ownershipInput.show();
                 if (ownershipInput.getValid()) {
 
@@ -1312,6 +1312,23 @@ public class MainWindow extends javax.swing.JFrame {
             List<Land> list = mainManager.getLandList();
             for (Land l : list) {
                 landTableModel.addRow(l.toArray());
+            }
+
+        } catch (DatabaseException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+        private void refreshOwnershipTable() {
+        try {
+            // clear table 
+            while (ownershipTableModel.getRowCount() > 0) {
+                ownershipTableModel.removeRow(ownershipTableModel.getRowCount() - 1);
+            }
+
+            List<Ownership> list = mainManager.getOwnershipList();
+            for (Ownership o : list) {
+                ownershipTableModel.addRow(o.toArray());
             }
 
         } catch (DatabaseException ex) {

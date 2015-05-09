@@ -122,5 +122,14 @@ public class MainManager {
     public void updateOwnership(Ownership ownership) throws DatabaseException {
         ownershipManager.updateOwnerShip(ownership);
     }
-
+    /*
+    public static String[] getPersonIDArray() {
+       
+    }
+    
+    public static String[] getLandIDArray() {
+        
+    }
+    */
+ 
 }

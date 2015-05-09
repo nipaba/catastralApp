@@ -244,7 +244,20 @@ public class LandInput extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
-        
+        if (!update){
+            land = new Land();
+        }
+        if(valideteLandForm()){
+            
+
+            land.setSize(Double.valueOf(spinnerSize.getValue().toString()));
+            land.setBuildUpArea(Double.valueOf(spinnerBuildUpArea.getValue().toString()));
+            land.setCatastralArea((String)comboCatastralArea.getSelectedItem());
+            land.setType((String)comboType.getSelectedItem());
+            land.setNotes(textLandNotes.getText());
+            this.hide();
+           
+        }
     }//GEN-LAST:event_buttonAddActionPerformed
 
     private void comboTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTypeActionPerformed
@@ -315,7 +328,21 @@ public class LandInput extends javax.swing.JDialog {
     private javax.swing.JSpinner spinnerSize;
     private javax.swing.JTextField textLandNotes;
     // End of variables declaration//GEN-END:variables
-
+    
+    private Boolean valideteLandForm(){
+        if(Double.valueOf(spinnerSize.getValue().toString()) <= 0 ){
+            labelErrorSize.setVisible(true);
+            return false;
+        }
+        
+        if(Double.valueOf(spinnerBuildUpArea.getValue().toString()) <= 0){
+            labelErrorBuildUpArea.setVisible(true);
+            return false;
+        }
+        
+        return true;
+    }
+    
     private void setTypeComboBox(){
         
        comboType.setModel(new DefaultComboBoxModel(LandType.getLandTypeArray()));

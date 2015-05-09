@@ -5,7 +5,6 @@
  */
 package cz.pv168Web.gui;
 
-
 import cz.pv168Web.model.Land;
 import cz.pv168Web.enums.LandType;
 import cz.pv168Web.enums.LandCatastralArea;
@@ -30,7 +29,7 @@ public class LandInput extends javax.swing.JDialog {
         labelErrorSize.setVisible(false);
         labelErrorBuildUpArea.setVisible(false);
         labelErrorNotes.setVisible(false);
-        
+
         setTypeComboBox();
         setCatastralAreaComboBox();
     }
@@ -38,27 +37,27 @@ public class LandInput extends javax.swing.JDialog {
     public LandInput(java.awt.Frame parent, boolean modal, Land updateLand) {
         super(parent, modal);
         initComponents();
-        update = true;  
+        update = true;
         land = updateLand;
-        
+
         System.out.println(land.toString());
         textLandNotes.setText(land.getNotes());
-        
+
         labelErrorSize.setVisible(false);
         labelErrorBuildUpArea.setVisible(false);
         labelErrorNotes.setVisible(false);
-        
+
         setTypeComboBox();
         setCatastralAreaComboBox();
     }
-    public Boolean getValid(){
+
+    public Boolean getValid() {
         return valid;
     }
-    
-    public Land getLand(){
+
+    public Land getLand() {
         return land;
     }
- 
     
 
     /**
@@ -244,19 +243,19 @@ public class LandInput extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
-        if (!update){
+        if (!update) {
             land = new Land();
         }
-        if(valideteLandForm()){
-            
+        if (valideteLandForm()) {
 
             land.setSize(Double.valueOf(spinnerSize.getValue().toString()));
             land.setBuildUpArea(Double.valueOf(spinnerBuildUpArea.getValue().toString()));
-            land.setCatastralArea((String)comboCatastralArea.getSelectedItem());
-            land.setType((String)comboType.getSelectedItem());
+            land.setCatastralArea((String) comboCatastralArea.getSelectedItem());
+            land.setType((String) comboType.getSelectedItem());
             land.setNotes(textLandNotes.getText());
+            valid=true;
             this.hide();
-           
+
         }
     }//GEN-LAST:event_buttonAddActionPerformed
 
@@ -328,34 +327,30 @@ public class LandInput extends javax.swing.JDialog {
     private javax.swing.JSpinner spinnerSize;
     private javax.swing.JTextField textLandNotes;
     // End of variables declaration//GEN-END:variables
-    
-    private Boolean valideteLandForm(){
-        if(Double.valueOf(spinnerSize.getValue().toString()) <= 0 ){
+
+    private Boolean valideteLandForm() {
+        if (Double.valueOf(spinnerSize.getValue().toString()) <= 0) {
             labelErrorSize.setVisible(true);
             return false;
         }
-        
-        if(Double.valueOf(spinnerBuildUpArea.getValue().toString()) <= 0){
+
+        if (Double.valueOf(spinnerBuildUpArea.getValue().toString()) <= 0) {
             labelErrorBuildUpArea.setVisible(true);
             return false;
         }
-        
+
         return true;
     }
-    
-    private void setTypeComboBox(){
-        
-       comboType.setModel(new DefaultComboBoxModel(LandType.getLandTypeArray()));
-            
-        
-        
+
+    private void setTypeComboBox() {
+
+        comboType.setModel(new DefaultComboBoxModel(LandType.getLandTypeArray()));
+
     }
-    
-    private void setCatastralAreaComboBox(){
-        
-       comboCatastralArea.setModel(new DefaultComboBoxModel(LandCatastralArea.getLandCatastralAreaArray()));
-            
-        
-        
+
+    private void setCatastralAreaComboBox() {
+
+        comboCatastralArea.setModel(new DefaultComboBoxModel(LandCatastralArea.getLandCatastralAreaArray()));
+
     }
 }

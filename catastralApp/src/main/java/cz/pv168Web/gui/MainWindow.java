@@ -38,6 +38,8 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         mainManager = MM;
         personTableModel = (DefaultTableModel) personTable.getModel();
+        landTableModel = (DefaultTableModel) landTable.getModel();
+        ownershipTableModel = (DefaultTableModel) ownershipTable1.getModel();
         refreshPersonTable();
     }
 

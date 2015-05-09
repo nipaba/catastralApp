@@ -7,6 +7,7 @@ package cz.pv168Web.gui;
 
 import cz.pv168Web.enums.State;
 import cz.pv168Web.model.Person;
+import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -364,7 +365,8 @@ public class PersonInput extends javax.swing.JDialog {
             labelErrorSurname.setVisible(true);
             tmp = false;
         }
-        if ("".equals(textPersonBirthNumber.getText())){
+        String birthNum = textPersonBirthNumber.getText();
+        if (birthNum.isEmpty() || birthNum.length()!=10 || !Pattern.matches("[0-9]+", birthNum) ){
             labelErrorBirthNumber.setVisible(true);
             tmp = false;
         }
@@ -381,7 +383,7 @@ public class PersonInput extends javax.swing.JDialog {
             person.setName(textPersonName.getText());
             person.setSurname(textPersonSurname.getText());
             person.setBirthNumber(textPersonBirthNumber.getText());
-            person.setState("adsaa");
+            person.setState((String)comboState.getSelectedItem());
             person.setBirthDate(datePicker.getDate());
         } 
         

@@ -962,6 +962,7 @@ public class MainWindow extends javax.swing.JFrame {
                     }
                 }
             };
+             new Thread(r).start();
         }
     }//GEN-LAST:event_buttonRemovePersonActionPerformed
 

@@ -39,7 +39,7 @@ public class PersonDetail extends javax.swing.JFrame {
             
             DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
             Date birthDate = p.getBirthDate();
-            labelPersonBirthdate.setText(format.format(p.getBirthDate().toString()));
+            labelPersonBirthdate.setText(format.format(p.getBirthDate()));
            
             LocalDate birth = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(birthDate));
             LocalDate today = LocalDate.now();

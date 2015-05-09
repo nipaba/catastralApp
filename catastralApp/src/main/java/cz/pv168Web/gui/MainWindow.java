@@ -41,6 +41,8 @@ public class MainWindow extends javax.swing.JFrame {
         landTableModel = (DefaultTableModel) landTable.getModel();
         ownershipTableModel = (DefaultTableModel) ownershipTable1.getModel();
         refreshPersonTable();
+        refreshLandTable();
+        refreshOwnershipTable();
     }
 
     /**
@@ -400,7 +402,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         ownershipTab.add(buttonAddOwnership, gridBagConstraints);
 
-        buttonUpdateOwnership.setText("Update Land");
+        buttonUpdateOwnership.setText("Update OwnerShip");
         buttonUpdateOwnership.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonUpdateOwnershipActionPerformed(evt);
@@ -412,7 +414,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         ownershipTab.add(buttonUpdateOwnership, gridBagConstraints);
 
-        buttonRemoveOwnership.setText("Remove Land");
+        buttonRemoveOwnership.setText("RemoveOwnership");
         buttonRemoveOwnership.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveOwnershipActionPerformed(evt);
@@ -902,6 +904,7 @@ public class MainWindow extends javax.swing.JFrame {
                         try {
                             mainManager.createPerson(personInput.getPerson());
                             refreshPersonTable();
+                            
                         } catch (DatabaseException ex) {
                             printError(ex.toString());
                         }
@@ -971,7 +974,27 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonRemovePersonActionPerformed
 
     private void buttonDetailPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDetailPersonActionPerformed
-        // TODO add your handling code here:
+        int rownNumber = personTable.getSelectedRow();
+
+        if (rownNumber >= 0) {
+            Long personId = Long.parseLong(personTableModel.getValueAt(rownNumber, 0).toString());
+
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (mainManager) {
+                        try {
+                            PersonDetail pd = new PersonDetail(mainManager.getPersonById(personId));
+                            pd.show();
+                        } catch (DatabaseException ex) {
+                            printError(ex.toString());
+                        }
+                        refreshPersonTable();
+                    }
+                }
+            };
+             new Thread(r).start();
+        }
     }//GEN-LAST:event_buttonDetailPersonActionPerformed
 
     private void buttonDBrestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDBrestartActionPerformed
@@ -1073,7 +1096,27 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonRemoveLandActionPerformed
 
     private void buttonDetailLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDetailLandActionPerformed
-        // TODO add your handling code here:
+                 int rownNumber = landTable.getSelectedRow();
+
+        if (rownNumber >= 0) {
+            Long landId = Long.parseLong(landTableModel.getValueAt(rownNumber, 0).toString());
+
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (mainManager) {
+                        try {
+                            LandDetail ld = new LandDetail(mainManager.getLandById(landId));
+                            ld.show();
+                        } catch (DatabaseException ex) {
+                            printError(ex.toString());
+                        }
+                        refreshLandTable();
+                    }
+                }
+            };
+             new Thread(r).start();
+        }
     }//GEN-LAST:event_buttonDetailLandActionPerformed
 
     private void menuHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpActionPerformed
@@ -1096,6 +1139,7 @@ public class MainWindow extends javax.swing.JFrame {
                     synchronized (mainManager) {
                         try {
                             mainManager.removeOwnership(ownershipId);
+                            refreshOwnershipTable();
                         } catch (DatabaseException ex) {
                             printError(ex.toString());
                         }
@@ -1335,7 +1379,9 @@ public class MainWindow extends javax.swing.JFrame {
 
             List<Ownership> list = mainManager.getOwnershipList();
             for (Ownership o : list) {
-                landTableModel.addRow(o.toArray());
+                
+                ownershipTableModel.addRow(mainManager.getOwnershipArray(o));
+                
             }
 
         } catch (DatabaseException ex) {

@@ -36,5 +36,17 @@ public enum State {
         }
         return results;
     }
+   
+   public static int getIndexOfState(String state){
+       int count = 0;
+       for (State s  : State.values()) {
+            if (s.getCode().equalsIgnoreCase(state)){
+                return count;
+            }
+            count++;
+        }
+       return 0;
+               
+   }
             
 }

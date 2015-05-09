@@ -38,11 +38,11 @@ public class MainManager {
     public void createPerson(Person person) throws DatabaseException {
         personManager.createPerson(person);
     }
-    
+
     public void createLand(Land land) throws DatabaseException {
         landManager.createLand(land);
     }
-    
+
     public void createOwnership(Ownership ownership) throws DatabaseException {
         ownershipManager.createOwnership(ownership);
     }
@@ -66,7 +66,7 @@ public class MainManager {
     public List<Person> getPersonList() throws DatabaseException {
         return personManager.getPersonList();
     }
-    
+
     public List<Land> getLandList() throws DatabaseException {
         return landManager.getLandList();
     }
@@ -74,7 +74,7 @@ public class MainManager {
     public List<Ownership> getOwnershipList() throws DatabaseException {
         return ownershipManager.getOwnershipList();
     }
-    
+
     public void deleteDB() throws DatabaseException {
         ownershipManager.dropTableOwnership();
         landManager.dropTableLand();
@@ -86,13 +86,13 @@ public class MainManager {
         p.setPersonId(personId);
         personManager.removePerson(p);
     }
-    
+
     public void removeLand(Long landID) throws DatabaseException {
         Land l = new Land();
         l.setLandID(landID);
         landManager.removeLand(l);
     }
-    
+
     public void removeOwnership(Long ownershipId) throws DatabaseException {
         Ownership o = new Ownership();
         o.setOwnerShipID(ownershipId);
@@ -105,8 +105,8 @@ public class MainManager {
 
     public void updatePerson(Person person) throws DatabaseException {
         personManager.updatePerson(person);
-     }
-    
+    }
+
     public Land getLandById(Long landId) throws DatabaseException {
         return landManager.getLandById(landId);
     }
@@ -114,7 +114,7 @@ public class MainManager {
     public void updateLand(Land land) throws DatabaseException {
         landManager.updateLand(land);
     }
-    
+
     public Ownership getOwnershipById(Long ownershipId) throws DatabaseException {
         return ownershipManager.getOwnershipById(ownershipId);
     }
@@ -122,30 +122,48 @@ public class MainManager {
     public void updateOwnership(Ownership ownership) throws DatabaseException {
         ownershipManager.updateOwnerShip(ownership);
     }
-    
-    public String [] getPersonIDArray() throws DatabaseException {
-    
-    List <Person> personList = personManager.getPersonList();
-    String [] personArray = new String[personList.size()];
-    int n = 0;
-    
-    for (Person p : personList){
-        personArray[n] = p.getPersonId()+"";
-    }
-    return personArray;
-    }
-    
-    public String [] getLandIDArray() throws DatabaseException {
-    
-    List <Land> landList = landManager.getLandList();
-    String [] landArray = new String[landList.size()];
-    int n = 0;
-    
-    for (Land l : landList){
-        landArray[n] = l.getLandID()+"";
-    }
-    return landArray;
+
+    public String[] getPersonIDArray() throws DatabaseException {
+
+        List<Person> personList = personManager.getPersonList();
+        String[] personArray = new String[personList.size()];
+        int n = 0;
+
+        for (Person p : personList) {
+            personArray[n] = p.getPersonId() + "";
+            n++;
+        }
+        return personArray;
     }
 
+    public String[] getLandIDArray() throws DatabaseException {
 
+        List<Land> landList = landManager.getLandList();
+        String[] landArray = new String[landList.size()];
+        int n = 0;
+
+        for (Land l : landList) {
+            landArray[n] = l.getLandID() + "";
+            n++;
+        }
+        return landArray;
+    }
+
+    public String[] getOwnershipArray(Ownership o) throws DatabaseException {
+
+        Person p = personManager.getPersonById(o.getPersonID());
+
+        String[] ownershipArray = new String[8];
+
+        ownershipArray[0] = o.getOwnerShipID() + "";
+        ownershipArray[1] = p.getName();
+        ownershipArray[2] = p.getSurname();
+        ownershipArray[3] = p.getPersonId() + "";
+        ownershipArray[4] = o.getLandId() + "";
+        ownershipArray[5] = o.getStartDate().toString();
+        ownershipArray[6] = o.getEndDate().toString();
+        ownershipArray[7] = "";
+
+        return ownershipArray;
+    }
 }

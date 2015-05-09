@@ -26,29 +26,21 @@ public class LandInput extends javax.swing.JDialog {
     public LandInput(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        labelErrorSize.setVisible(false);
-        labelErrorBuildUpArea.setVisible(false);
-        labelErrorNotes.setVisible(false);
+        customInit();
 
-        setTypeComboBox();
-        setCatastralAreaComboBox();
     }
 
     public LandInput(java.awt.Frame parent, boolean modal, Land updateLand) {
         super(parent, modal);
         initComponents();
+        customInit();
+
         update = true;
         land = updateLand;
 
-        System.out.println(land.toString());
         textLandNotes.setText(land.getNotes());
-
-        labelErrorSize.setVisible(false);
-        labelErrorBuildUpArea.setVisible(false);
-        labelErrorNotes.setVisible(false);
-
-        setTypeComboBox();
-        setCatastralAreaComboBox();
+        spinnerSize.setValue(land.getSize());
+        spinnerBuildUpArea.setValue(land.getBuildUpArea());
     }
 
     public Boolean getValid() {
@@ -58,7 +50,6 @@ public class LandInput extends javax.swing.JDialog {
     public Land getLand() {
         return land;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,7 +109,7 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         getContentPane().add(buttonAdd, gridBagConstraints);
 
-        labelSize.setText("Size");
+        labelSize.setText("Size[m]");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -127,7 +118,7 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(labelSize, gridBagConstraints);
 
-        labelBuildUpArea.setText("Build-up area");
+        labelBuildUpArea.setText("Build-up area[m]");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -203,6 +194,11 @@ public class LandInput extends javax.swing.JDialog {
         getContentPane().add(labelErrorNotes, gridBagConstraints);
 
         textLandNotes.setPreferredSize(new java.awt.Dimension(100, 20));
+        textLandNotes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textLandNotesFocusGained(evt);
+            }
+        });
         textLandNotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textLandNotesActionPerformed(evt);
@@ -217,20 +213,33 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(comboCatastralArea, gridBagConstraints);
 
         spinnerSize.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, 10000.0d, 0.1d));
         spinnerSize.setPreferredSize(new java.awt.Dimension(50, 18));
+        spinnerSize.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                spinnerSizeFocusGained(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(spinnerSize, gridBagConstraints);
 
-        spinnerBuildUpArea.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(0.0d), null, Double.valueOf(10000.0d), Double.valueOf(0.1d)));
+        spinnerBuildUpArea.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, 10000.0d, 0.1d));
         spinnerBuildUpArea.setPreferredSize(new java.awt.Dimension(50, 18));
+        spinnerBuildUpArea.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                spinnerBuildUpAreaFocusGained(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(spinnerBuildUpArea, gridBagConstraints);
 
         pack();
@@ -238,7 +247,7 @@ public class LandInput extends javax.swing.JDialog {
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         valid = false;
-        this.dispose();
+        hide();
 
     }//GEN-LAST:event_buttonCancelActionPerformed
 
@@ -253,8 +262,8 @@ public class LandInput extends javax.swing.JDialog {
             land.setCatastralArea((String) comboCatastralArea.getSelectedItem());
             land.setType((String) comboType.getSelectedItem());
             land.setNotes(textLandNotes.getText());
-            valid=true;
-            this.hide();
+            valid = true;
+            hide();
 
         }
     }//GEN-LAST:event_buttonAddActionPerformed
@@ -266,6 +275,18 @@ public class LandInput extends javax.swing.JDialog {
     private void textLandNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textLandNotesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textLandNotesActionPerformed
+
+    private void spinnerSizeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_spinnerSizeFocusGained
+        labelErrorSize.setVisible(false);
+    }//GEN-LAST:event_spinnerSizeFocusGained
+
+    private void spinnerBuildUpAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_spinnerBuildUpAreaFocusGained
+        labelErrorBuildUpArea.setVisible(false);
+    }//GEN-LAST:event_spinnerBuildUpAreaFocusGained
+
+    private void textLandNotesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textLandNotesFocusGained
+        labelErrorNotes.setVisible(false);
+    }//GEN-LAST:event_textLandNotesFocusGained
 
     /**
      * @param args the command line arguments
@@ -329,28 +350,29 @@ public class LandInput extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private Boolean valideteLandForm() {
-        if (Double.valueOf(spinnerSize.getValue().toString()) <= 0) {
+        Boolean tmp = true;
+        if (spinnerSize.getValue() == null || (Double) spinnerSize.getValue() <= 0.0) {
             labelErrorSize.setVisible(true);
-            return false;
+            tmp = false;
         }
-
-        if (Double.valueOf(spinnerBuildUpArea.getValue().toString()) <= 0) {
+        if (spinnerBuildUpArea.getValue() == null || (Double) spinnerBuildUpArea.getValue() <= 0.0) {
             labelErrorBuildUpArea.setVisible(true);
-            return false;
+            tmp = false;
+        }
+        if (textLandNotes.getText().isEmpty()) {
+            labelErrorNotes.setVisible(true);
+            tmp = false;
         }
 
-        return true;
+        return tmp;
     }
 
-    private void setTypeComboBox() {
-
+    private void customInit() {
+        labelErrorSize.setVisible(false);
+        labelErrorBuildUpArea.setVisible(false);
+        labelErrorNotes.setVisible(false);
         comboType.setModel(new DefaultComboBoxModel(LandType.getLandTypeArray()));
-
-    }
-
-    private void setCatastralAreaComboBox() {
-
         comboCatastralArea.setModel(new DefaultComboBoxModel(LandCatastralArea.getLandCatastralAreaArray()));
-
+   
     }
 }

@@ -94,18 +94,5 @@ public class Ownership implements Serializable{
             + ", landId=" + landId + ", startDate=" + startDate + ", endDate="
             + endDate + "]";
    }
-   
-    public String[] toArray() {
-       String[] list = new String[5];
-
-       list[0] = ownerShipID + "";
-       list[1] = personID + "";
-       list[2] = landId + "";
-       list[3] = startDate + "";  
-       list[4] = endDate + "";
-
-       return list;
-
-    }
-   
+    
 }

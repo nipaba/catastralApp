@@ -26,42 +26,35 @@ public class PersonInput extends javax.swing.JDialog {
     public PersonInput(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        labelErrorName.setVisible(false);
-        labelErrorSurname.setVisible(false);
-        labelErrorBirthNumber.setVisible(false);
-        labelErrorDate.setVisible(false);
-        
-        setStateComboBox();
-        
+        customInit();
+
     }
 
     public PersonInput(java.awt.Frame parent, boolean modal, Person updatePerson) {
         super(parent, modal);
         initComponents();
-        update = true;        
+        customInit();
+
+        update = true;
         person = updatePerson;
-        
+
         System.out.println(person.toString());
         textPersonBirthNumber.setText(person.getBirthNumber());
         textPersonName.setText(person.getName());
         textPersonSurname.setText(person.getSurname());
         datePicker.setDate(person.getBirthDate());
 
-        labelErrorName.setVisible(false);
-        labelErrorSurname.setVisible(false);
-        labelErrorBirthNumber.setVisible(false);
-        labelErrorDate.setVisible(false);
-        
-        setStateComboBox();
+        comboState.setSelectedIndex(State.getIndexOfState(person.getState()));
+
     }
-    public Boolean getValid(){
+
+    public Boolean getValid() {
         return valid;
     }
-    
-    public Person getPerson(){
+
+    public Person getPerson() {
         return person;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -266,10 +259,10 @@ public class PersonInput extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
-        
+
         valid = validatePersonForm();
 
-        if (valid){
+        if (valid) {
             this.hide();
         }
     }//GEN-LAST:event_buttonAddActionPerformed
@@ -280,15 +273,15 @@ public class PersonInput extends javax.swing.JDialog {
     }//GEN-LAST:event_textPersonNameFocusGained
 
     private void textPersonSurnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textPersonSurnameFocusGained
-       labelErrorSurname.setVisible(false);
+        labelErrorSurname.setVisible(false);
     }//GEN-LAST:event_textPersonSurnameFocusGained
 
     private void textPersonBirthNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textPersonBirthNumberFocusGained
-       labelErrorBirthNumber.setVisible(false);
+        labelErrorBirthNumber.setVisible(false);
     }//GEN-LAST:event_textPersonBirthNumberFocusGained
 
     private void datePickerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerFocusGained
-       labelErrorDate.setVisible(false);
+        labelErrorDate.setVisible(false);
     }//GEN-LAST:event_datePickerFocusGained
 
     /**
@@ -354,47 +347,49 @@ public class PersonInput extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private Boolean validatePersonForm() {
-         
+
         Boolean tmp = true;
-              
-        if ("".equals(textPersonName.getText())){
+
+        if ("".equals(textPersonName.getText())) {
             labelErrorName.setVisible(true);
             tmp = false;
         }
-        if ("".equals(textPersonSurname.getText())){
+        if ("".equals(textPersonSurname.getText())) {
             labelErrorSurname.setVisible(true);
             tmp = false;
         }
         String birthNum = textPersonBirthNumber.getText();
-        if (birthNum.isEmpty() || birthNum.length()!=10 || !Pattern.matches("[0-9]+", birthNum) ){
+        if (birthNum.isEmpty() || birthNum.length() != 10 || !Pattern.matches("[0-9]+", birthNum)) {
             labelErrorBirthNumber.setVisible(true);
             tmp = false;
         }
-        if (datePicker.getDate()==null){
+        if (datePicker.getDate() == null) {
             labelErrorDate.setVisible(true);
             tmp = false;
         }
-        
-        if (tmp){
-            if (!update){
+
+        if (tmp) {
+            if (!update) {
                 person = new Person();
             }
-            
+
             person.setName(textPersonName.getText());
             person.setSurname(textPersonSurname.getText());
             person.setBirthNumber(textPersonBirthNumber.getText());
-            person.setState((String)comboState.getSelectedItem());
+            person.setState((String) comboState.getSelectedItem());
             person.setBirthDate(datePicker.getDate());
-        } 
-        
+        }
+
         return tmp;
     }
-    
-    private void setStateComboBox(){
-        
-       comboState.setModel(new DefaultComboBoxModel(State.getStateArray()));
-            
-        
-        
+
+    private void customInit() {
+        labelErrorName.setVisible(false);
+        labelErrorSurname.setVisible(false);
+        labelErrorBirthNumber.setVisible(false);
+        labelErrorDate.setVisible(false);
+
+        comboState.setModel(new DefaultComboBoxModel(State.getStateArray()));
+        valid = false;
     }
 }

@@ -38,5 +38,17 @@ public enum LandCatastralArea {
         return results;
     }
     
+       public static int getIndexOfCatastralArea(String catastralArea){
+       int count = 0;
+       for (LandCatastralArea c  : LandCatastralArea.values()) {
+            if (c.getCode().equalsIgnoreCase(catastralArea)){
+                return count;
+            }
+            count++;
+        }
+       return 0;
+               
+   }
+    
 }
 

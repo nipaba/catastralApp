@@ -75,8 +75,7 @@ public class OwnershipInput extends javax.swing.JDialog {
         labelErrorPersonID = new javax.swing.JLabel();
         labelErrorEndDate = new javax.swing.JLabel();
         labelEndDate = new javax.swing.JLabel();
-        datePickerStartDate1 = new org.jdesktop.swingx.JXDatePicker();
-        datePickerStartDate2 = new org.jdesktop.swingx.JXDatePicker();
+        datePickerStartDate = new org.jdesktop.swingx.JXDatePicker();
         labelErrorStartDate = new javax.swing.JLabel();
         comboboxPerson = new javax.swing.JComboBox();
         comboboxLand = new javax.swing.JComboBox();
@@ -180,25 +179,20 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.gridy = 2;
         getContentPane().add(labelEndDate, gridBagConstraints);
 
-        datePickerStartDate1.addFocusListener(new java.awt.event.FocusAdapter() {
+        datePickerStartDate.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                datePickerStartDate1FocusGained(evt);
+                datePickerStartDateFocusGained(evt);
+            }
+        });
+        datePickerStartDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                datePickerStartDateActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
-        getContentPane().add(datePickerStartDate1, gridBagConstraints);
-
-        datePickerStartDate2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                datePickerStartDate2FocusGained(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 1;
-        getContentPane().add(datePickerStartDate2, gridBagConstraints);
+        getContentPane().add(datePickerStartDate, gridBagConstraints);
 
         labelErrorStartDate.setText("Error");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -224,7 +218,7 @@ public class OwnershipInput extends javax.swing.JDialog {
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         valid = false;
-        this.dispose();
+        hide();
 
     }//GEN-LAST:event_buttonCancelActionPerformed
 
@@ -233,25 +227,27 @@ public class OwnershipInput extends javax.swing.JDialog {
 
             ownership = new Ownership();
 
-            ownership.setPersonID((Long)comboboxPerson.getSelectedItem());
-            ownership.setLandId((Long)comboboxLand.getSelectedItem());
-            ownership.setStartDate(datePickerStartDate2.getDate());
+            ownership.setPersonID(Long.parseLong((String) comboboxPerson.getSelectedItem()));
+            ownership.setLandId(Long.parseLong((String) comboboxLand.getSelectedItem()));
+            ownership.setStartDate(datePickerStartDate.getDate());
             ownership.setEndDate(datePickerEndDate.getDate());
+            
+            valid = true;
             this.hide();
         }
     }//GEN-LAST:event_buttonAddActionPerformed
 
     private void datePickerEndDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerEndDateFocusGained
-      
+      labelErrorEndDate.setVisible(false);
     }//GEN-LAST:event_datePickerEndDateFocusGained
 
-    private void datePickerStartDate1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerStartDate1FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_datePickerStartDate1FocusGained
+    private void datePickerStartDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerStartDateFocusGained
+        labelErrorStartDate.setVisible(false);
+    }//GEN-LAST:event_datePickerStartDateFocusGained
 
-    private void datePickerStartDate2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerStartDate2FocusGained
+    private void datePickerStartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datePickerStartDateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_datePickerStartDate2FocusGained
+    }//GEN-LAST:event_datePickerStartDateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,8 +297,7 @@ public class OwnershipInput extends javax.swing.JDialog {
     private javax.swing.JComboBox comboboxLand;
     private javax.swing.JComboBox comboboxPerson;
     private org.jdesktop.swingx.JXDatePicker datePickerEndDate;
-    private org.jdesktop.swingx.JXDatePicker datePickerStartDate1;
-    private org.jdesktop.swingx.JXDatePicker datePickerStartDate2;
+    private org.jdesktop.swingx.JXDatePicker datePickerStartDate;
     private javax.swing.JLabel labelEndDate;
     private javax.swing.JLabel labelErrorEndDate;
     private javax.swing.JLabel labelErrorLandID;
@@ -315,18 +310,18 @@ public class OwnershipInput extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     
     private Boolean valideteOwnershipForm(){
-        if(datePickerStartDate2.getDate() == null){
+        Boolean tmp = true;
+        if(datePickerStartDate.getDate() == null){
             labelErrorStartDate.setVisible(true);
-            return false;
+            tmp =  false;
         }
         
-        if(datePickerStartDate2.getDate().after(datePickerEndDate.getDate())){
+        if(datePickerEndDate.getDate() != null  && datePickerStartDate.getDate().after(datePickerEndDate.getDate())){
             
             labelErrorStartDate.setVisible(true);
-            labelErrorEndDate.setVisible(true);
-            return false;
+            tmp = false;
         }
         
-        return true;
+        return tmp;
     }
 }

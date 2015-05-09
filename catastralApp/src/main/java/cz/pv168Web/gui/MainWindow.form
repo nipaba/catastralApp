@@ -553,7 +553,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="buttonUpdateOwnership">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Update Land"/>
+                <Property name="text" type="java.lang.String" value="Update OwnerShip"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonUpdateOwnershipActionPerformed"/>
@@ -566,7 +566,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="buttonRemoveOwnership">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Remove Land"/>
+                <Property name="text" type="java.lang.String" value="RemoveOwnership"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemoveOwnershipActionPerformed"/>

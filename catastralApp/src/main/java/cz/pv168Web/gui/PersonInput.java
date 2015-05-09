@@ -5,7 +5,9 @@
  */
 package cz.pv168Web.gui;
 
+import cz.pv168Web.enums.State;
 import cz.pv168Web.model.Person;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -27,6 +29,9 @@ public class PersonInput extends javax.swing.JDialog {
         labelErrorSurname.setVisible(false);
         labelErrorBirthNumber.setVisible(false);
         labelErrorDate.setVisible(false);
+        
+        setStateComboBox();
+        
     }
 
     public PersonInput(java.awt.Frame parent, boolean modal, Person updatePerson) {
@@ -45,6 +50,8 @@ public class PersonInput extends javax.swing.JDialog {
         labelErrorSurname.setVisible(false);
         labelErrorBirthNumber.setVisible(false);
         labelErrorDate.setVisible(false);
+        
+        setStateComboBox();
     }
     public Boolean getValid(){
         return valid;
@@ -379,5 +386,13 @@ public class PersonInput extends javax.swing.JDialog {
         } 
         
         return tmp;
+    }
+    
+    private void setStateComboBox(){
+        
+       comboState.setModel(new DefaultComboBoxModel(State.getStateArray()));
+            
+        
+        
     }
 }

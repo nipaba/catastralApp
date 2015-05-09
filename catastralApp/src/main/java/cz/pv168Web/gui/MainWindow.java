@@ -1112,7 +1112,7 @@ public class MainWindow extends javax.swing.JFrame {
             Long ownershipId = Long.parseLong(ownershipTableModel.getValueAt(rownNumber, 0).toString());
             try {
                 o = mainManager.getOwnershipById(ownershipId);
-                OwnershipInput ownershipInput = new OwnershipInput(this, true, p);
+                OwnershipInput ownershipInput = new OwnershipInput(this, true,mainManager.getPersonIDArray(), mainManager.getLandIDArray(), o);
                 ownershipInput.show();
                 if (ownershipInput.getValid()) {
 
@@ -1139,24 +1139,29 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonUpdateOwnershipActionPerformed
 
     private void buttonAddOwnershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddOwnershipActionPerformed
-        OwnershipInput ownershipInput = new OwnershipInput(this, true);
-        ownershipInput.show();
-        if (ownershipInput.getValid()) {
-            Runnable r = new Runnable() {
-                @Override
-                public void run() {
-                    synchronized (mainManager) {
-                        try {
-                            mainManager.createOwnership(ownershipInput.getOwnership());
-                            refreshOwnershipTable();
-                        } catch (DatabaseException ex) {
-                            printError(ex.toString());
+        try {
+            OwnershipInput ownershipInput = new OwnershipInput(this, true, mainManager.getPersonIDArray() , mainManager.getLandIDArray());
+        
+            ownershipInput.show();
+            if (ownershipInput.getValid()) {
+                Runnable r = new Runnable() {
+                    @Override
+                    public void run() {
+                        synchronized (mainManager) {
+                            try {
+                                mainManager.createOwnership(ownershipInput.getOwnership());
+                                refreshOwnershipTable();
+                            } catch (DatabaseException ex) {
+                                printError(ex.toString());
+                            }
                         }
                     }
-                }
-            };
+                };
 
-            new Thread(r).start();
+                new Thread(r).start();
+            }
+        }catch(DatabaseException ex){
+           printError(ex.toString()); 
         }
     }//GEN-LAST:event_buttonAddOwnershipActionPerformed
 
@@ -1312,6 +1317,23 @@ public class MainWindow extends javax.swing.JFrame {
             List<Land> list = mainManager.getLandList();
             for (Land l : list) {
                 landTableModel.addRow(l.toArray());
+            }
+
+        } catch (DatabaseException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void refreshOwnershipTable() {
+        try {
+            // clear table 
+            while (ownershipTableModel.getRowCount() > 0) {
+                ownershipTableModel.removeRow(ownershipTableModel.getRowCount() - 1);
+            }
+
+            List<Ownership> list = mainManager.getOwnershipList();
+            for (Ownership o : list) {
+                landTableModel.addRow(o.toArray());
             }
 
         } catch (DatabaseException ex) {

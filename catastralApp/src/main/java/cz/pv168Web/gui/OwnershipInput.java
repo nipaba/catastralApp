@@ -6,7 +6,7 @@
 package cz.pv168Web.gui;
 
 import cz.pv168Web.model.Ownership;
-import cz.pv168Web.mainPack.MainManager;
+
 import javax.swing.DefaultComboBoxModel;
 /**
  *
@@ -25,23 +25,32 @@ public class OwnershipInput extends javax.swing.JDialog {
     public OwnershipInput(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+         
 
     }
 
     public OwnershipInput(java.awt.Frame parent, boolean modal, String [] personArrayID, String [] landArrayId) {
         super(parent, modal);
         initComponents();
-        update = true;        
+        update = true;
+        comboboxPerson.setModel(new DefaultComboBoxModel(personArrayID));
+        comboboxLand.setModel(new DefaultComboBoxModel(landArrayId));
     }
     
     public OwnershipInput(java.awt.Frame parent, boolean modal, String [] personArrayID, String [] landArrayId,Ownership o) {
         super(parent, modal);
         initComponents();
-        update = true;        
+        update = true;
+        comboboxPerson.setModel(new DefaultComboBoxModel(personArrayID));
+        comboboxLand.setModel(new DefaultComboBoxModel(landArrayId));
     }
     public Boolean getValid(){
         return valid;
     }
+    
+    public Ownership getOwnership(){
+        return o;
+    } 
  
     
 
@@ -295,7 +304,7 @@ public class OwnershipInput extends javax.swing.JDialog {
     private javax.swing.JLabel labelSurname;
     private javax.swing.JLabel labelTitleNewPerson;
     // End of variables declaration//GEN-END:variables
-
+/*
     private static void setPersonIDComboBox(){
         
        comboboxPerson.setModel(new DefaultComboBoxModel(MainManager.getPersonIDArray()));
@@ -311,4 +320,5 @@ public class OwnershipInput extends javax.swing.JDialog {
         
         
     }
+*/
 }

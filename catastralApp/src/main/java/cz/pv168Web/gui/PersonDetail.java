@@ -5,6 +5,14 @@
  */
 package cz.pv168Web.gui;
 
+import cz.pv168Web.model.Person;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author Tomas
@@ -17,6 +25,32 @@ public class PersonDetail extends javax.swing.JFrame {
     public PersonDetail() {
         initComponents();
     }
+    
+    public PersonDetail(Person p) {
+        initComponents();
+        
+        if (p==null) dispose();
+        else {
+            labelPersonIDvalue.setText(p.getPersonId()+"");
+            labelPersonNameValue.setText(p.getName());
+            labelPersonSurnameValue.setText(p.getSurname());
+            labelPersonBirthNumberValue.setText(p.getBirthNumber());
+            labelPersonStateValue.setText(p.getState());
+            
+            DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+            Date birthDate = p.getBirthDate();
+            labelPersonBirthdate.setText(format.format(p.getBirthDate().toString()));
+           
+            LocalDate birth = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(birthDate));
+            LocalDate today = LocalDate.now();
+            
+            Period period = Period.between(birth, today);    
+            labelPersonAgeValue.setText(period.getYears()+"");
+        }
+        
+        
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,19 +60,171 @@ public class PersonDetail extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        labelPersonState = new javax.swing.JLabel();
+        labelPersonBirthNumber = new javax.swing.JLabel();
+        labelPersonId = new javax.swing.JLabel();
+        labelPersonDetailTitle = new javax.swing.JLabel();
+        labelPersonName = new javax.swing.JLabel();
+        labelPersonSurname = new javax.swing.JLabel();
+        labelPersonBirthdate = new javax.swing.JLabel();
+        labelPersonAge = new javax.swing.JLabel();
+        labelPersonIDvalue = new javax.swing.JLabel();
+        labelPersonNameValue = new javax.swing.JLabel();
+        labelPersonSurnameValue = new javax.swing.JLabel();
+        labelPersonBirthdateValue = new javax.swing.JLabel();
+        labelPersonBirthNumberValue = new javax.swing.JLabel();
+        labelPersonStateValue = new javax.swing.JLabel();
+        labelPersonAgeValue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        labelPersonState.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonState.setText("State :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonState, gridBagConstraints);
+
+        labelPersonBirthNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonBirthNumber.setText("BirthNumber :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonBirthNumber, gridBagConstraints);
+
+        labelPersonId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonId.setText("Person ID :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonId, gridBagConstraints);
+
+        labelPersonDetailTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelPersonDetailTitle.setText("Person Detail");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(labelPersonDetailTitle, gridBagConstraints);
+
+        labelPersonName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonName.setText("Name :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonName, gridBagConstraints);
+
+        labelPersonSurname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonSurname.setText("Surname :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonSurname, gridBagConstraints);
+
+        labelPersonBirthdate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonBirthdate.setText("Birthdate :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonBirthdate, gridBagConstraints);
+
+        labelPersonAge.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonAge.setText("Age :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonAge, gridBagConstraints);
+
+        labelPersonIDvalue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonIDvalue.setText("PersonIDvalue");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonIDvalue, gridBagConstraints);
+
+        labelPersonNameValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonNameValue.setText("PersonNamevalue");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonNameValue, gridBagConstraints);
+
+        labelPersonSurnameValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonSurnameValue.setText("PersonSurnameValue");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonSurnameValue, gridBagConstraints);
+
+        labelPersonBirthdateValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonBirthdateValue.setText("PersonBithDateValue");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonBirthdateValue, gridBagConstraints);
+
+        labelPersonBirthNumberValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonBirthNumberValue.setText("PersonBirthNumberValue");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonBirthNumberValue, gridBagConstraints);
+
+        labelPersonStateValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonStateValue.setText("PersonSateValue");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonStateValue, gridBagConstraints);
+
+        labelPersonAgeValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPersonAgeValue.setText("PersonAgeValue");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        getContentPane().add(labelPersonAgeValue, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -79,5 +265,20 @@ public class PersonDetail extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel labelPersonAge;
+    private javax.swing.JLabel labelPersonAgeValue;
+    private javax.swing.JLabel labelPersonBirthNumber;
+    private javax.swing.JLabel labelPersonBirthNumberValue;
+    private javax.swing.JLabel labelPersonBirthdate;
+    private javax.swing.JLabel labelPersonBirthdateValue;
+    private javax.swing.JLabel labelPersonDetailTitle;
+    private javax.swing.JLabel labelPersonIDvalue;
+    private javax.swing.JLabel labelPersonId;
+    private javax.swing.JLabel labelPersonName;
+    private javax.swing.JLabel labelPersonNameValue;
+    private javax.swing.JLabel labelPersonState;
+    private javax.swing.JLabel labelPersonStateValue;
+    private javax.swing.JLabel labelPersonSurname;
+    private javax.swing.JLabel labelPersonSurnameValue;
     // End of variables declaration//GEN-END:variables
 }

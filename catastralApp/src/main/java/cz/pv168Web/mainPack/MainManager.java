@@ -122,5 +122,17 @@ public class MainManager {
     public void updateOwnership(Ownership ownership) throws DatabaseException {
         ownershipManager.updateOwnerShip(ownership);
     }
+    
+    public String [] getPersonIDArray() throws DatabaseException {
+    
+    List <Person> personList = personManager.getPersonList();
+    String [] personArray = new String[personList.size()];
+    int n = 0;
+    
+    for (Person p : personList){
+        personArray[n] = p.getPersonId()+"";
+    }
+    return personArray;
+    }
 
 }

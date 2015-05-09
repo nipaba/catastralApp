@@ -14,9 +14,9 @@ import java.util.List;
  */
 public enum LandType {
     
-    STAVEBNI_PARCELA("Stavebni parcela");
-    STAVEBNI_PARCELA("Stavebni parcela");
-    STAVEBNI_PARCELA("Stavebni parcela");
+    STAVEBNI_PARCELA("Stavebni parcela"),
+    BYT("Byt"),
+    DOM("Dom");
     
     private String landType;
     

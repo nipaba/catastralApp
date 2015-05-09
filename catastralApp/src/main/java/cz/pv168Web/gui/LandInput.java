@@ -5,7 +5,11 @@
  */
 package cz.pv168Web.gui;
 
+
 import cz.pv168Web.model.Land;
+import cz.pv168Web.enums.LandType;
+import cz.pv168Web.enums.LandCatastralArea;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -38,8 +42,6 @@ public class LandInput extends javax.swing.JDialog {
         land = updateLand;
         
         System.out.println(land.toString());
-        textLandSize.setText(Double.toString(land.getSize()));
-        textLandBuildUpArea.setText(Double.toString(land.getBuildUpArea()));
         textLandNotes.setText(land.getNotes());
         
         labelErrorSize.setVisible(false);
@@ -71,10 +73,8 @@ public class LandInput extends javax.swing.JDialog {
 
         buttonCancel = new javax.swing.JButton();
         buttonAdd = new javax.swing.JButton();
-        textLandSize = new javax.swing.JTextField();
         labelSize = new javax.swing.JLabel();
         labelBuildUpArea = new javax.swing.JLabel();
-        textLandBuildUpArea = new javax.swing.JTextField();
         labelCatastralArea = new javax.swing.JLabel();
         comboType = new javax.swing.JComboBox();
         labelType = new javax.swing.JLabel();
@@ -85,6 +85,8 @@ public class LandInput extends javax.swing.JDialog {
         labelErrorNotes = new javax.swing.JLabel();
         textLandNotes = new javax.swing.JTextField();
         comboCatastralArea = new javax.swing.JComboBox();
+        spinnerSize = new javax.swing.JSpinner();
+        spinnerBuildUpArea = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -117,19 +119,6 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         getContentPane().add(buttonAdd, gridBagConstraints);
 
-        textLandSize.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                textLandSizeFocusGained(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 53;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(textLandSize, gridBagConstraints);
-
         labelSize.setText("Size");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -147,19 +136,6 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(labelBuildUpArea, gridBagConstraints);
-
-        textLandBuildUpArea.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                textLandBuildUpAreaFocusGained(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 53;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(textLandBuildUpArea, gridBagConstraints);
 
         labelCatastralArea.setText("Catastral area");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -244,6 +220,20 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.gridy = 3;
         getContentPane().add(comboCatastralArea, gridBagConstraints);
 
+        spinnerSize.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, 10000.0d, 0.1d));
+        spinnerSize.setPreferredSize(new java.awt.Dimension(50, 18));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        getContentPane().add(spinnerSize, gridBagConstraints);
+
+        spinnerBuildUpArea.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(0.0d), null, Double.valueOf(10000.0d), Double.valueOf(0.1d)));
+        spinnerBuildUpArea.setPreferredSize(new java.awt.Dimension(50, 18));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        getContentPane().add(spinnerBuildUpArea, gridBagConstraints);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -256,15 +246,6 @@ public class LandInput extends javax.swing.JDialog {
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         
     }//GEN-LAST:event_buttonAddActionPerformed
-
-    private void textLandSizeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textLandSizeFocusGained
-
-
-    }//GEN-LAST:event_textLandSizeFocusGained
-
-    private void textLandBuildUpAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textLandBuildUpAreaFocusGained
-
-    }//GEN-LAST:event_textLandBuildUpAreaFocusGained
 
     private void comboTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTypeActionPerformed
         // TODO add your handling code here:
@@ -330,14 +311,14 @@ public class LandInput extends javax.swing.JDialog {
     private javax.swing.JLabel labelSize;
     private javax.swing.JLabel labelTitleNewPerson;
     private javax.swing.JLabel labelType;
-    private javax.swing.JTextField textLandBuildUpArea;
+    private javax.swing.JSpinner spinnerBuildUpArea;
+    private javax.swing.JSpinner spinnerSize;
     private javax.swing.JTextField textLandNotes;
-    private javax.swing.JTextField textLandSize;
     // End of variables declaration//GEN-END:variables
 
     private void setTypeComboBox(){
         
-       comboType.setModel(new DefaultComboBoxModel(Type.getStateArray()));
+       comboType.setModel(new DefaultComboBoxModel(LandType.getLandTypeArray()));
             
         
         
@@ -345,7 +326,7 @@ public class LandInput extends javax.swing.JDialog {
     
     private void setCatastralAreaComboBox(){
         
-       comboCatastralArea.setModel(new DefaultComboBoxModel(CatastralArea.getStateArray()));
+       comboCatastralArea.setModel(new DefaultComboBoxModel(LandCatastralArea.getLandCatastralAreaArray()));
             
         
         

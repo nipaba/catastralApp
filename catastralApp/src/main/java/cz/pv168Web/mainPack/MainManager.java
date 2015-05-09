@@ -12,6 +12,8 @@ import cz.pv168Web.manager.impl.LandManagerImpl;
 import cz.pv168Web.manager.impl.OwnershipManagerImpl;
 import cz.pv168Web.manager.impl.PersonManagerImpl;
 import cz.pv168Web.model.Person;
+import cz.pv168Web.model.Land;
+import cz.pv168Web.model.Ownership;
 import cz.pv168Web.utils.DatabaseException;
 import java.util.List;
 import javax.sql.DataSource;
@@ -36,6 +38,14 @@ public class MainManager {
     public void createPerson(Person person) throws DatabaseException {
         personManager.createPerson(person);
     }
+    
+    public void createLand(Land land) throws DatabaseException {
+        landManager.createLand(land);
+    }
+    
+    public void createOwnership(Ownership ownership) throws DatabaseException {
+        ownershipManager.createOwnership(ownership);
+    }
 
     public void createDB() throws DatabaseException {
 
@@ -53,10 +63,18 @@ public class MainManager {
 
     }
 
-    public List<Person> getPersolList() throws DatabaseException {
+    public List<Person> getPersonList() throws DatabaseException {
         return personManager.getPersonList();
     }
+    
+    public List<Land> getLandList() throws DatabaseException {
+        return landManager.getLandList();
+    }
 
+    public List<Ownership> getOwnershipList() throws DatabaseException {
+        return ownershipManager.getOwnershipList();
+    }
+    
     public void deleteDB() throws DatabaseException {
         ownershipManager.dropTableOwnership();
         landManager.dropTableLand();
@@ -68,6 +86,18 @@ public class MainManager {
         p.setPersonId(personId);
         personManager.removePerson(p);
     }
+    
+    public void removeLand(Long landID) throws DatabaseException {
+        Land l = new Land();
+        l.setLandID(landID);
+        landManager.removeLand(l);
+    }
+    
+    public void removeOwnership(Long ownershipId) throws DatabaseException {
+        Ownership o = new Ownership();
+        o.setOwnerShipID(ownershipId);
+        ownershipManager.removeOwnership(o);
+    }
 
     public Person getPersonById(Long personId) throws DatabaseException {
         return personManager.getPersonById(personId);
@@ -76,5 +106,21 @@ public class MainManager {
     public void updatePerson(Person person) throws DatabaseException {
         personManager.updatePerson(person);
      }
+    
+    public Land getLandById(Long landId) throws DatabaseException {
+        return landManager.getLandById(landId);
+    }
+
+    public void updateLand(Land land) throws DatabaseException {
+        landManager.updateLand(land);
+    }
+    
+    public Ownership getOwnershipById(Long ownershipId) throws DatabaseException {
+        return ownershipManager.getOwnershipById(ownershipId);
+    }
+
+    public void updateOwnership(Ownership ownership) throws DatabaseException {
+        ownershipManager.updateOwnerShip(ownership);
+    }
 
 }

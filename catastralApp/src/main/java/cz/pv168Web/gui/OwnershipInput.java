@@ -5,7 +5,8 @@
  */
 package cz.pv168Web.gui;
 
-import cz.pv168Web.model.Person;
+import cz.pv168Web.model.Ownership;
+
 
 /**
  *
@@ -49,21 +50,20 @@ public class OwnershipInput extends javax.swing.JDialog {
 
         buttonCancel = new javax.swing.JButton();
         buttonAdd = new javax.swing.JButton();
-        datePicker = new org.jdesktop.swingx.JXDatePicker();
-        textPersonName = new javax.swing.JTextField();
+        datePickerEndDate = new org.jdesktop.swingx.JXDatePicker();
+        textOnwersipPersonID = new javax.swing.JTextField();
         labelName = new javax.swing.JLabel();
         labelSurname = new javax.swing.JLabel();
-        textPersonSurname = new javax.swing.JTextField();
-        textPersonBirthNumber = new javax.swing.JTextField();
-        labelBirthNumber = new javax.swing.JLabel();
-        comboState = new javax.swing.JComboBox();
-        labelState = new javax.swing.JLabel();
+        textOwnershipLandID = new javax.swing.JTextField();
         labelTitleNewPerson = new javax.swing.JLabel();
-        labelBirthDate = new javax.swing.JLabel();
-        labelErrorSurname = new javax.swing.JLabel();
-        labelErrorBirthNumber = new javax.swing.JLabel();
-        labelErrorName = new javax.swing.JLabel();
+        labelStartDate = new javax.swing.JLabel();
+        labelErrorLandID = new javax.swing.JLabel();
+        labelErrorPersonID = new javax.swing.JLabel();
         labelErrorDate = new javax.swing.JLabel();
+        labelEndDate = new javax.swing.JLabel();
+        datePickerStartDate1 = new org.jdesktop.swingx.JXDatePicker();
+        datePickerStartDate2 = new org.jdesktop.swingx.JXDatePicker();
+        labelErrorDate1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -82,7 +82,7 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         getContentPane().add(buttonCancel, gridBagConstraints);
 
-        buttonAdd.setText("Add new Person");
+        buttonAdd.setText("Add new Ownership");
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddActionPerformed(evt);
@@ -96,19 +96,19 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         getContentPane().add(buttonAdd, gridBagConstraints);
 
-        datePicker.addFocusListener(new java.awt.event.FocusAdapter() {
+        datePickerEndDate.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                datePickerFocusGained(evt);
+                datePickerEndDateFocusGained(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 1;
-        getContentPane().add(datePicker, gridBagConstraints);
+        gridBagConstraints.gridy = 2;
+        getContentPane().add(datePickerEndDate, gridBagConstraints);
 
-        textPersonName.addFocusListener(new java.awt.event.FocusAdapter() {
+        textOnwersipPersonID.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                textPersonNameFocusGained(evt);
+                textOnwersipPersonIDFocusGained(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -117,9 +117,9 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(textPersonName, gridBagConstraints);
+        getContentPane().add(textOnwersipPersonID, gridBagConstraints);
 
-        labelName.setText("Name");
+        labelName.setText("Person ID");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -128,7 +128,7 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(labelName, gridBagConstraints);
 
-        labelSurname.setText("Surname");
+        labelSurname.setText("Land ID");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -137,9 +137,9 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(labelSurname, gridBagConstraints);
 
-        textPersonSurname.addFocusListener(new java.awt.event.FocusAdapter() {
+        textOwnershipLandID.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                textPersonSurnameFocusGained(evt);
+                textOwnershipLandIDFocusGained(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -148,49 +148,10 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(textPersonSurname, gridBagConstraints);
-
-        textPersonBirthNumber.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                textPersonBirthNumberFocusGained(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 53;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(textPersonBirthNumber, gridBagConstraints);
-
-        labelBirthNumber.setText("Birth Number");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 18;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(labelBirthNumber, gridBagConstraints);
-
-        comboState.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(comboState, gridBagConstraints);
-
-        labelState.setText("State");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 18;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(labelState, gridBagConstraints);
+        getContentPane().add(textOwnershipLandID, gridBagConstraints);
 
         labelTitleNewPerson.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        labelTitleNewPerson.setText("New Person");
+        labelTitleNewPerson.setText("New Ownership");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -198,37 +159,63 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         getContentPane().add(labelTitleNewPerson, gridBagConstraints);
 
-        labelBirthDate.setText("Birth Date");
+        labelStartDate.setText("Start Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 33, 0, 33);
-        getContentPane().add(labelBirthDate, gridBagConstraints);
+        getContentPane().add(labelStartDate, gridBagConstraints);
 
-        labelErrorSurname.setText("Error");
+        labelErrorLandID.setText("Error");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
-        getContentPane().add(labelErrorSurname, gridBagConstraints);
+        getContentPane().add(labelErrorLandID, gridBagConstraints);
 
-        labelErrorBirthNumber.setText("Error");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        getContentPane().add(labelErrorBirthNumber, gridBagConstraints);
-
-        labelErrorName.setText("Error");
+        labelErrorPersonID.setText("Error");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
-        getContentPane().add(labelErrorName, gridBagConstraints);
+        getContentPane().add(labelErrorPersonID, gridBagConstraints);
 
         labelErrorDate.setText("Error");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 2;
+        getContentPane().add(labelErrorDate, gridBagConstraints);
+
+        labelEndDate.setText("End date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        getContentPane().add(labelEndDate, gridBagConstraints);
+
+        datePickerStartDate1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                datePickerStartDate1FocusGained(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        getContentPane().add(datePickerStartDate1, gridBagConstraints);
+
+        datePickerStartDate2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                datePickerStartDate2FocusGained(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        getContentPane().add(datePickerStartDate2, gridBagConstraints);
+
+        labelErrorDate1.setText("Error");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 12, 0, 0);
-        getContentPane().add(labelErrorDate, gridBagConstraints);
+        getContentPane().add(labelErrorDate1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -243,22 +230,26 @@ public class OwnershipInput extends javax.swing.JDialog {
         
     }//GEN-LAST:event_buttonAddActionPerformed
 
-    private void textPersonNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textPersonNameFocusGained
+    private void textOnwersipPersonIDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textOnwersipPersonIDFocusGained
 
 
-    }//GEN-LAST:event_textPersonNameFocusGained
+    }//GEN-LAST:event_textOnwersipPersonIDFocusGained
 
-    private void textPersonSurnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textPersonSurnameFocusGained
+    private void textOwnershipLandIDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textOwnershipLandIDFocusGained
 
-    }//GEN-LAST:event_textPersonSurnameFocusGained
+    }//GEN-LAST:event_textOwnershipLandIDFocusGained
 
-    private void textPersonBirthNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textPersonBirthNumberFocusGained
- 
-    }//GEN-LAST:event_textPersonBirthNumberFocusGained
-
-    private void datePickerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerFocusGained
+    private void datePickerEndDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerEndDateFocusGained
       
-    }//GEN-LAST:event_datePickerFocusGained
+    }//GEN-LAST:event_datePickerEndDateFocusGained
+
+    private void datePickerStartDate1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerStartDate1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_datePickerStartDate1FocusGained
+
+    private void datePickerStartDate2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerStartDate2FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_datePickerStartDate2FocusGained
 
     /**
      * @param args the command line arguments
@@ -305,21 +296,20 @@ public class OwnershipInput extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonCancel;
-    private javax.swing.JComboBox comboState;
-    private org.jdesktop.swingx.JXDatePicker datePicker;
-    private javax.swing.JLabel labelBirthDate;
-    private javax.swing.JLabel labelBirthNumber;
-    private javax.swing.JLabel labelErrorBirthNumber;
+    private org.jdesktop.swingx.JXDatePicker datePickerEndDate;
+    private org.jdesktop.swingx.JXDatePicker datePickerStartDate1;
+    private org.jdesktop.swingx.JXDatePicker datePickerStartDate2;
+    private javax.swing.JLabel labelEndDate;
     private javax.swing.JLabel labelErrorDate;
-    private javax.swing.JLabel labelErrorName;
-    private javax.swing.JLabel labelErrorSurname;
+    private javax.swing.JLabel labelErrorDate1;
+    private javax.swing.JLabel labelErrorLandID;
+    private javax.swing.JLabel labelErrorPersonID;
     private javax.swing.JLabel labelName;
-    private javax.swing.JLabel labelState;
+    private javax.swing.JLabel labelStartDate;
     private javax.swing.JLabel labelSurname;
     private javax.swing.JLabel labelTitleNewPerson;
-    private javax.swing.JTextField textPersonBirthNumber;
-    private javax.swing.JTextField textPersonName;
-    private javax.swing.JTextField textPersonSurname;
+    private javax.swing.JTextField textOnwersipPersonID;
+    private javax.swing.JTextField textOwnershipLandID;
     // End of variables declaration//GEN-END:variables
 
 }

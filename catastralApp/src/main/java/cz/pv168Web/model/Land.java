@@ -87,6 +87,21 @@ public class Land implements Serializable {
             + catastralArea + ", buildUpArea=" + buildUpArea + ", type=" + type
             + ", notes=" + notes + "]";
    }
+   
+   public String[] toArray() {
+        String[] list = new String[6];
+
+        list[0] = landID + "";
+        list[1] = Size + "";
+        list[2] = catastralArea + "";
+        list[3] = buildUpArea + "";  
+        list[4] = type + "";
+        list[5] = notes + "";
+        
+  
+        return list;
+
+    }
 
    @Override
    public boolean equals(Object obj) {

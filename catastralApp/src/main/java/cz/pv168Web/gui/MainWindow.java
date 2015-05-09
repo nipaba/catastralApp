@@ -24,7 +24,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private final MainManager mainManager;
     private DefaultTableModel personTableModel;
-
+    private DefaultTableModel landTableModel;
+    private DefaultTableModel ownershipTableModel;
     /**
      * Creates new form MainWindow
      */
@@ -1014,11 +1015,59 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAddLandActionPerformed
 
     private void buttonUpdateLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateLandActionPerformed
-        // TODO add your handling code here:
+       Land l;
+        int rownNumber = landTable.getSelectedRow();
+        if (rownNumber >= 0) {
+            Long landId = Long.parseLong(landTableModel.getValueAt(rownNumber, 0).toString());
+            try {
+                l = mainManager.getLandById(landId);
+                LandInput landInput = new LandInput(this, true, l);
+                landInput.show();
+                if (landInput.getValid()) {
+
+                    Runnable r = new Runnable() {
+                        @Override
+                        public void run() {
+                            synchronized (mainManager) {
+                                try {
+                                    mainManager.updateLand(landInput.getLand());
+                                    refreshLandTable();
+                                } catch (DatabaseException ex) {
+                                    printError(ex.toString());
+                                }
+                            }
+                        }
+                    };
+                    new Thread(r).start();
+                }
+            } catch (DatabaseException ex) {
+                printError(ex.toString());
+            }
+
+        }
     }//GEN-LAST:event_buttonUpdateLandActionPerformed
 
     private void buttonRemoveLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveLandActionPerformed
-        // TODO add your handling code here:
+         int rownNumber = landTable.getSelectedRow();
+
+        if (rownNumber >= 0) {
+            Long landId = Long.parseLong(landTableModel.getValueAt(rownNumber, 0).toString());
+
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (mainManager) {
+                        try {
+                            mainManager.removeLand(landId);
+                        } catch (DatabaseException ex) {
+                            printError(ex.toString());
+                        }
+                        refreshLandTable();
+                    }
+                }
+            };
+             new Thread(r).start();
+        }
     }//GEN-LAST:event_buttonRemoveLandActionPerformed
 
     private void buttonDetailLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDetailLandActionPerformed
@@ -1030,19 +1079,85 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_menuHelpActionPerformed
 
     private void buttonDetailOwnershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDetailOwnershipActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_buttonDetailOwnershipActionPerformed
 
     private void buttonRemoveOwnershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveOwnershipActionPerformed
-        // TODO add your handling code here:
+        int rownNumber = ownershipTable1.getSelectedRow();
+
+        if (rownNumber >= 0) {
+            Long ownershipId = Long.parseLong(ownershipTableModel.getValueAt(rownNumber, 0).toString());
+
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (mainManager) {
+                        try {
+                            mainManager.removeOwnership(ownershipId);
+                        } catch (DatabaseException ex) {
+                            printError(ex.toString());
+                        }
+                        refreshLandTable();
+                    }
+                }
+            };
+             new Thread(r).start();
+        }
     }//GEN-LAST:event_buttonRemoveOwnershipActionPerformed
 
     private void buttonUpdateOwnershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateOwnershipActionPerformed
-        // TODO add your handling code here:
+        Ownership o;
+        int rownNumber = ownershipTable1.getSelectedRow();
+        if (rownNumber >= 0) {
+            Long ownershipId = Long.parseLong(ownershipTableModel.getValueAt(rownNumber, 0).toString());
+            try {
+                o = mainManager.getOwnershipById(ownershipId);
+                OwnershipInput ownershipInput = new OwnershipInput(this, true, p);
+                ownershipInput.show();
+                if (ownershipInput.getValid()) {
+
+                    Runnable r = new Runnable() {
+                        @Override
+                        public void run() {
+                            synchronized (mainManager) {
+                                try {
+                                    mainManager.updateOwnership(ownershipInput.getOwnership());
+                                    refreshOwnershipTable();
+                                } catch (DatabaseException ex) {
+                                    printError(ex.toString());
+                                }
+                            }
+                        }
+                    };
+                    new Thread(r).start();
+                }
+            } catch (DatabaseException ex) {
+                printError(ex.toString());
+            }
+
+        }
     }//GEN-LAST:event_buttonUpdateOwnershipActionPerformed
 
     private void buttonAddOwnershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddOwnershipActionPerformed
-        // TODO add your handling code here:
+        OwnershipInput ownershipInput = new OwnershipInput(this, true);
+        ownershipInput.show();
+        if (ownershipInput.getValid()) {
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (mainManager) {
+                        try {
+                            mainManager.createOwnership(ownershipInput.getOwnership());
+                            refreshOwnershipTable();
+                        } catch (DatabaseException ex) {
+                            printError(ex.toString());
+                        }
+                    }
+                }
+            };
+
+            new Thread(r).start();
+        }
     }//GEN-LAST:event_buttonAddOwnershipActionPerformed
 
     private void menuAddPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAddPersonActionPerformed
@@ -1177,7 +1292,7 @@ public class MainWindow extends javax.swing.JFrame {
                 personTableModel.removeRow(personTableModel.getRowCount() - 1);
             }
 
-            List<Person> list = mainManager.getPersolList();
+            List<Person> list = mainManager.getPersonList();
             for (Person p : list) {
                 personTableModel.addRow(p.toArray());
             }
@@ -1196,7 +1311,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             List<Land> list = mainManager.getLandList();
             for (Land l : list) {
-                landTableModel.addRow(p.toArray());
+                landTableModel.addRow(l.toArray());
             }
 
         } catch (DatabaseException ex) {

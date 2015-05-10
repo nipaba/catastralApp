@@ -15,8 +15,8 @@ import javax.swing.DefaultComboBoxModel;
 public class OwnershipInput extends javax.swing.JDialog {
 
 
-    private Boolean valid;
-    private Boolean update = false;
+    private boolean valid = false;
+    private boolean update = false;
     private Ownership ownership;
 
     /**
@@ -44,7 +44,7 @@ public class OwnershipInput extends javax.swing.JDialog {
         comboboxPerson.setModel(new DefaultComboBoxModel(personArrayID));
         comboboxLand.setModel(new DefaultComboBoxModel(landArrayId));
     }
-    public Boolean getValid(){
+    public boolean getValid(){
         return valid;
     }
     

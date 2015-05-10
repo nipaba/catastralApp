@@ -13,7 +13,7 @@ import java.util.List;
  * @author Tomas
  */
 public enum LandType {
-
+    EMPTY(""),
     STAVEBNI_PARCELA("Stavebni parcela"),
     BYT("Byt"),
     DOM("Dom");

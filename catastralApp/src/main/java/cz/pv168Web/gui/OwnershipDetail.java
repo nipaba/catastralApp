@@ -11,7 +11,9 @@ import cz.pv168Web.model.Person;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -44,13 +46,13 @@ public class OwnershipDetail extends javax.swing.JFrame {
             labelPersonStateValue.setText(p.getState());
             
             Date birthDate = p.getBirthDate();
-            labelPersonBirthdate.setText(format.format(p.getBirthDate().toString()));
-           
-            LocalDate birth = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(birthDate));
-            LocalDate today = LocalDate.now();
+            labelPersonBirthdate.setText(format.format(p.getBirthDate()));
+//           
+//            LocalDate birth = LocalDateTime.ofInstant(birthDate.toInstant(), ZoneId.systemDefault()).toLocalDate();
+//            LocalDate today = LocalDate.now();
             
-            Period period = Period.between(birth, today);    
-            labelPersonAgeValue.setText(period.getYears()+"");
+//            Period period = Period.between(birth, today);    
+//            labelPersonAgeValue.setText(period.getYears()+"");
             
             //LAND
             labelLandIDvalue.setText(l.getLandID()+"");
@@ -61,8 +63,8 @@ public class OwnershipDetail extends javax.swing.JFrame {
             labelLandTypeValue.setText(l.getType());
             
             //OWNERSHIP
-            labelOwnershipEndValue.setText(format.format(o.getEndDate()));
-            labelOwnershipStartValue.setText(format.format(o.getStartDate()));
+//            labelOwnershipEndValue.setText(format.format(o.getEndDate()));
+//            labelOwnershipStartValue.setText(format.format(o.getStartDate()));
                     
             
         }

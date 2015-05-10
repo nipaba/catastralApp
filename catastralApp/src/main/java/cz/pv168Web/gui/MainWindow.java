@@ -5,14 +5,14 @@
  */
 package cz.pv168Web.gui;
 
+import cz.pv168Web.enums.LandCatastralArea;
+import cz.pv168Web.enums.LandType;
 import cz.pv168Web.mainPack.MainManager;
 import cz.pv168Web.model.Person;
 import cz.pv168Web.model.Land;
 import cz.pv168Web.model.Ownership;
-import cz.pv168Web.utils.DatabaseException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,11 +21,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Tomas
  */
 public class MainWindow extends javax.swing.JFrame {
-
+    
     private final MainManager mainManager;
     private DefaultTableModel personTableModel;
     private DefaultTableModel landTableModel;
     private DefaultTableModel ownershipTableModel;
+
     /**
      * Creates new form MainWindow
      */
@@ -33,16 +34,19 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         mainManager = null;
     }
-
+    
     public MainWindow(MainManager MM) {
         initComponents();
+        
+        comboCatastal.setModel(new DefaultComboBoxModel(LandCatastralArea.getLandCatastralAreaArray()));
+        comboLandType.setModel(new DefaultComboBoxModel(LandType.getLandTypeArray()));
+        
         mainManager = MM;
         personTableModel = (DefaultTableModel) personTable.getModel();
         landTableModel = (DefaultTableModel) landTable.getModel();
         ownershipTableModel = (DefaultTableModel) ownershipTable1.getModel();
-        refreshPersonTable();
-        refreshLandTable();
-        refreshOwnershipTable();
+        
+        refreshAll();
     }
 
     /**
@@ -57,7 +61,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         personSortGroup = new javax.swing.ButtonGroup();
         jSeparator2 = new javax.swing.JSeparator();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        panely = new javax.swing.JTabbedPane();
         personTab = new javax.swing.JPanel();
         buttonAddPerson = new javax.swing.JButton();
         buttonDetailPerson = new javax.swing.JButton();
@@ -67,6 +71,8 @@ public class MainWindow extends javax.swing.JFrame {
         labelTitlePerson = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         personTable = new javax.swing.JTable();
+        showAll = new javax.swing.JButton();
+        showOwnedLands = new javax.swing.JButton();
         landTab = new javax.swing.JPanel();
         labelTitleLand = new javax.swing.JLabel();
         buttonAddLand = new javax.swing.JButton();
@@ -76,6 +82,10 @@ public class MainWindow extends javax.swing.JFrame {
         labelTableLand = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         landTable = new javax.swing.JTable();
+        showOwners = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        comboCatastal = new javax.swing.JComboBox();
+        comboLandType = new javax.swing.JComboBox();
         ownershipTab = new javax.swing.JPanel();
         labelTitleOwnership = new javax.swing.JLabel();
         buttonAddOwnership = new javax.swing.JButton();
@@ -85,44 +95,6 @@ public class MainWindow extends javax.swing.JFrame {
         labelTableLand1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         ownershipTable1 = new javax.swing.JTable();
-        customTab = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        personTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
-        jComboBox3 = new javax.swing.JComboBox();
-        jComboBox4 = new javax.swing.JComboBox();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
-        jTextField1 = new javax.swing.JTextField();
-        labelCustomTitle = new javax.swing.JLabel();
-        labelCustomResults = new javax.swing.JLabel();
-        labelCustomNote = new javax.swing.JLabel();
-        labelCustomMaxSize = new javax.swing.JLabel();
-        labelCustomCatastralArea = new javax.swing.JLabel();
-        labelCustomTypeLand = new javax.swing.JLabel();
-        labelCustomName = new javax.swing.JLabel();
-        labelCustomSurname = new javax.swing.JLabel();
-        labelCustomMinSize = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox();
-        labelCustomState = new javax.swing.JLabel();
-        spinnerMinDuration = new javax.swing.JSpinner();
-        spinnerMaxDur = new javax.swing.JSpinner();
-        labelCustomMinDuration = new javax.swing.JLabel();
-        labelCustomMaxDuration = new javax.swing.JLabel();
-        labelCustomPersonTitle = new javax.swing.JLabel();
-        labelCustomLandTitle = new javax.swing.JLabel();
-        labelCustomOwnershipTitle = new javax.swing.JLabel();
-        dateAfter = new org.jdesktop.swingx.JXDatePicker();
-        deteBefore = new org.jdesktop.swingx.JXDatePicker();
-        labelCustomStartedAdter = new javax.swing.JLabel();
-        labelCustomEndedBefore = new javax.swing.JLabel();
-        buttonCustomUpdateOpt = new javax.swing.JButton();
-        buttonCustomSearch = new javax.swing.JButton();
-        buttonCustomDetail = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        buttonDBrestart = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuExit = new javax.swing.JMenuItem();
@@ -141,13 +113,13 @@ public class MainWindow extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        jTabbedPane1.setMaximumSize(new java.awt.Dimension(650, 600));
-        jTabbedPane1.setMinimumSize(new java.awt.Dimension(650, 600));
-        jTabbedPane1.setPreferredSize(new java.awt.Dimension(650, 600));
+        panely.setMaximumSize(new java.awt.Dimension(800, 600));
+        panely.setMinimumSize(new java.awt.Dimension(800, 600));
+        panely.setPreferredSize(new java.awt.Dimension(800, 600));
 
-        personTab.setMaximumSize(new java.awt.Dimension(650, 600));
-        personTab.setMinimumSize(new java.awt.Dimension(650, 600));
-        personTab.setPreferredSize(new java.awt.Dimension(650, 600));
+        personTab.setMaximumSize(new java.awt.Dimension(800, 600));
+        personTab.setMinimumSize(new java.awt.Dimension(800, 600));
+        personTab.setPreferredSize(new java.awt.Dimension(800, 600));
         personTab.setLayout(new java.awt.GridBagLayout());
 
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/MainWindow"); // NOI18N
@@ -249,7 +221,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 429;
         gridBagConstraints.ipady = 400;
@@ -259,12 +231,35 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         personTab.add(jScrollPane1, gridBagConstraints);
 
-        jTabbedPane1.addTab(bundle.getString("MainWindow.personTab.TabConstraints.tabTitle"), personTab); // NOI18N
+        showAll.setText(bundle.getString("MainWindow.showAll.text")); // NOI18N
+        showAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAllActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        personTab.add(showAll, gridBagConstraints);
+
+        showOwnedLands.setText(bundle.getString("MainWindow.showOwnedLands.text")); // NOI18N
+        showOwnedLands.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showOwnedLandsActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        personTab.add(showOwnedLands, gridBagConstraints);
+
+        panely.addTab(bundle.getString("MainWindow.personTab.TabConstraints.tabTitle"), personTab); // NOI18N
         personTab.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.personTab.AccessibleContext.accessibleName")); // NOI18N
 
-        landTab.setMaximumSize(new java.awt.Dimension(650, 600));
-        landTab.setMinimumSize(new java.awt.Dimension(650, 600));
-        landTab.setPreferredSize(new java.awt.Dimension(650, 600));
+        landTab.setMaximumSize(new java.awt.Dimension(800, 600));
+        landTab.setMinimumSize(new java.awt.Dimension(800, 600));
+        landTab.setPreferredSize(new java.awt.Dimension(800, 600));
         landTab.setLayout(new java.awt.GridBagLayout());
 
         labelTitleLand.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -323,7 +318,6 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 311;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         landTab.add(buttonDetailLand, gridBagConstraints);
 
@@ -331,7 +325,7 @@ public class MainWindow extends javax.swing.JFrame {
         labelTableLand.setText(bundle.getString("MainWindow.labelTableLand.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         landTab.add(labelTableLand, gridBagConstraints);
 
@@ -363,8 +357,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 667;
         gridBagConstraints.ipady = 545;
@@ -373,12 +367,52 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         landTab.add(jScrollPane2, gridBagConstraints);
 
-        jTabbedPane1.addTab(bundle.getString("MainWindow.landTab.TabConstraints.tabTitle"), landTab); // NOI18N
+        showOwners.setText(bundle.getString("MainWindow.showOwners.text")); // NOI18N
+        showOwners.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showOwnersActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        landTab.add(showOwners, gridBagConstraints);
+
+        jButton1.setText(bundle.getString("MainWindow.jButton1.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        landTab.add(jButton1, gridBagConstraints);
+
+        comboCatastal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCatastal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCatastalActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        landTab.add(comboCatastal, gridBagConstraints);
+
+        comboLandType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboLandType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboLandTypeActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        landTab.add(comboLandType, gridBagConstraints);
+
+        panely.addTab(bundle.getString("MainWindow.landTab.TabConstraints.tabTitle"), landTab); // NOI18N
         landTab.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.landTab.AccessibleContext.accessibleName")); // NOI18N
 
-        ownershipTab.setMaximumSize(new java.awt.Dimension(650, 600));
-        ownershipTab.setMinimumSize(new java.awt.Dimension(650, 600));
-        ownershipTab.setPreferredSize(new java.awt.Dimension(650, 600));
+        ownershipTab.setMaximumSize(new java.awt.Dimension(800, 600));
+        ownershipTab.setMinimumSize(new java.awt.Dimension(800, 600));
+        ownershipTab.setPreferredSize(new java.awt.Dimension(800, 600));
         ownershipTab.setLayout(new java.awt.GridBagLayout());
 
         labelTitleOwnership.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -445,7 +479,7 @@ public class MainWindow extends javax.swing.JFrame {
         labelTableLand1.setText(bundle.getString("MainWindow.labelTableLand1.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 7, 0, 0);
         ownershipTab.add(labelTableLand1, gridBagConstraints);
@@ -478,7 +512,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 667;
@@ -488,351 +522,11 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         ownershipTab.add(jScrollPane3, gridBagConstraints);
 
-        jTabbedPane1.addTab(bundle.getString("MainWindow.ownershipTab.TabConstraints.tabTitle"), ownershipTab); // NOI18N
+        panely.addTab(bundle.getString("MainWindow.ownershipTab.TabConstraints.tabTitle"), ownershipTab); // NOI18N
         ownershipTab.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.ownershipTab.AccessibleContext.accessibleName")); // NOI18N
 
-        customTab.setMaximumSize(new java.awt.Dimension(650, 600));
-        customTab.setMinimumSize(new java.awt.Dimension(650, 600));
-        customTab.setOpaque(false);
-        customTab.setPreferredSize(new java.awt.Dimension(650, 600));
-        customTab.setLayout(new java.awt.GridBagLayout());
-
-        personTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        personTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Name", "Surname", "Person ID", "State", "Land ID", "Land type", "Catastral Area", "Size", "Duration", "Date Started", "Note"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, false, false, false, false, false, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(personTable1);
-        personTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (personTable1.getColumnModel().getColumnCount() > 0) {
-            personTable1.getColumnModel().getColumn(0).setMinWidth(20);
-            personTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
-            personTable1.getColumnModel().getColumn(0).setMaxWidth(20);
-        }
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 11;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1235;
-        gridBagConstraints.ipady = 748;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(8, 4, 4, 0);
-        customTab.add(jScrollPane4, gridBagConstraints);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 8, 0, 0);
-        customTab.add(jComboBox1, gridBagConstraints);
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 8, 0, 0);
-        customTab.add(jComboBox2, gridBagConstraints);
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 8, 0, 0);
-        customTab.add(jComboBox3, gridBagConstraints);
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 8, 0, 0);
-        customTab.add(jComboBox4, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 27;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
-        customTab.add(jSpinner1, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 27;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
-        customTab.add(jSpinner2, gridBagConstraints);
-
-        jTextField1.setText(bundle.getString("MainWindow.jTextField1.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.ipadx = 53;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
-        customTab.add(jTextField1, gridBagConstraints);
-
-        labelCustomTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelCustomTitle.setText(bundle.getString("MainWindow.labelCustomTitle.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 8, 0);
-        customTab.add(labelCustomTitle, gridBagConstraints);
-
-        labelCustomResults.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelCustomResults.setText(bundle.getString("MainWindow.labelCustomResults.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 11;
-        gridBagConstraints.ipadx = 48;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 4, 0, 0);
-        customTab.add(labelCustomResults, gridBagConstraints);
-
-        labelCustomNote.setText(bundle.getString("MainWindow.labelCustomNote.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.ipadx = 22;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
-        customTab.add(labelCustomNote, gridBagConstraints);
-
-        labelCustomMaxSize.setText(bundle.getString("MainWindow.labelCustomMaxSize.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 4, 0, 0);
-        customTab.add(labelCustomMaxSize, gridBagConstraints);
-
-        labelCustomCatastralArea.setText(bundle.getString("MainWindow.labelCustomCatastralArea.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 8, 0, 0);
-        customTab.add(labelCustomCatastralArea, gridBagConstraints);
-
-        labelCustomTypeLand.setText(bundle.getString("MainWindow.labelCustomTypeLand.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 7;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 8, 0, 0);
-        customTab.add(labelCustomTypeLand, gridBagConstraints);
-
-        labelCustomName.setText(bundle.getString("MainWindow.labelCustomName.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 24;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 0, 0);
-        customTab.add(labelCustomName, gridBagConstraints);
-
-        labelCustomSurname.setText(bundle.getString("MainWindow.labelCustomSurname.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 4, 0, 0);
-        customTab.add(labelCustomSurname, gridBagConstraints);
-
-        labelCustomMinSize.setText(bundle.getString("MainWindow.labelCustomMinSize.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 9;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 4, 0, 0);
-        customTab.add(labelCustomMinSize, gridBagConstraints);
-
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
-        customTab.add(jComboBox5, gridBagConstraints);
-
-        labelCustomState.setText(bundle.getString("MainWindow.labelCustomState.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
-        customTab.add(labelCustomState, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
-        customTab.add(spinnerMinDuration, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
-        customTab.add(spinnerMaxDur, gridBagConstraints);
-
-        labelCustomMinDuration.setText(bundle.getString("MainWindow.labelCustomMinDuration.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
-        customTab.add(labelCustomMinDuration, gridBagConstraints);
-
-        labelCustomMaxDuration.setText(bundle.getString("MainWindow.labelCustomMaxDuration.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
-        customTab.add(labelCustomMaxDuration, gridBagConstraints);
-
-        labelCustomPersonTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelCustomPersonTitle.setText(bundle.getString("MainWindow.labelCustomPersonTitle.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        customTab.add(labelCustomPersonTitle, gridBagConstraints);
-
-        labelCustomLandTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelCustomLandTitle.setText(bundle.getString("MainWindow.labelCustomLandTitle.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        customTab.add(labelCustomLandTitle, gridBagConstraints);
-
-        labelCustomOwnershipTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelCustomOwnershipTitle.setText(bundle.getString("MainWindow.labelCustomOwnershipTitle.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        customTab.add(labelCustomOwnershipTitle, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 4;
-        customTab.add(dateAfter, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 5;
-        customTab.add(deteBefore, gridBagConstraints);
-
-        labelCustomStartedAdter.setText(bundle.getString("MainWindow.labelCustomStartedAdter.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 4;
-        customTab.add(labelCustomStartedAdter, gridBagConstraints);
-
-        labelCustomEndedBefore.setText(bundle.getString("MainWindow.labelCustomEndedBefore.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 5;
-        customTab.add(labelCustomEndedBefore, gridBagConstraints);
-
-        buttonCustomUpdateOpt.setText(bundle.getString("MainWindow.buttonCustomUpdateOpt.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        customTab.add(buttonCustomUpdateOpt, gridBagConstraints);
-
-        buttonCustomSearch.setText(bundle.getString("MainWindow.buttonCustomSearch.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        customTab.add(buttonCustomSearch, gridBagConstraints);
-
-        buttonCustomDetail.setText(bundle.getString("MainWindow.buttonCustomDetail.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        customTab.add(buttonCustomDetail, gridBagConstraints);
-
-        jTabbedPane1.addTab(bundle.getString("MainWindow.customTab.TabConstraints.tabTitle"), customTab); // NOI18N
-        customTab.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.customTab.AccessibleContext.accessibleName")); // NOI18N
-
-        getContentPane().add(jTabbedPane1);
-        jTabbedPane1.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.jTabbedPane1.AccessibleContext.accessibleName")); // NOI18N
-
-        jPanel1.setMaximumSize(new java.awt.Dimension(150, 600));
-        jPanel1.setMinimumSize(new java.awt.Dimension(150, 600));
-        jPanel1.setPreferredSize(new java.awt.Dimension(150, 600));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
-
-        buttonDBrestart.setText(bundle.getString("MainWindow.buttonDBrestart.text")); // NOI18N
-        buttonDBrestart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonDBrestartActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(34, 10, 0, 10);
-        jPanel1.add(buttonDBrestart, gridBagConstraints);
-
-        jButton1.setText(bundle.getString("MainWindow.jButton1.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        jPanel1.add(jButton1, gridBagConstraints);
-
-        getContentPane().add(jPanel1);
+        getContentPane().add(panely);
+        panely.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.panely.AccessibleContext.accessibleName")); // NOI18N
 
         jMenu1.setText(bundle.getString("MainWindow.jMenu1.text")); // NOI18N
 
@@ -868,6 +562,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         menuResetDB.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         menuResetDB.setText(bundle.getString("MainWindow.menuResetDB.text")); // NOI18N
+        menuResetDB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuResetDBActionPerformed(evt);
+            }
+        });
         jMenu2.add(menuResetDB);
 
         jMenuBar1.add(jMenu2);
@@ -902,17 +601,12 @@ public class MainWindow extends javax.swing.JFrame {
                 @Override
                 public void run() {
                     synchronized (mainManager) {
-                        try {
-                            mainManager.createPerson(personInput.getPerson());
-                            refreshPersonTable();
-                            
-                        } catch (DatabaseException ex) {
-                            printError(ex.toString());
-                        }
+                        mainManager.createPerson(personInput.getPerson());
+                        refreshPersonTable(mainManager.getPersonList());
                     }
                 }
             };
-
+            
             new Thread(r).start();
         }
     }//GEN-LAST:event_buttonAddPersonActionPerformed
@@ -922,101 +616,67 @@ public class MainWindow extends javax.swing.JFrame {
         int rownNumber = personTable.getSelectedRow();
         if (rownNumber >= 0) {
             Long personId = Long.parseLong(personTableModel.getValueAt(rownNumber, 0).toString());
-            try {
-                p = mainManager.getPersonById(personId);
-                PersonInput personInput = new PersonInput(this, true, p);
-                personInput.show();
-                if (personInput.getValid()) {
-
-                    Runnable r = new Runnable() {
-                        @Override
-                        public void run() {
-                            synchronized (mainManager) {
-                                try {
-                                    mainManager.updatePerson(personInput.getPerson());
-                                    refreshPersonTable();
-                                } catch (DatabaseException ex) {
-                                    printError(ex.toString());
-                                }
-                            }
+            
+            p = mainManager.getPersonById(personId);
+            PersonInput personInput = new PersonInput(this, true, p);
+            personInput.show();
+            if (personInput.getValid()) {
+                
+                Runnable r = new Runnable() {
+                    @Override
+                    public void run() {
+                        synchronized (mainManager) {
+                            mainManager.updatePerson(personInput.getPerson());
+                            refreshPersonTable(mainManager.getPersonList());
+                            
                         }
-                    };
-                    new Thread(r).start();
-                }
-            } catch (DatabaseException ex) {
-                printError(ex.toString());
+                    }
+                };
+                new Thread(r).start();
             }
-
+            
         }
-       
+
     }//GEN-LAST:event_buttonUpdatePersonActionPerformed
 
     private void buttonRemovePersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemovePersonActionPerformed
         int rownNumber = personTable.getSelectedRow();
-
+        
         if (rownNumber >= 0) {
             Long personId = Long.parseLong(personTableModel.getValueAt(rownNumber, 0).toString());
-
+            
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
                     synchronized (mainManager) {
-                        try {
-                            mainManager.removePerson(personId);
-                        } catch (DatabaseException ex) {
-                            printError(ex.toString());
-                        }
-                        refreshPersonTable();
+                        mainManager.removePerson(personId);
+                        refreshPersonTable(mainManager.getPersonList());
                     }
                 }
             };
-             new Thread(r).start();
+            new Thread(r).start();
         }
     }//GEN-LAST:event_buttonRemovePersonActionPerformed
 
     private void buttonDetailPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDetailPersonActionPerformed
         int rownNumber = personTable.getSelectedRow();
-
+        
         if (rownNumber >= 0) {
             Long personId = Long.parseLong(personTableModel.getValueAt(rownNumber, 0).toString());
-
+            
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
                     synchronized (mainManager) {
-                        try {
-                            PersonDetail pd = new PersonDetail(mainManager.getPersonById(personId));
-                            pd.show();
-                        } catch (DatabaseException ex) {
-                            printError(ex.toString());
-                        }
-                        refreshPersonTable();
+                        PersonDetail pd = new PersonDetail(mainManager.getPersonById(personId));
+                        pd.show();
+                        
                     }
                 }
             };
-             new Thread(r).start();
+            new Thread(r).start();
         }
     }//GEN-LAST:event_buttonDetailPersonActionPerformed
-
-    private void buttonDBrestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDBrestartActionPerformed
-
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                synchronized (mainManager) {
-                    try {
-                        mainManager.deleteDB();
-                        mainManager.createDB();
-                    } catch (DatabaseException ex) {
-
-                    }
-                    refreshPersonTable();
-                }
-            }
-        };
-
-        new Thread(r).start();
-    }//GEN-LAST:event_buttonDBrestartActionPerformed
 
     private void buttonAddLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddLandActionPerformed
         LandInput landInput = new LandInput(this, true);
@@ -1026,97 +686,82 @@ public class MainWindow extends javax.swing.JFrame {
                 @Override
                 public void run() {
                     synchronized (mainManager) {
-                        try {
-                            mainManager.createLand(landInput.getLand());
-                            refreshLandTable();
-                        } catch (DatabaseException ex) {
-                            printError(ex.toString());
-                        }
+                        mainManager.createLand(landInput.getLand());
+                        refreshLandTable(mainManager.getLandList());
+                        
                     }
                 }
             };
-
+            
             new Thread(r).start();
         }
     }//GEN-LAST:event_buttonAddLandActionPerformed
 
     private void buttonUpdateLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateLandActionPerformed
-       Land l;
+        Land l;
         int rownNumber = landTable.getSelectedRow();
         if (rownNumber >= 0) {
             Long landId = Long.parseLong(landTableModel.getValueAt(rownNumber, 0).toString());
-            try {
-                l = mainManager.getLandById(landId);
-                LandInput landInput = new LandInput(this, true, l);
-                landInput.show();
-                if (landInput.getValid()) {
-
-                    Runnable r = new Runnable() {
-                        @Override
-                        public void run() {
-                            synchronized (mainManager) {
-                                try {
-                                    mainManager.updateLand(landInput.getLand());
-                                    refreshLandTable();
-                                } catch (DatabaseException ex) {
-                                    printError(ex.toString());
-                                }
-                            }
+            
+            l = mainManager.getLandById(landId);
+            LandInput landInput = new LandInput(this, true, l);
+            landInput.show();
+            if (landInput.getValid()) {
+                
+                Runnable r = new Runnable() {
+                    @Override
+                    public void run() {
+                        synchronized (mainManager) {
+                            mainManager.updateLand(landInput.getLand());
+                            refreshLandTable(mainManager.getLandList());
+                            
                         }
-                    };
-                    new Thread(r).start();
-                }
-            } catch (DatabaseException ex) {
-                printError(ex.toString());
+                    }
+                };
+                new Thread(r).start();
             }
-
+            
         }
     }//GEN-LAST:event_buttonUpdateLandActionPerformed
 
     private void buttonRemoveLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveLandActionPerformed
-         int rownNumber = landTable.getSelectedRow();
-
+        int rownNumber = landTable.getSelectedRow();
+        
         if (rownNumber >= 0) {
             Long landId = Long.parseLong(landTableModel.getValueAt(rownNumber, 0).toString());
-
+            
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
                     synchronized (mainManager) {
-                        try {
-                            mainManager.removeLand(landId);
-                        } catch (DatabaseException ex) {
-                            printError(ex.toString());
-                        }
-                        refreshLandTable();
+                        mainManager.removeLand(landId);
+                        refreshLandTable(mainManager.getLandList());
+                        
                     }
                 }
             };
-             new Thread(r).start();
+            new Thread(r).start();
         }
     }//GEN-LAST:event_buttonRemoveLandActionPerformed
 
     private void buttonDetailLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDetailLandActionPerformed
-                 int rownNumber = landTable.getSelectedRow();
-
+        int rownNumber = landTable.getSelectedRow();
+        
         if (rownNumber >= 0) {
             Long landId = Long.parseLong(landTableModel.getValueAt(rownNumber, 0).toString());
-
+            
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
                     synchronized (mainManager) {
-                        try {
-                            LandDetail ld = new LandDetail(mainManager.getLandById(landId));
-                            ld.show();
-                        } catch (DatabaseException ex) {
-                            printError(ex.toString());
-                        }
-                        refreshLandTable();
+                        
+                        LandDetail ld = new LandDetail(mainManager.getLandById(landId));
+                        ld.show();
+                        
                     }
                 }
             };
-             new Thread(r).start();
+            new Thread(r).start();
         }
     }//GEN-LAST:event_buttonDetailLandActionPerformed
 
@@ -1125,30 +770,38 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_menuHelpActionPerformed
 
     private void buttonDetailOwnershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDetailOwnershipActionPerformed
+        int rownNumber = ownershipTable1.getSelectedRow();
         
+        if (rownNumber >= 0) {
+            Long ownershipId = Long.parseLong(ownershipTableModel.getValueAt(rownNumber, 0).toString());
+            
+            Ownership ownership = mainManager.getOwnershipById(ownershipId);
+            Person person = mainManager.getPersonById(ownership.getPersonID());
+            Land land = mainManager.getLandById(ownership.getLandId());
+            
+            OwnershipDetail od = new OwnershipDetail(person, land, ownership);
+            od.show();
+            
+        }
+
     }//GEN-LAST:event_buttonDetailOwnershipActionPerformed
 
     private void buttonRemoveOwnershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveOwnershipActionPerformed
         int rownNumber = ownershipTable1.getSelectedRow();
-
+        
         if (rownNumber >= 0) {
             Long ownershipId = Long.parseLong(ownershipTableModel.getValueAt(rownNumber, 0).toString());
-
+            
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
                     synchronized (mainManager) {
-                        try {
-                            mainManager.removeOwnership(ownershipId);
-                            refreshOwnershipTable();
-                        } catch (DatabaseException ex) {
-                            printError(ex.toString());
-                        }
-                        refreshLandTable();
+                        mainManager.removeOwnership(ownershipId);
+                        refreshOwnershipTable(mainManager.getOwnershipList());
                     }
                 }
             };
-             new Thread(r).start();
+            new Thread(r).start();
         }
     }//GEN-LAST:event_buttonRemoveOwnershipActionPerformed
 
@@ -1157,59 +810,50 @@ public class MainWindow extends javax.swing.JFrame {
         int rownNumber = ownershipTable1.getSelectedRow();
         if (rownNumber >= 0) {
             Long ownershipId = Long.parseLong(ownershipTableModel.getValueAt(rownNumber, 0).toString());
-            try {
-                o = mainManager.getOwnershipById(ownershipId);
-                OwnershipInput ownershipInput = new OwnershipInput(this, true,mainManager.getPersonIDArray(), mainManager.getLandIDArray(), o);
-                ownershipInput.show();
-                if (ownershipInput.getValid()) {
-
-                    Runnable r = new Runnable() {
-                        @Override
-                        public void run() {
-                            synchronized (mainManager) {
-                                try {
-                                    mainManager.updateOwnership(ownershipInput.getOwnership());
-                                    refreshOwnershipTable();
-                                } catch (DatabaseException ex) {
-                                    printError(ex.toString());
-                                }
-                            }
-                        }
-                    };
-                    new Thread(r).start();
-                }
-            } catch (DatabaseException ex) {
-                printError(ex.toString());
-            }
-
-        }
-    }//GEN-LAST:event_buttonUpdateOwnershipActionPerformed
-
-    private void buttonAddOwnershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddOwnershipActionPerformed
-        try {
-            OwnershipInput ownershipInput = new OwnershipInput(this, true, mainManager.getPersonIDArray() , mainManager.getLandIDArray());
-        
+            
+            o = mainManager.getOwnershipById(ownershipId);
+            OwnershipInput ownershipInput = new OwnershipInput(this, true, mainManager.getPersonIDArray(), mainManager.getLandIDArray(), o);
             ownershipInput.show();
             if (ownershipInput.getValid()) {
+                
                 Runnable r = new Runnable() {
                     @Override
                     public void run() {
                         synchronized (mainManager) {
-                            try {
-                                mainManager.createOwnership(ownershipInput.getOwnership());
-                                refreshOwnershipTable();
-                            } catch (DatabaseException ex) {
-                                printError(ex.toString());
-                            }
+                            
+                            mainManager.updateOwnership(ownershipInput.getOwnership());
+                            refreshOwnershipTable(mainManager.getOwnershipList());
+                            
                         }
                     }
                 };
-
                 new Thread(r).start();
             }
-        }catch(DatabaseException ex){
-           printError(ex.toString()); 
+            
         }
+    }//GEN-LAST:event_buttonUpdateOwnershipActionPerformed
+
+    private void buttonAddOwnershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddOwnershipActionPerformed
+        
+        OwnershipInput ownershipInput = new OwnershipInput(this, true, mainManager.getPersonIDArray(), mainManager.getLandIDArray());
+        
+        ownershipInput.show();
+        if (ownershipInput.getValid()) {
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (mainManager) {
+                        
+                        mainManager.createOwnership(ownershipInput.getOwnership());
+                        refreshOwnershipTable(mainManager.getOwnershipList());
+                        
+                    }
+                }
+            };
+            
+            new Thread(r).start();
+        }
+
     }//GEN-LAST:event_buttonAddOwnershipActionPerformed
 
     private void menuAddPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAddPersonActionPerformed
@@ -1219,6 +863,56 @@ public class MainWindow extends javax.swing.JFrame {
     private void menuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExitActionPerformed
         dispose();
     }//GEN-LAST:event_menuExitActionPerformed
+
+    private void menuResetDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuResetDBActionPerformed
+        
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                synchronized (mainManager) {
+                    
+                    mainManager.deleteDB();
+                    mainManager.createDB();
+                    refreshPersonTable(mainManager.getPersonList());
+                    
+                }
+            }
+        };
+        
+        new Thread(r).start();
+    }//GEN-LAST:event_menuResetDBActionPerformed
+
+    private void showAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllActionPerformed
+        refreshAll();
+    }//GEN-LAST:event_showAllActionPerformed
+
+    private void showOwnedLandsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showOwnedLandsActionPerformed
+        int rownNumber = personTable.getSelectedRow();
+        if (rownNumber >= 0) {
+            Long personId = Long.parseLong(personTableModel.getValueAt(rownNumber, 0).toString());
+            refreshLandTable(mainManager.getLandListByPersonID(personId));
+            panely.setSelectedIndex(1);
+            
+        }
+    }//GEN-LAST:event_showOwnedLandsActionPerformed
+
+    private void showOwnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showOwnersActionPerformed
+        
+        int rownNumber = landTable.getSelectedRow();
+        if (rownNumber >= 0) {
+            Long landId = Long.parseLong(landTable.getValueAt(rownNumber, 0).toString());
+            refreshPersonTable(mainManager.getPersonListByLandId(landId));
+            panely.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_showOwnersActionPerformed
+
+    private void comboLandTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLandTypeActionPerformed
+        refreshLandTable(mainManager.getLandList());
+    }//GEN-LAST:event_comboLandTypeActionPerformed
+
+    private void comboCatastalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCatastalActionPerformed
+        refreshLandTable(mainManager.getLandList());
+    }//GEN-LAST:event_comboCatastalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1259,10 +953,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton buttonAddLand;
     private javax.swing.JButton buttonAddOwnership;
     private javax.swing.JButton buttonAddPerson;
-    private javax.swing.JButton buttonCustomDetail;
-    private javax.swing.JButton buttonCustomSearch;
-    private javax.swing.JButton buttonCustomUpdateOpt;
-    private javax.swing.JButton buttonDBrestart;
     private javax.swing.JButton buttonDetailLand;
     private javax.swing.JButton buttonDetailOwnership;
     private javax.swing.JButton buttonDetailPerson;
@@ -1272,46 +962,17 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton buttonUpdateLand;
     private javax.swing.JButton buttonUpdateOwnership;
     private javax.swing.JButton buttonUpdatePerson;
-    private javax.swing.JPanel customTab;
-    private org.jdesktop.swingx.JXDatePicker dateAfter;
-    private org.jdesktop.swingx.JXDatePicker deteBefore;
+    private javax.swing.JComboBox comboCatastal;
+    private javax.swing.JComboBox comboLandType;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
-    private javax.swing.JComboBox jComboBox5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel labelCustomCatastralArea;
-    private javax.swing.JLabel labelCustomEndedBefore;
-    private javax.swing.JLabel labelCustomLandTitle;
-    private javax.swing.JLabel labelCustomMaxDuration;
-    private javax.swing.JLabel labelCustomMaxSize;
-    private javax.swing.JLabel labelCustomMinDuration;
-    private javax.swing.JLabel labelCustomMinSize;
-    private javax.swing.JLabel labelCustomName;
-    private javax.swing.JLabel labelCustomNote;
-    private javax.swing.JLabel labelCustomOwnershipTitle;
-    private javax.swing.JLabel labelCustomPersonTitle;
-    private javax.swing.JLabel labelCustomResults;
-    private javax.swing.JLabel labelCustomStartedAdter;
-    private javax.swing.JLabel labelCustomState;
-    private javax.swing.JLabel labelCustomSurname;
-    private javax.swing.JLabel labelCustomTitle;
-    private javax.swing.JLabel labelCustomTypeLand;
     private javax.swing.JLabel labelTableLand;
     private javax.swing.JLabel labelTableLand1;
     private javax.swing.JLabel labelTablePerson;
@@ -1329,69 +990,73 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuResetDB;
     private javax.swing.JPanel ownershipTab;
     private javax.swing.JTable ownershipTable1;
+    private javax.swing.JTabbedPane panely;
     private javax.swing.ButtonGroup personSortGroup;
     private javax.swing.JPanel personTab;
     private javax.swing.JTable personTable;
-    private javax.swing.JTable personTable1;
-    private javax.swing.JSpinner spinnerMaxDur;
-    private javax.swing.JSpinner spinnerMinDuration;
+    private javax.swing.JButton showAll;
+    private javax.swing.JButton showOwnedLands;
+    private javax.swing.JButton showOwners;
     // End of variables declaration//GEN-END:variables
 
-    private void refreshPersonTable() {
-        try {
-            // clear table 
-            while (personTableModel.getRowCount() > 0) {
-                personTableModel.removeRow(personTableModel.getRowCount() - 1);
-            }
+    private void refreshPersonTable(List<Person> list) {
 
-            List<Person> list = mainManager.getPersonList();
-            for (Person p : list) {
-                personTableModel.addRow(p.toArray());
-            }
-
-        } catch (DatabaseException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        // clear table 
+        while (personTableModel.getRowCount() > 0) {
+            personTableModel.removeRow(personTableModel.getRowCount() - 1);
+        }
+        for (Person p : list) {
+            personTableModel.addRow(p.toArray());   
         }
     }
     
-    private void refreshLandTable() {
-        try {
-            // clear table 
-            while (landTableModel.getRowCount() > 0) {
-                landTableModel.removeRow(landTableModel.getRowCount() - 1);
-            }
+    private void refreshLandTable(List<Land> list) {
 
-            List<Land> list = mainManager.getLandList();
-            for (Land l : list) {
+        // clear table 
+        while (landTableModel.getRowCount() > 0) {
+            landTableModel.removeRow(landTableModel.getRowCount() - 1);
+        }
+        
+        String catastralArea = (String) comboCatastal.getSelectedItem();
+        String landType = (String) comboLandType.getSelectedItem();
+        
+        for (Land l : list) {
+            if ((landType.isEmpty() || landType.equals(l.getType())) && (catastralArea.isEmpty() || catastralArea.equals(l.getCatastralArea()))) {
                 landTableModel.addRow(l.toArray());
             }
-
-        } catch (DatabaseException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    private void refreshOwnershipTable() {
-        try {
-            // clear table 
-            while (ownershipTableModel.getRowCount() > 0) {
-                ownershipTableModel.removeRow(ownershipTableModel.getRowCount() - 1);
-            }
-
-            List<Ownership> list = mainManager.getOwnershipList();
-            for (Ownership o : list) {
-                
-                ownershipTableModel.addRow(mainManager.getOwnershipArray(o));
-                
-            }
-
-        } catch (DatabaseException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+    private void refreshOwnershipTable(List<Ownership> list) {
+        
+        while (ownershipTableModel.getRowCount() > 0) {
+            ownershipTableModel.removeRow(ownershipTableModel.getRowCount() - 1);
+        }
+        
+        for (Ownership o : list) {
+            ownershipTableModel.addRow(mainManager.getOwnershipArray(o));
         }
     }
-
+    
     private void printError(String msg) {
         JOptionPane.showMessageDialog(null, msg, "Error with Database", JOptionPane.ERROR_MESSAGE);
     }
-
+    
+    private void refreshAll() {
+        
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                synchronized (mainManager) {
+                    refreshPersonTable(mainManager.getPersonList());
+                    refreshLandTable(mainManager.getLandList());
+                    refreshOwnershipTable(mainManager.getOwnershipList());
+                }
+            }
+        };
+        
+        new Thread(r).start();
+        
+    }
+    
 }

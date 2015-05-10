@@ -100,11 +100,6 @@ public class PersonDaoImpl extends GenericDaoImpl implements PersonDao {
          ConnectorDB.close(conn, st);
       }
 
-      if (person == null) {
-         throw new DatabaseException("Person is not existing. ID : " + id);
-      } else {
-         LOGGER.debug("Person with id :" + id + "  -   " + person.toString());
-      }
       return person;
    }
 

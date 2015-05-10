@@ -17,7 +17,7 @@ import javax.swing.DefaultComboBoxModel;
 public class LandInput extends javax.swing.JDialog {
 
     private Land land;
-    private Boolean valid;
+    private boolean valid =false;
     private Boolean update = false;
 
     /**
@@ -43,7 +43,7 @@ public class LandInput extends javax.swing.JDialog {
         spinnerBuildUpArea.setValue(land.getBuildUpArea());
     }
 
-    public Boolean getValid() {
+    public boolean getValid() {
         return valid;
     }
 

@@ -12,16 +12,25 @@ import cz.pv168Web.utils.ConnectorDB;
 import cz.pv168Web.utils.DatabaseException;
 import cz.pv168Web.utils.EntityException;
 
+/**
+ *
+ * Class for managing persons
+ */
 public class PersonManagerImpl implements PersonManager {
 
    private PersonDao personDao;
 
-   public PersonManagerImpl(DataSource ds) {
+    /**
+     * constructor
+     * @param ds - datasource
+     */
+    public PersonManagerImpl(DataSource ds) {
       personDao = new PersonDaoImpl(ds);
    }
 
    /**
     * 
+     * @throws cz.pv168Web.utils.DatabaseException
     */
    public void createPerson(Person person) throws DatabaseException {
       personDao.createPerson(person);
@@ -29,6 +38,7 @@ public class PersonManagerImpl implements PersonManager {
 
    /**
     * 
+     * @throws cz.pv168Web.utils.DatabaseException
     */
    public Person getPersonById(Long id) throws DatabaseException {
       return personDao.getPersonById(id);
@@ -36,6 +46,7 @@ public class PersonManagerImpl implements PersonManager {
 
    /**
     * 
+     * @throws cz.pv168Web.utils.DatabaseException
     */
    public List<Person> getPersonByName(String name) throws DatabaseException {
       return personDao.getPersonByName(name);
@@ -43,6 +54,7 @@ public class PersonManagerImpl implements PersonManager {
 
    /**
     * 
+     * @throws cz.pv168Web.utils.DatabaseException
     */
    public List<Person> getPersonList() throws DatabaseException {
       return personDao.getPersonList();
@@ -50,6 +62,7 @@ public class PersonManagerImpl implements PersonManager {
 
    /**
     * 
+     * @throws cz.pv168Web.utils.DatabaseException
     */
    public void removePerson(Person person) throws DatabaseException {
       personDao.removePerson(person);
@@ -57,6 +70,7 @@ public class PersonManagerImpl implements PersonManager {
 
    /**
     * 
+     * @throws cz.pv168Web.utils.DatabaseException
     */
    public void updatePerson(Person person) throws DatabaseException {
       personDao.updatePerson(person);
@@ -64,6 +78,7 @@ public class PersonManagerImpl implements PersonManager {
 
    /**
     * 
+     * @throws cz.pv168Web.utils.DatabaseException
     */
    public void droptablePerson() throws DatabaseException {
       personDao.droptablePerson();
@@ -71,6 +86,7 @@ public class PersonManagerImpl implements PersonManager {
 
    /**
     * 
+     * @throws cz.pv168Web.utils.DatabaseException
     */
    public void createTablePerson() throws DatabaseException {
       personDao.createTablePerson();

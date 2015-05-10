@@ -10,9 +10,19 @@ import java.util.List;
 
 import cz.pv168Web.dao.impl.GenericDaoImpl;
 
+/**
+ *
+ * Class for running the scripts
+ */
 public class ScriptRunner {
 
-   public String loadScript(String resourceName) throws IOException{
+    /**
+     * Method to load the script
+     * @param resourceName
+     * @return script string 
+     * @throws IOException
+     */
+    public String loadScript(String resourceName) throws IOException{
       
       ClassLoader loader = Thread.currentThread().getContextClassLoader();
          
@@ -31,14 +41,23 @@ public class ScriptRunner {
       return sb.toString();
    }
    
-   public List<String> getListCommands(String commands){
+    /**
+     *
+     * @param commands
+     * @return list of commands as strings
+     */
+    public List<String> getListCommands(String commands){
       
       String[] poleCommands = commands.split(";");
       List < String > list = new ArrayList<String>(Arrays.asList(poleCommands));
       return list;
    }
    
-   public void runScript(String command){
+    /**
+     * Method to run the command
+     * @param command
+     */
+    public void runScript(String command){
       GenericDaoImpl gen = new GenericDaoImpl(ConnectorDB.initDatasource());
       try {
          gen.connectAndExecute(command);
@@ -47,8 +66,11 @@ public class ScriptRunner {
       }
    }
    
-   
-   public void runLoadedScript(String filename){
+    /**
+     * Method to run script
+     * @param filename
+     */
+    public void runLoadedScript(String filename){
       String fileContent= null;
       List<String> commands = new ArrayList<String>();
 

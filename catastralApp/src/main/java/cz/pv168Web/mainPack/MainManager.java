@@ -35,6 +35,10 @@ public class MainManager {
     PersonManager personManager;
     OwnershipManager ownershipManager;
 
+    /**
+     * constructor
+     * @param ds
+     */
     public MainManager(DataSource ds) {
         landManager = new LandManagerImpl(ds);
         personManager = new PersonManagerImpl(ds);
@@ -42,6 +46,10 @@ public class MainManager {
 
     }
 
+    /**
+     * method to create person
+     * @param person
+     */
     public void createPerson(Person person) {
         try {
             personManager.createPerson(person);
@@ -50,6 +58,10 @@ public class MainManager {
         }
     }
 
+    /**
+     * method to create land
+     * @param land
+     */
     public void createLand(Land land) {
         try {
             landManager.createLand(land);
@@ -58,6 +70,10 @@ public class MainManager {
         }
     }
 
+    /**
+     * Method to create ownership
+     * @param ownership
+     */
     public void createOwnership(Ownership ownership) {
         try {
             ownershipManager.createOwnership(ownership);
@@ -66,6 +82,9 @@ public class MainManager {
         }
     }
 
+    /**
+     * Method to create database
+     */
     public void createDB() {
 
         try {
@@ -93,6 +112,10 @@ public class MainManager {
 
     }
 
+    /**
+     *
+     * @return list of persons
+     */
     public List<Person> getPersonList() {
         try {
             return personManager.getPersonList();
@@ -102,6 +125,10 @@ public class MainManager {
         return null;
     }
 
+    /**
+     *
+     * @return list of lands
+     */
     public List<Land> getLandList() {
         try {
             return landManager.getLandList();
@@ -111,6 +138,10 @@ public class MainManager {
         return null;
     }
 
+    /**
+     *
+     * @return list of ownerships
+     */
     public List<Ownership> getOwnershipList() {
         try {
             return ownershipManager.getOwnershipList();
@@ -120,6 +151,9 @@ public class MainManager {
         return null;
     }
 
+    /**
+     * Method to delete the database
+     */
     public void deleteDB() {
         try {
             ownershipManager.dropTableOwnership();
@@ -131,6 +165,10 @@ public class MainManager {
 
     }
 
+    /**
+     * Method to remove specific person
+     * @param personId
+     */
     public void removePerson(Long personId) {
         try {
             Person p = new Person();
@@ -148,6 +186,10 @@ public class MainManager {
         }
     }
 
+    /**
+     * Method to remove specific land
+     * @param landID
+     */
     public void removeLand(Long landID) {
         try {
             Land l = new Land();
@@ -165,6 +207,10 @@ public class MainManager {
         }
     }
 
+    /**
+     * Method to remove specific ownership
+     * @param ownershipId
+     */
     public void removeOwnership(Long ownershipId) {
         try {
             Ownership o = new Ownership();
@@ -175,6 +221,11 @@ public class MainManager {
         }
     }
 
+    /**
+     * 
+     * @param personId
+     * @return person with specific id
+     */
     public Person getPersonById(Long personId) {
         try {
             return personManager.getPersonById(personId);
@@ -184,6 +235,10 @@ public class MainManager {
         return null;
     }
 
+    /**
+     * Method to update person
+     * @param person
+     */
     public void updatePerson(Person person) {
         try {
             personManager.updatePerson(person);
@@ -192,6 +247,11 @@ public class MainManager {
         }
     }
 
+    /**
+     *
+     * @param landId
+     * @return land with specific id
+     */
     public Land getLandById(Long landId) {
         try {
             return landManager.getLandById(landId);
@@ -201,6 +261,10 @@ public class MainManager {
         return null;
     }
 
+    /**
+     * Method to update land
+     * @param land
+     */
     public void updateLand(Land land) {
         try {
             landManager.updateLand(land);
@@ -209,6 +273,11 @@ public class MainManager {
         }
     }
 
+    /**
+     *
+     * @param ownershipId
+     * @return ownership with specific id
+     */
     public Ownership getOwnershipById(Long ownershipId) {
         try {
             return ownershipManager.getOwnershipById(ownershipId);
@@ -218,6 +287,10 @@ public class MainManager {
         return null;
     }
 
+    /**
+     * Method to update ownership
+     * @param ownership
+     */
     public void updateOwnership(Ownership ownership) {
         try {
             ownershipManager.updateOwnerShip(ownership);
@@ -226,6 +299,10 @@ public class MainManager {
         }
     }
 
+    /**
+     *
+     * @return list of persons ids
+     */
     public String[] getPersonIDArray() {
 
         try {
@@ -244,6 +321,10 @@ public class MainManager {
         return null;
     }
 
+    /**
+     *
+     * @return list of lands ids
+     */
     public String[] getLandIDArray() {
 
         try {
@@ -262,6 +343,11 @@ public class MainManager {
         return null;
     }
 
+    /**
+     *
+     * @param o
+     * @return array of strings of ownership
+     */
     public String[] getOwnershipArray(Ownership o) {
 
         try {
@@ -285,6 +371,11 @@ public class MainManager {
         return null;
     }
 
+    /**
+     *
+     * @param personId
+     * @return list of lands with specific person id
+     */
     public List<Land> getLandListByPersonID(Long personId) {
 
         List<Land> landList = new ArrayList<>();
@@ -303,6 +394,11 @@ public class MainManager {
 
     }
 
+    /**
+     *
+     * @param landId
+     * @return list of persons with specific land id
+     */
     public List<Person> getPersonListByLandId(Long landId) {
         List<Person> personList = new ArrayList<>();
         try {

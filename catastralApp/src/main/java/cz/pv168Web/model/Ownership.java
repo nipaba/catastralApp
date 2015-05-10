@@ -3,6 +3,10 @@ package cz.pv168Web.model;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ *
+ * Class for ownership
+ */
 public class Ownership implements Serializable{
 
    private static final long serialVersionUID = -1909341954347520115L;
@@ -13,38 +17,91 @@ public class Ownership implements Serializable{
    private Date startDate;
    private Date endDate;
    
-   
-   public Long getOwnerShipID() {
+    /**
+     *
+     * @return id of ownership
+     */
+    public Long getOwnerShipID() {
       return ownerShipID;
    }
-   public void setOwnerShipID(Long ownerShipID) {
+
+    /**
+     * Method to set ownership id
+     * @param ownerShipID
+     */
+    public void setOwnerShipID(Long ownerShipID) {
       this.ownerShipID = ownerShipID;
    }
-   public Long getPersonID() {
+
+    /**
+     *
+     * @return id of person from ownership
+     */
+    public Long getPersonID() {
       return personID;
    }
-   public void setPersonID(Long personID) {
+
+    /**
+     * Method to set person id for ownership
+     * @param personID
+     */
+    public void setPersonID(Long personID) {
       this.personID = personID;
    }
-   public Long getLandId() {
+
+    /**
+     *
+     * @return land id of ownership
+     */
+    public Long getLandId() {
       return landId;
    }
-   public void setLandId(Long landId) {
+
+    /**
+     * Method to set land id for ownership
+     * @param landId
+     */
+    public void setLandId(Long landId) {
       this.landId = landId;
    }
-   public Date getStartDate() {
+
+    /**
+     *
+     * @return date when the ownership starts 
+     */
+    public Date getStartDate() {
       return startDate;
    }
-   public void setStartDate(Date startDate) {
+
+    /**
+     * Method to set the starting date of ownership
+     * @param startDate
+     */
+    public void setStartDate(Date startDate) {
       this.startDate = startDate;
    }
-   public Date getEndDate() {
+
+    /**
+     *
+     * @return the date when the ownership ends
+     */
+    public Date getEndDate() {
       return endDate;
    }
-   public void setEndDate(Date endDate) {
+
+    /**
+     * Method to set the ending day of ownership
+     * @param endDate
+     */
+    public void setEndDate(Date endDate) {
       this.endDate = endDate;
    }
-   public static long getSerialversionuid() {
+
+    /**
+     *
+     * @return serial version id
+     */
+    public static long getSerialversionuid() {
       return serialVersionUID;
    }
    

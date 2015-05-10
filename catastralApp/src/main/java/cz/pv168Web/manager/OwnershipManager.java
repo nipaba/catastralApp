@@ -9,55 +9,55 @@ import cz.pv168Web.utils.DatabaseException;
 
 public interface OwnershipManager {
    /**
-    * 
+    * Method to create ownership
     * @param ownership
     * @throws DatabaseException
     */
    public void createOwnership(Ownership ownership) throws DatabaseException;
    /**
-    * 
+    * Method to update ownership
     * @param ownership
     * @throws DatabaseException
     */
    public void updateOwnerShip(Ownership ownership) throws DatabaseException;
    /**
-    * 
+    * Method to remove ownership
     * @param ownership
     * @throws DatabaseException
     */
    public void removeOwnership(Ownership ownership) throws DatabaseException;
    /**
     * 
-    * @return
+    * @return list of persons of land
     * @throws DatabaseException
     */
    public List<Person> getListOfPersonsOfLand() throws DatabaseException;
    /**
     * 
-    * @return
+    * @return list of lands of person
     * @throws DatabaseException
     */
    public List<Land> getListOfLandsOfPerson()throws DatabaseException;
    /**
     * 
-    * @return
+    * @return list of ownerships
     * @throws DatabaseException
     */
    public List<Ownership> getOwnershipList()throws DatabaseException;
    /**
     * 
     * @param id
-    * @return
+    * @return ownership with specific id
     * @throws DatabaseException
     */
    public Ownership getOwnershipById(Long id)throws DatabaseException;
    /**
-    * 
+    * Method to create table ownership
     * @throws DatabaseException
     */
    public void createTableOwnership() throws DatabaseException;
    /**
-    * 
+    * Method to remove ownership table
     * @throws DatabaseException
     */
    public void dropTableOwnership() throws DatabaseException;

@@ -2,6 +2,10 @@ package cz.pv168Web.model;
 
 import java.io.Serializable;
 
+/**
+ *
+ * Class land
+ */
 public class Land implements Serializable {
 
    private static final long serialVersionUID = 8396052538737948538L;
@@ -13,56 +17,107 @@ public class Land implements Serializable {
    private String            type;
    private String            notes;
    
-   
-   public Long getLandID() {
+    /**
+     *
+     * @return land id
+     */
+    public Long getLandID() {
       return landID;
    }
 
-   public void setLandID(Long landID) {
+    /**
+     * Method to set land id
+     * @param landID 
+     */
+    public void setLandID(Long landID) {
       this.landID = landID;
    }
 
-   public Double getSize() {
+    /**
+     *
+     * @return size of land
+     */
+    public Double getSize() {
       return Size;
    }
 
-   public void setSize(Double size) {
+    /**
+     * Method to set the size of land
+     * @param size
+     */
+    public void setSize(Double size) {
       Size = size;
    }
 
-   public String getCatastralArea() {
+    /**
+     *
+     * @return catastral area of land
+     */
+    public String getCatastralArea() {
       return catastralArea;
    }
 
-   public void setCatastralArea(String catastralArea) {
+    /**
+     * Method to set the catastral area for land
+     * @param catastralArea
+     */
+    public void setCatastralArea(String catastralArea) {
       this.catastralArea = catastralArea;
    }
 
-   public Double getBuildUpArea() {
+    /**
+     *
+     * @return size of build up area
+     */
+    public Double getBuildUpArea() {
       return buildUpArea;
    }
 
-   public void setBuildUpArea(Double buildUpArea) {
+    /**
+     * Method to set size of build up area
+     * @param buildUpArea
+     */
+    public void setBuildUpArea(Double buildUpArea) {
       this.buildUpArea = buildUpArea;
    }
 
-   public String getType() {
+    /**
+     *
+     * @return type of land
+     */
+    public String getType() {
       return type;
    }
 
-   public void setType(String type) {
+    /**
+     * Method to set the type
+     * @param type
+     */
+    public void setType(String type) {
       this.type = type;
    }
 
-   public String getNotes() {
+    /**
+     *
+     * @return notes of land
+     */
+    public String getNotes() {
       return notes;
    }
 
-   public void setNotes(String notes) {
+    /**
+     * Method to set the notes for land
+     * @param notes
+     */
+    public void setNotes(String notes) {
       this.notes = notes;
    }
 
-   public static long getSerialversionuid() {
+    /**
+     *
+     * @return serial version of ID
+     */
+    public static long getSerialversionuid() {
       return serialVersionUID;
    }
 
@@ -88,7 +143,11 @@ public class Land implements Serializable {
             + ", notes=" + notes + "]";
    }
    
-   public String[] toArray() {
+    /**
+     *
+     * @return array of lands with parameters of each land combined in string
+     */
+    public String[] toArray() {
         String[] list = new String[6];
 
         list[0] = landID + "";

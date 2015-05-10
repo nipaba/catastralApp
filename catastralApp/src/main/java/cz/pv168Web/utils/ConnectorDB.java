@@ -13,10 +13,18 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ *
+ * Class connector to db
+ */
 public class ConnectorDB {
 
     private static Logger LOGGER = LoggerFactory.getLogger(ConnectorDB.class);
 
+    /**
+     *
+     * @return datasource
+     */
     public static DataSource initDatasource() {
         BasicDataSource bsd = new BasicDataSource();
 
@@ -48,6 +56,11 @@ public class ConnectorDB {
 
     }
 
+    /**
+     * method to close connection
+     * @param conn
+     * @param st
+     */
     public static void close(Connection conn, Statement st) {
         if (st != null) {
             try {
@@ -74,6 +87,10 @@ public class ConnectorDB {
 
     }
 
+    /**
+     * Method for rollback
+     * @param conn
+     */
     public static void rollback(Connection conn) {
         if (conn != null) {
             try {

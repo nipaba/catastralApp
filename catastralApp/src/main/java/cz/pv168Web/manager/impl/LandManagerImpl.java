@@ -11,11 +11,19 @@ import cz.pv168Web.model.Land;
 import cz.pv168Web.utils.ConnectorDB;
 import cz.pv168Web.utils.DatabaseException;
 
+/**
+ *
+ * Class for managing the land
+ */
 public class LandManagerImpl implements LandManager {
 
    private LandDao landDao;
    
-   public LandManagerImpl(DataSource ds){
+    /**
+     * constructor for land manager
+     * @param ds - datasource
+     */
+    public LandManagerImpl(DataSource ds){
       landDao = new LandDaoImpl(ds);
    }
    

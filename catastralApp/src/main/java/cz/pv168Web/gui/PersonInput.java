@@ -12,7 +12,7 @@ import javax.swing.DefaultComboBoxModel;
 
 /**
  *
- * @author Tomas
+ * Class for person input window
  */
 public class PersonInput extends javax.swing.JDialog {
 
@@ -22,6 +22,8 @@ public class PersonInput extends javax.swing.JDialog {
 
     /**
      * Creates new form PersonInput
+     * @param parent
+     * @param modal
      */
     public PersonInput(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -30,6 +32,12 @@ public class PersonInput extends javax.swing.JDialog {
 
     }
 
+    /**
+     * constructor
+     * @param parent
+     * @param modal
+     * @param updatePerson
+     */
     public PersonInput(java.awt.Frame parent, boolean modal, Person updatePerson) {
         super(parent, modal);
         initComponents();
@@ -48,10 +56,18 @@ public class PersonInput extends javax.swing.JDialog {
 
     }
 
+    /**
+     *
+     * @return validity of person
+     */
     public Boolean getValid() {
         return valid;
     }
 
+    /**
+     *
+     * @return person
+     */
     public Person getPerson() {
         return person;
     }

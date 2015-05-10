@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  *
- * @author Tomas
+ * Enumeration for catastral areas
  */
 public enum LandCatastralArea {
     EMPTY(""),
@@ -24,10 +24,18 @@ public enum LandCatastralArea {
         landCatastralArea = s;
     }
     
+    /**
+     *
+     * @return string with land catastral area
+     */
     public String getCode(){
         return landCatastralArea;
     }
     
+    /**
+     *
+     * @return array of codes of catastral areas
+     */
     public static String[] getLandCatastralAreaArray() {
         String[] results = new String[LandCatastralArea.values().length];
         int count = 0;
@@ -38,7 +46,12 @@ public enum LandCatastralArea {
         return results;
     }
     
-       public static int getIndexOfCatastralArea(String catastralArea){
+    /**
+     *
+     * @param catastralArea
+     * @return index of specific catastral area
+     */
+    public static int getIndexOfCatastralArea(String catastralArea){
        int count = 0;
        for (LandCatastralArea c  : LandCatastralArea.values()) {
             if (c.getCode().equalsIgnoreCase(catastralArea)){

@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Tomas
+ * Enumeration of states
  */
 public enum State {
     EMPTY(""),
@@ -23,12 +23,20 @@ public enum State {
         state = s;
     }
     
+    /**
+     *
+     * @return code of state
+     */
     public String getCode(){
         
         return state;
     }
     
-   public static String[] getStateArray() {
+    /**
+     *
+     * @return array of states
+     */
+    public static String[] getStateArray() {
         String[] results = new String[State.values().length];
         int count = 0;
         for (State state  : State.values()) {
@@ -38,7 +46,12 @@ public enum State {
         return results;
     }
    
-   public static int getIndexOfState(String state){
+    /**
+     *
+     * @param state
+     * @return index of specific state
+     */
+    public static int getIndexOfState(String state){
        int count = 0;
        for (State s  : State.values()) {
             if (s.getCode().equalsIgnoreCase(state)){

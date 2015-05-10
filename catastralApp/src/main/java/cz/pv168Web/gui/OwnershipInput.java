@@ -10,7 +10,7 @@ import cz.pv168Web.model.Ownership;
 import javax.swing.DefaultComboBoxModel;
 /**
  *
- * @author Tomas
+ * Class for ownership input window
  */
 public class OwnershipInput extends javax.swing.JDialog {
 
@@ -21,6 +21,8 @@ public class OwnershipInput extends javax.swing.JDialog {
 
     /**
      * Creates new form PersonInput
+     * @param parent
+     * @param modal
      */
     public OwnershipInput(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -29,6 +31,13 @@ public class OwnershipInput extends javax.swing.JDialog {
 
     }
 
+    /**
+     * constructor
+     * @param parent
+     * @param modal
+     * @param personArrayID
+     * @param landArrayId
+     */
     public OwnershipInput(java.awt.Frame parent, boolean modal, String [] personArrayID, String [] landArrayId) {
         super(parent, modal);
         initComponents();
@@ -37,6 +46,14 @@ public class OwnershipInput extends javax.swing.JDialog {
         comboboxLand.setModel(new DefaultComboBoxModel(landArrayId));
     }
     
+    /**
+     * constructor
+     * @param parent
+     * @param modal
+     * @param personArrayID
+     * @param landArrayId
+     * @param o
+     */
     public OwnershipInput(java.awt.Frame parent, boolean modal, String [] personArrayID, String [] landArrayId,Ownership o) {
         super(parent, modal);
         initComponents();
@@ -44,10 +61,19 @@ public class OwnershipInput extends javax.swing.JDialog {
         comboboxPerson.setModel(new DefaultComboBoxModel(personArrayID));
         comboboxLand.setModel(new DefaultComboBoxModel(landArrayId));
     }
+
+    /**
+     *
+     * @return validity of ownership
+     */
     public boolean getValid(){
         return valid;
     }
     
+    /**
+     *
+     * @return ownership
+     */
     public Ownership getOwnership(){
         return ownership;
     } 

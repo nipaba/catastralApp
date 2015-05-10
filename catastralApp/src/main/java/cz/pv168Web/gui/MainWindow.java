@@ -35,6 +35,10 @@ public class MainWindow extends javax.swing.JFrame {
         mainManager = null;
     }
     
+    /**
+     * constructor
+     * @param MM
+     */
     public MainWindow(MainManager MM) {
         initComponents();
         

@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Tomas
+ * Enumeration for land types
  */
 public enum LandType {
     EMPTY(""),
@@ -24,10 +24,18 @@ public enum LandType {
         landType = s;
     }
 
+    /**
+     *
+     * @return code of land type
+     */
     public String getCode() {
         return landType;
     }
 
+    /**
+     *
+     * @return array of land types
+     */
     public static String[] getLandTypeArray() {
         String[] results = new String[LandType.values().length];
         int count = 0;
@@ -38,6 +46,11 @@ public enum LandType {
         return results;
     }
 
+    /**
+     *
+     * @param landType
+     * @return index of specific land type
+     */
     public static int getIndexOfLandType(String landType) {
         int count = 0;
         for (LandType l : LandType.values()) {

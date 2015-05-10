@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *
+ * Class for person
+ */
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 6543378899419912923L;
@@ -16,54 +20,106 @@ public class Person implements Serializable {
     private String birthNumber;
     private String state;
 
+    /**
+     *
+     * @return person id
+     */
     public Long getPersonId() {
         return personId;
     }
 
+    /**
+     * Method to set person id
+     * @param personId
+     */
     public void setPersonId(Long personId) {
         this.personId = personId;
     }
 
+    /**
+     *
+     * @return name of person
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Method to set the name of person
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return surname of the person
+     */
     public String getSurname() {
         return surname;
     }
 
+    /**
+     * Method to set the surname of person
+     * @param surname
+     */
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
+    /**
+     * 
+     * @return birth date of person
+     */
     public Date getBirthDate() {
         return birthDate;
     }
 
+    /**
+     * Method to set birth date of person
+     * @param birthDate
+     */
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
+    /**
+     *
+     * @return birth number of person
+     */
     public String getBirthNumber() {
         return birthNumber;
     }
 
+    /**
+     * Method to set birth number of person
+     * @param birthNumber
+     */
     public void setBirthNumber(String birthNumber) {
         this.birthNumber = birthNumber;
     }
 
+    /**
+     *
+     * @return state of the person
+     */
     public String getState() {
         return state;
     }
 
+    /**
+     * Method to set state of the person
+     * @param state
+     */
     public void setState(String state) {
         this.state = state;
     }
 
+    /**
+     *
+     * @return serial version id
+     */
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
@@ -145,6 +201,10 @@ public class Person implements Serializable {
                 + birthNumber + ", state=" + state + "]";
     }
 
+    /**
+     *
+     * @return the array of person data combined in strings
+     */
     public String[] toArray() {
         String[] list = new String[7];
 

@@ -12,7 +12,7 @@ import javax.swing.DefaultComboBoxModel;
 
 /**
  *
- * @author Tomas
+ * Class for land input window
  */
 public class LandInput extends javax.swing.JDialog {
 
@@ -22,6 +22,8 @@ public class LandInput extends javax.swing.JDialog {
 
     /**
      * Creates new form LandInput
+     * @param parent
+     * @param modal
      */
     public LandInput(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -30,6 +32,12 @@ public class LandInput extends javax.swing.JDialog {
 
     }
 
+    /**
+     * constructor
+     * @param parent
+     * @param modal
+     * @param updateLand
+     */
     public LandInput(java.awt.Frame parent, boolean modal, Land updateLand) {
         super(parent, modal);
         initComponents();
@@ -43,10 +51,18 @@ public class LandInput extends javax.swing.JDialog {
         spinnerBuildUpArea.setValue(land.getBuildUpArea());
     }
 
+    /**
+     *
+     * @return validity of land data
+     */
     public boolean getValid() {
         return valid;
     }
 
+    /**
+     *
+     * @return land
+     */
     public Land getLand() {
         return land;
     }

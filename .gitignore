@@ -1,3 +1,4 @@
 *.class
 *.dat
 catastralApp/MyDB/
+catastralApp/target/

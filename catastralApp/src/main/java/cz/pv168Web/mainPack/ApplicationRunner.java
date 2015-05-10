@@ -35,12 +35,8 @@ public class ApplicationRunner {
         // START DB
         MainManager mainManager = new MainManager(dataSource);
         
-        try {
-            mainManager.createDB();
-            mainManager.connectOrCreateDB();
-        } catch (DatabaseException | ClassNotFoundException ex) {
-            System.out.println(ex.toString());
-        }
+        mainManager.createDB();
+        mainManager.connectOrCreateDB();
         
         
         

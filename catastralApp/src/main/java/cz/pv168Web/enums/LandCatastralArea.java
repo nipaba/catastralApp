@@ -13,7 +13,7 @@ import java.util.List;
  * @author Tomas
  */
 public enum LandCatastralArea {
-    
+    EMPTY(""),
     BRNO("Brno"),
     PRAHA("Praha");
     

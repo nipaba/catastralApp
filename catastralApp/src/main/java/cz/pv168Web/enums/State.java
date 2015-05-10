@@ -13,6 +13,7 @@ import java.util.List;
  * @author Tomas
  */
 public enum State {
+    EMPTY(""),
     CZECH ("Czech Republic"),
     SLOVAKIA("Slovak Republic");
     

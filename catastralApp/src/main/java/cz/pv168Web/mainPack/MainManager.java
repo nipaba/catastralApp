@@ -5,6 +5,7 @@
  */
 package cz.pv168Web.mainPack;
 
+import cz.pv168Web.dao.impl.PersonDaoImpl;
 import cz.pv168Web.manager.LandManager;
 import cz.pv168Web.manager.OwnershipManager;
 import cz.pv168Web.manager.PersonManager;
@@ -20,6 +21,8 @@ import java.util.List;
 import java.util.Objects;
 import javax.sql.DataSource;
 import javax.swing.JOptionPane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -27,6 +30,7 @@ import javax.swing.JOptionPane;
  */
 public class MainManager {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MainManager.class);
     LandManager landManager;
     PersonManager personManager;
     OwnershipManager ownershipManager;
@@ -69,7 +73,8 @@ public class MainManager {
             landManager.createTableLand();
             ownershipManager.createTableOwnership();
         } catch (DatabaseException ex) {
-            printError(ex.toString());
+                //TODO
+                    
         }
 
     }
@@ -315,6 +320,7 @@ public class MainManager {
     }
 
     private void printError(String msg) {
+        LOGGER.error(msg);
         JOptionPane.showMessageDialog(null, msg, "Error with Database", JOptionPane.ERROR_MESSAGE);
     }
 }

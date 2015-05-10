@@ -1031,15 +1031,10 @@ public class MainWindow extends javax.swing.JFrame {
         
         while (ownershipTableModel.getRowCount() > 0) {
             ownershipTableModel.removeRow(ownershipTableModel.getRowCount() - 1);
-        }
-        
+        } 
         for (Ownership o : list) {
             ownershipTableModel.addRow(mainManager.getOwnershipArray(o));
         }
-    }
-    
-    private void printError(String msg) {
-        JOptionPane.showMessageDialog(null, msg, "Error with Database", JOptionPane.ERROR_MESSAGE);
     }
     
     private void refreshAll() {

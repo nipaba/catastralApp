@@ -71,14 +71,12 @@ public class OwnershipInput extends javax.swing.JDialog {
         labelSurname = new javax.swing.JLabel();
         labelTitleNewPerson = new javax.swing.JLabel();
         labelStartDate = new javax.swing.JLabel();
-        labelErrorLandID = new javax.swing.JLabel();
-        labelErrorPersonID = new javax.swing.JLabel();
-        labelErrorEndDate = new javax.swing.JLabel();
         labelEndDate = new javax.swing.JLabel();
         datePickerStartDate = new org.jdesktop.swingx.JXDatePicker();
-        labelErrorStartDate = new javax.swing.JLabel();
         comboboxPerson = new javax.swing.JComboBox();
         comboboxLand = new javax.swing.JComboBox();
+        labelErrorStartDate = new javax.swing.JLabel();
+        labelErrorEndDate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -155,24 +153,6 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 33, 0, 33);
         getContentPane().add(labelStartDate, gridBagConstraints);
 
-        labelErrorLandID.setText("Error");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        getContentPane().add(labelErrorLandID, gridBagConstraints);
-
-        labelErrorPersonID.setText("Error");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        getContentPane().add(labelErrorPersonID, gridBagConstraints);
-
-        labelErrorEndDate.setText("Error");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 2;
-        getContentPane().add(labelErrorEndDate, gridBagConstraints);
-
         labelEndDate.setText("End date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -194,13 +174,6 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.gridy = 1;
         getContentPane().add(datePickerStartDate, gridBagConstraints);
 
-        labelErrorStartDate.setText("Error");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 12, 0, 0);
-        getContentPane().add(labelErrorStartDate, gridBagConstraints);
-
         comboboxPerson.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -212,6 +185,19 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         getContentPane().add(comboboxLand, gridBagConstraints);
+
+        labelErrorStartDate.setText("Error");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 1;
+        getContentPane().add(labelErrorStartDate, gridBagConstraints);
+
+        labelErrorEndDate.setText("Error");
+        labelErrorEndDate.setPreferredSize(new java.awt.Dimension(70, 14));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 2;
+        getContentPane().add(labelErrorEndDate, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -238,7 +224,7 @@ public class OwnershipInput extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonAddActionPerformed
 
     private void datePickerEndDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerEndDateFocusGained
-      labelErrorEndDate.setVisible(false);
+        labelErrorEndDate.setVisible(false);
     }//GEN-LAST:event_datePickerEndDateFocusGained
 
     private void datePickerStartDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerStartDateFocusGained
@@ -300,8 +286,6 @@ public class OwnershipInput extends javax.swing.JDialog {
     private org.jdesktop.swingx.JXDatePicker datePickerStartDate;
     private javax.swing.JLabel labelEndDate;
     private javax.swing.JLabel labelErrorEndDate;
-    private javax.swing.JLabel labelErrorLandID;
-    private javax.swing.JLabel labelErrorPersonID;
     private javax.swing.JLabel labelErrorStartDate;
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelStartDate;

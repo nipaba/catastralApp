@@ -355,9 +355,7 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane2.setViewportView(landTable);
         landTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (landTable.getColumnModel().getColumnCount() > 0) {
-            landTable.getColumnModel().getColumn(0).setMinWidth(20);
-            landTable.getColumnModel().getColumn(0).setPreferredWidth(20);
-            landTable.getColumnModel().getColumn(0).setMaxWidth(20);
+            landTable.getColumnModel().getColumn(0).setPreferredWidth(5);
         }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -955,17 +953,34 @@ public class MainWindow extends javax.swing.JFrame {
 
         if (rownNumber >= 0) {
             Long personId = Long.parseLong(personTableModel.getValueAt(rownNumber, 0).toString());
-
+            List<Long> ownershipIDsToRemove = null;
+            try{
+                List<Ownership> ownershipList = mainManager.getOwnershipList();
+            
+                for(Ownership o : ownershipList){
+                    if(o.getPersonID() == personId){
+                        ownershipIDsToRemove.add(o.getOwnerShipID());
+                    }
+                }
+            } catch (DatabaseException ex) {
+                        printError(ex.toString());
+            }
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
                     synchronized (mainManager) {
                         try {
                             mainManager.removePerson(personId);
+                            for(Long l : ownershipIDsToRemove){
+                               mainManager.removeOwnership(l);
+                            }
+                            
+                            
                         } catch (DatabaseException ex) {
                             printError(ex.toString());
                         }
                         refreshPersonTable();
+                        refreshOwnershipTable();
                     }
                 }
             };
@@ -1077,17 +1092,33 @@ public class MainWindow extends javax.swing.JFrame {
 
         if (rownNumber >= 0) {
             Long landId = Long.parseLong(landTableModel.getValueAt(rownNumber, 0).toString());
-
+            List<Long> ownershipIDsToRemove = null;
+            try{
+                List<Ownership> ownershipList = mainManager.getOwnershipList();
+            
+                for(Ownership o : ownershipList){
+                    if(o.getLandId()== landId){
+                        ownershipIDsToRemove.add(o.getOwnerShipID());
+                    }
+                }
+            } catch (DatabaseException ex) {
+                        printError(ex.toString());
+            }
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
                     synchronized (mainManager) {
                         try {
                             mainManager.removeLand(landId);
+                            for(Long l : ownershipIDsToRemove){
+                               mainManager.removeOwnership(l);
+                            }
+                            
                         } catch (DatabaseException ex) {
                             printError(ex.toString());
                         }
                         refreshLandTable();
+                        refreshOwnershipTable();
                     }
                 }
             };

@@ -82,7 +82,8 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         labelPersonState.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonState.setText("State :");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/PersonDetail"); // NOI18N
+        labelPersonState.setText(bundle.getString("PersonDetail.labelPersonState.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
@@ -92,7 +93,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonState, gridBagConstraints);
 
         labelPersonBirthNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonBirthNumber.setText("BirthNumber :");
+        labelPersonBirthNumber.setText(bundle.getString("PersonDetail.labelPersonBirthNumber.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -102,7 +103,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonBirthNumber, gridBagConstraints);
 
         labelPersonId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonId.setText("Person ID :");
+        labelPersonId.setText(bundle.getString("PersonDetail.labelPersonId.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -112,7 +113,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonId, gridBagConstraints);
 
         labelPersonDetailTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        labelPersonDetailTitle.setText("Person Detail");
+        labelPersonDetailTitle.setText(bundle.getString("PersonDetail.labelPersonDetailTitle.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -120,7 +121,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonDetailTitle, gridBagConstraints);
 
         labelPersonName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonName.setText("Name :");
+        labelPersonName.setText(bundle.getString("PersonDetail.labelPersonName.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -130,7 +131,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonName, gridBagConstraints);
 
         labelPersonSurname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonSurname.setText("Surname :");
+        labelPersonSurname.setText(bundle.getString("PersonDetail.labelPersonSurname.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -140,7 +141,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonSurname, gridBagConstraints);
 
         labelPersonBirthdate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonBirthdate.setText("Birthdate :");
+        labelPersonBirthdate.setText(bundle.getString("PersonDetail.labelPersonBirthdate.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -150,7 +151,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonBirthdate, gridBagConstraints);
 
         labelPersonAge.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonAge.setText("Age :");
+        labelPersonAge.setText(bundle.getString("PersonDetail.labelPersonAge.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -159,7 +160,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonAge, gridBagConstraints);
 
         labelPersonIDvalue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonIDvalue.setText("PersonIDvalue");
+        labelPersonIDvalue.setText(bundle.getString("PersonDetail.labelPersonIDvalue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -168,7 +169,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonIDvalue, gridBagConstraints);
 
         labelPersonNameValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonNameValue.setText("PersonNamevalue");
+        labelPersonNameValue.setText(bundle.getString("PersonDetail.labelPersonNameValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -178,7 +179,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonNameValue, gridBagConstraints);
 
         labelPersonSurnameValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonSurnameValue.setText("PersonSurnameValue");
+        labelPersonSurnameValue.setText(bundle.getString("PersonDetail.labelPersonSurnameValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -188,7 +189,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonSurnameValue, gridBagConstraints);
 
         labelPersonBirthdateValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonBirthdateValue.setText("PersonBithDateValue");
+        labelPersonBirthdateValue.setText(bundle.getString("PersonDetail.labelPersonBirthdateValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -198,7 +199,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonBirthdateValue, gridBagConstraints);
 
         labelPersonBirthNumberValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonBirthNumberValue.setText("PersonBirthNumberValue");
+        labelPersonBirthNumberValue.setText(bundle.getString("PersonDetail.labelPersonBirthNumberValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
@@ -208,7 +209,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonBirthNumberValue, gridBagConstraints);
 
         labelPersonStateValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonStateValue.setText("PersonSateValue");
+        labelPersonStateValue.setText(bundle.getString("PersonDetail.labelPersonStateValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 9;
@@ -218,7 +219,7 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonStateValue, gridBagConstraints);
 
         labelPersonAgeValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonAgeValue.setText("PersonAgeValue");
+        labelPersonAgeValue.setText(bundle.getString("PersonDetail.labelPersonAgeValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;

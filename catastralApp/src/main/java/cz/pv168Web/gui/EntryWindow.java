@@ -46,7 +46,8 @@ public class EntryWindow extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Minimalistic Application Catastral Evidence");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/EntryWindow"); // NOI18N
+        jLabel1.setText(bundle.getString("EntryWindow.jLabel1.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -55,7 +56,7 @@ public class EntryWindow extends javax.swing.JFrame {
         getContentPane().add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel2.setText("M.A.C.E.");
+        jLabel2.setText(bundle.getString("EntryWindow.jLabel2.text")); // NOI18N
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -68,7 +69,7 @@ public class EntryWindow extends javax.swing.JFrame {
         getContentPane().add(jLabel2, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Autors :");
+        jLabel3.setText(bundle.getString("EntryWindow.jLabel3.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -76,7 +77,7 @@ public class EntryWindow extends javax.swing.JFrame {
         getContentPane().add(jLabel3, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("JAVA absabfuba");
+        jLabel4.setText(bundle.getString("EntryWindow.jLabel4.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;
@@ -84,7 +85,7 @@ public class EntryWindow extends javax.swing.JFrame {
         getContentPane().add(jLabel4, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Subject :");
+        jLabel5.setText(bundle.getString("EntryWindow.jLabel5.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -93,7 +94,7 @@ public class EntryWindow extends javax.swing.JFrame {
         getContentPane().add(jLabel5, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Andrej Kseòák, uèo:");
+        jLabel6.setText(bundle.getString("EntryWindow.jLabel6.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -101,7 +102,7 @@ public class EntryWindow extends javax.swing.JFrame {
         getContentPane().add(jLabel6, gridBagConstraints);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("PV168");
+        jLabel7.setText(bundle.getString("EntryWindow.jLabel7.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
@@ -109,7 +110,7 @@ public class EntryWindow extends javax.swing.JFrame {
         getContentPane().add(jLabel7, gridBagConstraints);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Tomáš Nesvadba, uèo: 395902");
+        jLabel8.setText(bundle.getString("EntryWindow.jLabel8.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -117,7 +118,7 @@ public class EntryWindow extends javax.swing.JFrame {
         getContentPane().add(jLabel8, gridBagConstraints);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Date of publiction :");
+        jLabel9.setText(bundle.getString("EntryWindow.jLabel9.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -132,7 +133,7 @@ public class EntryWindow extends javax.swing.JFrame {
         getContentPane().add(jLabel10, gridBagConstraints);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("9.5.2015");
+        jLabel11.setText(bundle.getString("EntryWindow.jLabel11.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 6;
@@ -140,14 +141,14 @@ public class EntryWindow extends javax.swing.JFrame {
         getContentPane().add(jLabel11, gridBagConstraints);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("jarní semestr, MUNI 2015");
+        jLabel12.setText(bundle.getString("EntryWindow.jLabel12.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(jLabel12, gridBagConstraints);
 
-        jButton1.setText("Continue");
+        jButton1.setText(bundle.getString("EntryWindow.jButton1.text")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

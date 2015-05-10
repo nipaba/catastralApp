@@ -66,7 +66,8 @@ public class LandDetail extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         labelLandDetail.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        labelLandDetail.setText("Land Detail");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/LandDetail"); // NOI18N
+        labelLandDetail.setText(bundle.getString("LandDetail.labelLandDetail.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -76,7 +77,7 @@ public class LandDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandDetail, gridBagConstraints);
 
         labelLandID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandID.setText("Land ID :");
+        labelLandID.setText(bundle.getString("LandDetail.labelLandID.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -85,7 +86,7 @@ public class LandDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandID, gridBagConstraints);
 
         labelLandSize.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandSize.setText("Size :");
+        labelLandSize.setText(bundle.getString("LandDetail.labelLandSize.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -94,7 +95,7 @@ public class LandDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandSize, gridBagConstraints);
 
         labelLandCatastralArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandCatastralArea.setText("Catastral Area :");
+        labelLandCatastralArea.setText(bundle.getString("LandDetail.labelLandCatastralArea.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -103,7 +104,7 @@ public class LandDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandCatastralArea, gridBagConstraints);
 
         labelLandCatastralAreaValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandCatastralAreaValue.setText("jLabel1");
+        labelLandCatastralAreaValue.setText(bundle.getString("LandDetail.labelLandCatastralAreaValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -112,7 +113,7 @@ public class LandDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandCatastralAreaValue, gridBagConstraints);
 
         labelLandBuildUpArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandBuildUpArea.setText("Buildup Area :");
+        labelLandBuildUpArea.setText(bundle.getString("LandDetail.labelLandBuildUpArea.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -121,7 +122,7 @@ public class LandDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandBuildUpArea, gridBagConstraints);
 
         labelLandType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandType.setText("Type :");
+        labelLandType.setText(bundle.getString("LandDetail.labelLandType.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -130,7 +131,7 @@ public class LandDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandType, gridBagConstraints);
 
         labelLandNotes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandNotes.setText("Notes :");
+        labelLandNotes.setText(bundle.getString("LandDetail.labelLandNotes.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -139,7 +140,7 @@ public class LandDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandNotes, gridBagConstraints);
 
         labelLandIDvalue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandIDvalue.setText("jLabel1");
+        labelLandIDvalue.setText(bundle.getString("LandDetail.labelLandIDvalue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -148,7 +149,7 @@ public class LandDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandIDvalue, gridBagConstraints);
 
         labelLandSizeValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandSizeValue.setText("jLabel1");
+        labelLandSizeValue.setText(bundle.getString("LandDetail.labelLandSizeValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -157,7 +158,7 @@ public class LandDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandSizeValue, gridBagConstraints);
 
         labelLandBuildUpAreaValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandBuildUpAreaValue.setText("jLabel1");
+        labelLandBuildUpAreaValue.setText(bundle.getString("LandDetail.labelLandBuildUpAreaValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -166,7 +167,7 @@ public class LandDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandBuildUpAreaValue, gridBagConstraints);
 
         labelLandTypeValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandTypeValue.setText("jLabel1");
+        labelLandTypeValue.setText(bundle.getString("LandDetail.labelLandTypeValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -175,7 +176,7 @@ public class LandDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandTypeValue, gridBagConstraints);
 
         labelLandNotesValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandNotesValue.setText("jLabel1");
+        labelLandNotesValue.setText(bundle.getString("LandDetail.labelLandNotesValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;

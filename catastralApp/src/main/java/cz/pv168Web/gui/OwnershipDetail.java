@@ -115,13 +115,14 @@ public class OwnershipDetail extends javax.swing.JFrame {
         labelOwnershipEndValue = new javax.swing.JLabel();
         labelOwnershipDetail = new javax.swing.JLabel();
 
-        jLabel1.setText("jLabel1");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/OwnershipDetail"); // NOI18N
+        jLabel1.setText(bundle.getString("OwnershipDetail.jLabel1.text")); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         labelPersonState.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonState.setText("State :");
+        labelPersonState.setText(bundle.getString("OwnershipDetail.labelPersonState.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
@@ -131,7 +132,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonState, gridBagConstraints);
 
         labelPersonBirthNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonBirthNumber.setText("BirthNumber :");
+        labelPersonBirthNumber.setText(bundle.getString("OwnershipDetail.labelPersonBirthNumber.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -141,7 +142,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonBirthNumber, gridBagConstraints);
 
         labelPersonId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonId.setText("Person ID :");
+        labelPersonId.setText(bundle.getString("OwnershipDetail.labelPersonId.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -151,7 +152,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonId, gridBagConstraints);
 
         labelPersonDetailTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelPersonDetailTitle.setText("Person Detail");
+        labelPersonDetailTitle.setText(bundle.getString("OwnershipDetail.labelPersonDetailTitle.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -161,7 +162,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonDetailTitle, gridBagConstraints);
 
         labelPersonName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonName.setText("Name :");
+        labelPersonName.setText(bundle.getString("OwnershipDetail.labelPersonName.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -171,7 +172,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonName, gridBagConstraints);
 
         labelPersonSurname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonSurname.setText("Surname :");
+        labelPersonSurname.setText(bundle.getString("OwnershipDetail.labelPersonSurname.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -181,7 +182,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonSurname, gridBagConstraints);
 
         labelPersonBirthdate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonBirthdate.setText("Birthdate :");
+        labelPersonBirthdate.setText(bundle.getString("OwnershipDetail.labelPersonBirthdate.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -191,7 +192,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonBirthdate, gridBagConstraints);
 
         labelPersonAge.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonAge.setText("Age :");
+        labelPersonAge.setText(bundle.getString("OwnershipDetail.labelPersonAge.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -201,7 +202,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonAge, gridBagConstraints);
 
         labelPersonIDvalue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonIDvalue.setText("PersonIDvalue");
+        labelPersonIDvalue.setText(bundle.getString("OwnershipDetail.labelPersonIDvalue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -211,7 +212,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonIDvalue, gridBagConstraints);
 
         labelPersonNameValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonNameValue.setText("PersonNamevalue");
+        labelPersonNameValue.setText(bundle.getString("OwnershipDetail.labelPersonNameValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -221,7 +222,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonNameValue, gridBagConstraints);
 
         labelPersonSurnameValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonSurnameValue.setText("PersonSurnameValue");
+        labelPersonSurnameValue.setText(bundle.getString("OwnershipDetail.labelPersonSurnameValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -231,7 +232,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonSurnameValue, gridBagConstraints);
 
         labelPersonBirthdateValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonBirthdateValue.setText("PersonBithDateValue");
+        labelPersonBirthdateValue.setText(bundle.getString("OwnershipDetail.labelPersonBirthdateValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -241,7 +242,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonBirthdateValue, gridBagConstraints);
 
         labelPersonBirthNumberValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonBirthNumberValue.setText("PersonBirthNumberValue");
+        labelPersonBirthNumberValue.setText(bundle.getString("OwnershipDetail.labelPersonBirthNumberValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
@@ -250,7 +251,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonBirthNumberValue, gridBagConstraints);
 
         labelPersonStateValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonStateValue.setText("PersonSateValue");
+        labelPersonStateValue.setText(bundle.getString("OwnershipDetail.labelPersonStateValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
@@ -260,7 +261,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonStateValue, gridBagConstraints);
 
         labelPersonAgeValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonAgeValue.setText("PersonAgeValue");
+        labelPersonAgeValue.setText(bundle.getString("OwnershipDetail.labelPersonAgeValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -270,7 +271,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonAgeValue, gridBagConstraints);
 
         labelLandDetail.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelLandDetail.setText("Land Detail");
+        labelLandDetail.setText(bundle.getString("OwnershipDetail.labelLandDetail.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 1;
@@ -280,7 +281,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandDetail, gridBagConstraints);
 
         labelLandID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandID.setText("Land ID :");
+        labelLandID.setText(bundle.getString("OwnershipDetail.labelLandID.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
@@ -289,7 +290,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandID, gridBagConstraints);
 
         labelLandSize.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandSize.setText("Size :");
+        labelLandSize.setText(bundle.getString("OwnershipDetail.labelLandSize.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 3;
@@ -298,7 +299,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandSize, gridBagConstraints);
 
         labelLandCatastralArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandCatastralArea.setText("Catastral Area :");
+        labelLandCatastralArea.setText(bundle.getString("OwnershipDetail.labelLandCatastralArea.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 4;
@@ -307,7 +308,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandCatastralArea, gridBagConstraints);
 
         labelLandCatastralAreaValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandCatastralAreaValue.setText("jLabel1");
+        labelLandCatastralAreaValue.setText(bundle.getString("OwnershipDetail.labelLandCatastralAreaValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 12;
         gridBagConstraints.gridy = 4;
@@ -316,7 +317,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandCatastralAreaValue, gridBagConstraints);
 
         labelLandBuildUpArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandBuildUpArea.setText("Buildup Area :");
+        labelLandBuildUpArea.setText(bundle.getString("OwnershipDetail.labelLandBuildUpArea.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 5;
@@ -325,7 +326,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandBuildUpArea, gridBagConstraints);
 
         labelLandType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandType.setText("Type :");
+        labelLandType.setText(bundle.getString("OwnershipDetail.labelLandType.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 6;
@@ -334,7 +335,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandType, gridBagConstraints);
 
         labelLandNotes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandNotes.setText("Notes :");
+        labelLandNotes.setText(bundle.getString("OwnershipDetail.labelLandNotes.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 7;
@@ -343,7 +344,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandNotes, gridBagConstraints);
 
         labelLandIDvalue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandIDvalue.setText("jLabel1");
+        labelLandIDvalue.setText(bundle.getString("OwnershipDetail.labelLandIDvalue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 12;
         gridBagConstraints.gridy = 2;
@@ -352,7 +353,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandIDvalue, gridBagConstraints);
 
         labelLandSizeValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandSizeValue.setText("jLabel1");
+        labelLandSizeValue.setText(bundle.getString("OwnershipDetail.labelLandSizeValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 12;
         gridBagConstraints.gridy = 3;
@@ -361,7 +362,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandSizeValue, gridBagConstraints);
 
         labelLandBuildUpAreaValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandBuildUpAreaValue.setText("jLabel1");
+        labelLandBuildUpAreaValue.setText(bundle.getString("OwnershipDetail.labelLandBuildUpAreaValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 12;
         gridBagConstraints.gridy = 5;
@@ -370,7 +371,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandBuildUpAreaValue, gridBagConstraints);
 
         labelLandTypeValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandTypeValue.setText("jLabel1");
+        labelLandTypeValue.setText(bundle.getString("OwnershipDetail.labelLandTypeValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 12;
         gridBagConstraints.gridy = 6;
@@ -379,7 +380,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandTypeValue, gridBagConstraints);
 
         labelLandNotesValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLandNotesValue.setText("jLabel1");
+        labelLandNotesValue.setText(bundle.getString("OwnershipDetail.labelLandNotesValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 12;
         gridBagConstraints.gridy = 7;
@@ -388,11 +389,11 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelLandNotesValue, gridBagConstraints);
 
         labelOwnershipDetail1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        labelOwnershipDetail1.setText("Ownership Detail");
+        labelOwnershipDetail1.setText(bundle.getString("OwnershipDetail.labelOwnershipDetail1.text")); // NOI18N
         getContentPane().add(labelOwnershipDetail1, new java.awt.GridBagConstraints());
 
         labelOwnershipStart.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelOwnershipStart.setText("Onwership started:");
+        labelOwnershipStart.setText(bundle.getString("OwnershipDetail.labelOwnershipStart.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
@@ -401,7 +402,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelOwnershipStart, gridBagConstraints);
 
         labelOwnershipEnd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelOwnershipEnd.setText("Ownership Ended:");
+        labelOwnershipEnd.setText(bundle.getString("OwnershipDetail.labelOwnershipEnd.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
@@ -410,7 +411,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelOwnershipEnd, gridBagConstraints);
 
         labelOwnershipStartValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelOwnershipStartValue.setText("start");
+        labelOwnershipStartValue.setText(bundle.getString("OwnershipDetail.labelOwnershipStartValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 10;
@@ -419,7 +420,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelOwnershipStartValue, gridBagConstraints);
 
         labelOwnershipEndValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelOwnershipEndValue.setText("end");
+        labelOwnershipEndValue.setText(bundle.getString("OwnershipDetail.labelOwnershipEndValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 11;
@@ -428,7 +429,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         getContentPane().add(labelOwnershipEndValue, gridBagConstraints);
 
         labelOwnershipDetail.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelOwnershipDetail.setText("Ownership Detail");
+        labelOwnershipDetail.setText(bundle.getString("OwnershipDetail.labelOwnershipDetail.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;

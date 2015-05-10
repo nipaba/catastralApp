@@ -87,7 +87,8 @@ public class PersonInput extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        buttonCancel.setText("Cancel");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/PersonInput"); // NOI18N
+        buttonCancel.setText(bundle.getString("PersonInput.buttonCancel.text")); // NOI18N
         buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelActionPerformed(evt);
@@ -101,7 +102,7 @@ public class PersonInput extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         getContentPane().add(buttonCancel, gridBagConstraints);
 
-        buttonAdd.setText("Add new Person");
+        buttonAdd.setText(bundle.getString("PersonInput.buttonAdd.text")); // NOI18N
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddActionPerformed(evt);
@@ -138,7 +139,7 @@ public class PersonInput extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(textPersonName, gridBagConstraints);
 
-        labelName.setText("Name");
+        labelName.setText(bundle.getString("PersonInput.labelName.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -147,7 +148,7 @@ public class PersonInput extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(labelName, gridBagConstraints);
 
-        labelSurname.setText("Surname");
+        labelSurname.setText(bundle.getString("PersonInput.labelSurname.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -182,7 +183,7 @@ public class PersonInput extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(textPersonBirthNumber, gridBagConstraints);
 
-        labelBirthNumber.setText("Birth Number");
+        labelBirthNumber.setText(bundle.getString("PersonInput.labelBirthNumber.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -199,7 +200,7 @@ public class PersonInput extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(comboState, gridBagConstraints);
 
-        labelState.setText("State");
+        labelState.setText(bundle.getString("PersonInput.labelState.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -209,7 +210,7 @@ public class PersonInput extends javax.swing.JDialog {
         getContentPane().add(labelState, gridBagConstraints);
 
         labelTitleNewPerson.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        labelTitleNewPerson.setText("New Person");
+        labelTitleNewPerson.setText(bundle.getString("PersonInput.labelTitleNewPerson.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -217,32 +218,32 @@ public class PersonInput extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         getContentPane().add(labelTitleNewPerson, gridBagConstraints);
 
-        labelBirthDate.setText("Birth Date");
+        labelBirthDate.setText(bundle.getString("PersonInput.labelBirthDate.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 33, 0, 33);
         getContentPane().add(labelBirthDate, gridBagConstraints);
 
-        labelErrorSurname.setText("Error");
+        labelErrorSurname.setText(bundle.getString("PersonInput.labelErrorSurname.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         getContentPane().add(labelErrorSurname, gridBagConstraints);
 
-        labelErrorBirthNumber.setText("Error");
+        labelErrorBirthNumber.setText(bundle.getString("PersonInput.labelErrorBirthNumber.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         getContentPane().add(labelErrorBirthNumber, gridBagConstraints);
 
-        labelErrorName.setText("Error");
+        labelErrorName.setText(bundle.getString("PersonInput.labelErrorName.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         getContentPane().add(labelErrorName, gridBagConstraints);
 
-        labelErrorDate.setText("Error");
+        labelErrorDate.setText(bundle.getString("PersonInput.labelErrorDate.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 1;

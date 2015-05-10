@@ -81,7 +81,8 @@ public class LandInput extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        buttonCancel.setText("Cancel");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/LandInput"); // NOI18N
+        buttonCancel.setText(bundle.getString("LandInput.buttonCancel.text")); // NOI18N
         buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelActionPerformed(evt);
@@ -95,7 +96,7 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         getContentPane().add(buttonCancel, gridBagConstraints);
 
-        buttonAdd.setText("Add new Land");
+        buttonAdd.setText(bundle.getString("LandInput.buttonAdd.text")); // NOI18N
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddActionPerformed(evt);
@@ -109,7 +110,7 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         getContentPane().add(buttonAdd, gridBagConstraints);
 
-        labelSize.setText("Size[m]");
+        labelSize.setText(bundle.getString("LandInput.labelSize.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -118,7 +119,7 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(labelSize, gridBagConstraints);
 
-        labelBuildUpArea.setText("Build-up area[m]");
+        labelBuildUpArea.setText(bundle.getString("LandInput.labelBuildUpArea.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -127,7 +128,7 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(labelBuildUpArea, gridBagConstraints);
 
-        labelCatastralArea.setText("Catastral area");
+        labelCatastralArea.setText(bundle.getString("LandInput.labelCatastralArea.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -149,7 +150,7 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(comboType, gridBagConstraints);
 
-        labelType.setText("Type");
+        labelType.setText(bundle.getString("LandInput.labelType.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -159,7 +160,7 @@ public class LandInput extends javax.swing.JDialog {
         getContentPane().add(labelType, gridBagConstraints);
 
         labelTitleNewPerson.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        labelTitleNewPerson.setText("New Land");
+        labelTitleNewPerson.setText(bundle.getString("LandInput.labelTitleNewPerson.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -167,26 +168,26 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         getContentPane().add(labelTitleNewPerson, gridBagConstraints);
 
-        labelNotes.setText("Notes");
+        labelNotes.setText(bundle.getString("LandInput.labelNotes.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 33, 0, 33);
         getContentPane().add(labelNotes, gridBagConstraints);
 
-        labelErrorBuildUpArea.setText("Error");
+        labelErrorBuildUpArea.setText(bundle.getString("LandInput.labelErrorBuildUpArea.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         getContentPane().add(labelErrorBuildUpArea, gridBagConstraints);
 
-        labelErrorSize.setText("Error");
+        labelErrorSize.setText(bundle.getString("LandInput.labelErrorSize.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         getContentPane().add(labelErrorSize, gridBagConstraints);
 
-        labelErrorNotes.setText("Error");
+        labelErrorNotes.setText(bundle.getString("LandInput.labelErrorNotes.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 1;

@@ -83,7 +83,8 @@ public class OwnershipInput extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        buttonCancel.setText("Cancel");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/OwnershpInput"); // NOI18N
+        buttonCancel.setText(bundle.getString("OwnershipInput.buttonCancel.text")); // NOI18N
         buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelActionPerformed(evt);
@@ -97,7 +98,7 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         getContentPane().add(buttonCancel, gridBagConstraints);
 
-        buttonAdd.setText("Add new Ownership");
+        buttonAdd.setText(bundle.getString("OwnershipInput.buttonAdd.text")); // NOI18N
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddActionPerformed(evt);
@@ -121,7 +122,7 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.gridy = 2;
         getContentPane().add(datePickerEndDate, gridBagConstraints);
 
-        labelName.setText("Person ID");
+        labelName.setText(bundle.getString("OwnershipInput.labelName.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -130,7 +131,7 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(labelName, gridBagConstraints);
 
-        labelSurname.setText("Land ID");
+        labelSurname.setText(bundle.getString("OwnershipInput.labelSurname.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -140,7 +141,7 @@ public class OwnershipInput extends javax.swing.JDialog {
         getContentPane().add(labelSurname, gridBagConstraints);
 
         labelTitleNewPerson.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        labelTitleNewPerson.setText("New Ownership");
+        labelTitleNewPerson.setText(bundle.getString("OwnershipInput.labelTitleNewPerson.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -148,32 +149,32 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         getContentPane().add(labelTitleNewPerson, gridBagConstraints);
 
-        labelStartDate.setText("Start Date");
+        labelStartDate.setText(bundle.getString("OwnershipInput.labelStartDate.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 33, 0, 33);
         getContentPane().add(labelStartDate, gridBagConstraints);
 
-        labelErrorLandID.setText("Error");
+        labelErrorLandID.setText(bundle.getString("OwnershipInput.labelErrorLandID.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         getContentPane().add(labelErrorLandID, gridBagConstraints);
 
-        labelErrorPersonID.setText("Error");
+        labelErrorPersonID.setText(bundle.getString("OwnershipInput.labelErrorPersonID.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         getContentPane().add(labelErrorPersonID, gridBagConstraints);
 
-        labelErrorEndDate.setText("Error");
+        labelErrorEndDate.setText(bundle.getString("OwnershipInput.labelErrorEndDate.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
         getContentPane().add(labelErrorEndDate, gridBagConstraints);
 
-        labelEndDate.setText("End date");
+        labelEndDate.setText(bundle.getString("OwnershipInput.labelEndDate.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -194,7 +195,7 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.gridy = 1;
         getContentPane().add(datePickerStartDate, gridBagConstraints);
 
-        labelErrorStartDate.setText("Error");
+        labelErrorStartDate.setText(bundle.getString("OwnershipInput.labelErrorStartDate.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 1;

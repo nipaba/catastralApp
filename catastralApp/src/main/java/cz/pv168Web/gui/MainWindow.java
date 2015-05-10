@@ -150,7 +150,8 @@ public class MainWindow extends javax.swing.JFrame {
         personTab.setPreferredSize(new java.awt.Dimension(650, 600));
         personTab.setLayout(new java.awt.GridBagLayout());
 
-        buttonAddPerson.setText("Add Person");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/MainWindow"); // NOI18N
+        buttonAddPerson.setText(bundle.getString("MainWindow.buttonAddPerson.text")); // NOI18N
         buttonAddPerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddPersonActionPerformed(evt);
@@ -163,7 +164,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         personTab.add(buttonAddPerson, gridBagConstraints);
 
-        buttonDetailPerson.setText("Person Detail");
+        buttonDetailPerson.setText(bundle.getString("MainWindow.buttonDetailPerson.text")); // NOI18N
         buttonDetailPerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDetailPersonActionPerformed(evt);
@@ -176,7 +177,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         personTab.add(buttonDetailPerson, gridBagConstraints);
 
-        buttonRemovePerson.setText("Remove Person");
+        buttonRemovePerson.setText(bundle.getString("MainWindow.buttonRemovePerson.text")); // NOI18N
         buttonRemovePerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemovePersonActionPerformed(evt);
@@ -189,7 +190,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         personTab.add(buttonRemovePerson, gridBagConstraints);
 
-        buttonUpdatePerson.setText("Upate Person");
+        buttonUpdatePerson.setText(bundle.getString("MainWindow.buttonUpdatePerson.text")); // NOI18N
         buttonUpdatePerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonUpdatePersonActionPerformed(evt);
@@ -203,7 +204,7 @@ public class MainWindow extends javax.swing.JFrame {
         personTab.add(buttonUpdatePerson, gridBagConstraints);
 
         labelTablePerson.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelTablePerson.setText("Table of Persons");
+        labelTablePerson.setText(bundle.getString("MainWindow.labelTablePerson.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -211,7 +212,7 @@ public class MainWindow extends javax.swing.JFrame {
         personTab.add(labelTablePerson, gridBagConstraints);
 
         labelTitlePerson.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelTitlePerson.setText("Person Management");
+        labelTitlePerson.setText(bundle.getString("MainWindow.labelTitlePerson.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -258,8 +259,8 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         personTab.add(jScrollPane1, gridBagConstraints);
 
-        jTabbedPane1.addTab("Persons", personTab);
-        personTab.getAccessibleContext().setAccessibleName("");
+        jTabbedPane1.addTab(bundle.getString("MainWindow.personTab.TabConstraints.tabTitle"), personTab); // NOI18N
+        personTab.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.personTab.AccessibleContext.accessibleName")); // NOI18N
 
         landTab.setMaximumSize(new java.awt.Dimension(650, 600));
         landTab.setMinimumSize(new java.awt.Dimension(650, 600));
@@ -267,7 +268,7 @@ public class MainWindow extends javax.swing.JFrame {
         landTab.setLayout(new java.awt.GridBagLayout());
 
         labelTitleLand.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelTitleLand.setText("Land Management");
+        labelTitleLand.setText(bundle.getString("MainWindow.labelTitleLand.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -275,7 +276,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         landTab.add(labelTitleLand, gridBagConstraints);
 
-        buttonAddLand.setText("Add Land");
+        buttonAddLand.setText(bundle.getString("MainWindow.buttonAddLand.text")); // NOI18N
         buttonAddLand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddLandActionPerformed(evt);
@@ -288,7 +289,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         landTab.add(buttonAddLand, gridBagConstraints);
 
-        buttonUpdateLand.setText("Update Land");
+        buttonUpdateLand.setText(bundle.getString("MainWindow.buttonUpdateLand.text")); // NOI18N
         buttonUpdateLand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonUpdateLandActionPerformed(evt);
@@ -300,7 +301,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         landTab.add(buttonUpdateLand, gridBagConstraints);
 
-        buttonRemoveLand.setText("Remove Land");
+        buttonRemoveLand.setText(bundle.getString("MainWindow.buttonRemoveLand.text")); // NOI18N
         buttonRemoveLand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveLandActionPerformed(evt);
@@ -312,7 +313,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         landTab.add(buttonRemoveLand, gridBagConstraints);
 
-        buttonDetailLand.setText("Land");
+        buttonDetailLand.setText(bundle.getString("MainWindow.buttonDetailLand.text")); // NOI18N
         buttonDetailLand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDetailLandActionPerformed(evt);
@@ -327,7 +328,7 @@ public class MainWindow extends javax.swing.JFrame {
         landTab.add(buttonDetailLand, gridBagConstraints);
 
         labelTableLand.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelTableLand.setText("Table of Land");
+        labelTableLand.setText(bundle.getString("MainWindow.labelTableLand.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -372,8 +373,8 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         landTab.add(jScrollPane2, gridBagConstraints);
 
-        jTabbedPane1.addTab("Lands", landTab);
-        landTab.getAccessibleContext().setAccessibleName("");
+        jTabbedPane1.addTab(bundle.getString("MainWindow.landTab.TabConstraints.tabTitle"), landTab); // NOI18N
+        landTab.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.landTab.AccessibleContext.accessibleName")); // NOI18N
 
         ownershipTab.setMaximumSize(new java.awt.Dimension(650, 600));
         ownershipTab.setMinimumSize(new java.awt.Dimension(650, 600));
@@ -381,14 +382,14 @@ public class MainWindow extends javax.swing.JFrame {
         ownershipTab.setLayout(new java.awt.GridBagLayout());
 
         labelTitleOwnership.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelTitleOwnership.setText("Land Management");
+        labelTitleOwnership.setText(bundle.getString("MainWindow.labelTitleOwnership.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         ownershipTab.add(labelTitleOwnership, gridBagConstraints);
 
-        buttonAddOwnership.setText("Add Ownership");
+        buttonAddOwnership.setText(bundle.getString("MainWindow.buttonAddOwnership.text")); // NOI18N
         buttonAddOwnership.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddOwnershipActionPerformed(evt);
@@ -402,7 +403,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         ownershipTab.add(buttonAddOwnership, gridBagConstraints);
 
-        buttonUpdateOwnership.setText("Update OwnerShip");
+        buttonUpdateOwnership.setText(bundle.getString("MainWindow.buttonUpdateOwnership.text")); // NOI18N
         buttonUpdateOwnership.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonUpdateOwnershipActionPerformed(evt);
@@ -414,7 +415,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         ownershipTab.add(buttonUpdateOwnership, gridBagConstraints);
 
-        buttonRemoveOwnership.setText("RemoveOwnership");
+        buttonRemoveOwnership.setText(bundle.getString("MainWindow.buttonRemoveOwnership.text")); // NOI18N
         buttonRemoveOwnership.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveOwnershipActionPerformed(evt);
@@ -426,7 +427,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         ownershipTab.add(buttonRemoveOwnership, gridBagConstraints);
 
-        buttonDetailOwnership.setText("Detail Ownership");
+        buttonDetailOwnership.setText(bundle.getString("MainWindow.buttonDetailOwnership.text")); // NOI18N
         buttonDetailOwnership.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDetailOwnershipActionPerformed(evt);
@@ -441,7 +442,7 @@ public class MainWindow extends javax.swing.JFrame {
         ownershipTab.add(buttonDetailOwnership, gridBagConstraints);
 
         labelTableLand1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelTableLand1.setText("Table of Ownership");
+        labelTableLand1.setText(bundle.getString("MainWindow.labelTableLand1.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -487,8 +488,8 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         ownershipTab.add(jScrollPane3, gridBagConstraints);
 
-        jTabbedPane1.addTab("Ownerships", ownershipTab);
-        ownershipTab.getAccessibleContext().setAccessibleName("");
+        jTabbedPane1.addTab(bundle.getString("MainWindow.ownershipTab.TabConstraints.tabTitle"), ownershipTab); // NOI18N
+        ownershipTab.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.ownershipTab.AccessibleContext.accessibleName")); // NOI18N
 
         customTab.setMaximumSize(new java.awt.Dimension(650, 600));
         customTab.setMinimumSize(new java.awt.Dimension(650, 600));
@@ -588,7 +589,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
         customTab.add(jSpinner2, gridBagConstraints);
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText(bundle.getString("MainWindow.jTextField1.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 6;
@@ -598,7 +599,7 @@ public class MainWindow extends javax.swing.JFrame {
         customTab.add(jTextField1, gridBagConstraints);
 
         labelCustomTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelCustomTitle.setText("Custom Section by specific parameters");
+        labelCustomTitle.setText(bundle.getString("MainWindow.labelCustomTitle.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -608,7 +609,7 @@ public class MainWindow extends javax.swing.JFrame {
         customTab.add(labelCustomTitle, gridBagConstraints);
 
         labelCustomResults.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelCustomResults.setText("Results");
+        labelCustomResults.setText(bundle.getString("MainWindow.labelCustomResults.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
@@ -618,7 +619,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 4, 0, 0);
         customTab.add(labelCustomResults, gridBagConstraints);
 
-        labelCustomNote.setText("Poznámka");
+        labelCustomNote.setText(bundle.getString("MainWindow.labelCustomNote.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 6;
@@ -628,7 +629,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
         customTab.add(labelCustomNote, gridBagConstraints);
 
-        labelCustomMaxSize.setText("Max size of land");
+        labelCustomMaxSize.setText(bundle.getString("MainWindow.labelCustomMaxSize.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 5;
@@ -638,7 +639,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 4, 0, 0);
         customTab.add(labelCustomMaxSize, gridBagConstraints);
 
-        labelCustomCatastralArea.setText("Catastral Area");
+        labelCustomCatastralArea.setText(bundle.getString("MainWindow.labelCustomCatastralArea.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -647,7 +648,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 8, 0, 0);
         customTab.add(labelCustomCatastralArea, gridBagConstraints);
 
-        labelCustomTypeLand.setText("Type of Land");
+        labelCustomTypeLand.setText(bundle.getString("MainWindow.labelCustomTypeLand.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -657,7 +658,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 8, 0, 0);
         customTab.add(labelCustomTypeLand, gridBagConstraints);
 
-        labelCustomName.setText("Peson name");
+        labelCustomName.setText(bundle.getString("MainWindow.labelCustomName.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -667,7 +668,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 0, 0);
         customTab.add(labelCustomName, gridBagConstraints);
 
-        labelCustomSurname.setText("Persons surname");
+        labelCustomSurname.setText(bundle.getString("MainWindow.labelCustomSurname.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -676,7 +677,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 4, 0, 0);
         customTab.add(labelCustomSurname, gridBagConstraints);
 
-        labelCustomMinSize.setText("Min size of land");
+        labelCustomMinSize.setText(bundle.getString("MainWindow.labelCustomMinSize.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 4;
@@ -695,7 +696,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
         customTab.add(jComboBox5, gridBagConstraints);
 
-        labelCustomState.setText("State");
+        labelCustomState.setText(bundle.getString("MainWindow.labelCustomState.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -718,7 +719,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
         customTab.add(spinnerMaxDur, gridBagConstraints);
 
-        labelCustomMinDuration.setText("Min duration");
+        labelCustomMinDuration.setText(bundle.getString("MainWindow.labelCustomMinDuration.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 2;
@@ -726,7 +727,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 0);
         customTab.add(labelCustomMinDuration, gridBagConstraints);
 
-        labelCustomMaxDuration.setText("Max duration");
+        labelCustomMaxDuration.setText(bundle.getString("MainWindow.labelCustomMaxDuration.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 3;
@@ -735,7 +736,7 @@ public class MainWindow extends javax.swing.JFrame {
         customTab.add(labelCustomMaxDuration, gridBagConstraints);
 
         labelCustomPersonTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelCustomPersonTitle.setText("Person specification");
+        labelCustomPersonTitle.setText(bundle.getString("MainWindow.labelCustomPersonTitle.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -743,7 +744,7 @@ public class MainWindow extends javax.swing.JFrame {
         customTab.add(labelCustomPersonTitle, gridBagConstraints);
 
         labelCustomLandTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelCustomLandTitle.setText("Land Specification");
+        labelCustomLandTitle.setText(bundle.getString("MainWindow.labelCustomLandTitle.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
@@ -751,7 +752,7 @@ public class MainWindow extends javax.swing.JFrame {
         customTab.add(labelCustomLandTitle, gridBagConstraints);
 
         labelCustomOwnershipTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelCustomOwnershipTitle.setText("Ownership specification");
+        labelCustomOwnershipTitle.setText(bundle.getString("MainWindow.labelCustomOwnershipTitle.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 1;
@@ -766,33 +767,33 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.gridy = 5;
         customTab.add(deteBefore, gridBagConstraints);
 
-        labelCustomStartedAdter.setText("Started after");
+        labelCustomStartedAdter.setText(bundle.getString("MainWindow.labelCustomStartedAdter.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 4;
         customTab.add(labelCustomStartedAdter, gridBagConstraints);
 
-        labelCustomEndedBefore.setText("Ended befor");
+        labelCustomEndedBefore.setText(bundle.getString("MainWindow.labelCustomEndedBefore.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 5;
         customTab.add(labelCustomEndedBefore, gridBagConstraints);
 
-        buttonCustomUpdateOpt.setText("Update Opitons");
+        buttonCustomUpdateOpt.setText(bundle.getString("MainWindow.buttonCustomUpdateOpt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         customTab.add(buttonCustomUpdateOpt, gridBagConstraints);
 
-        buttonCustomSearch.setText("Search");
+        buttonCustomSearch.setText(bundle.getString("MainWindow.buttonCustomSearch.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         customTab.add(buttonCustomSearch, gridBagConstraints);
 
-        buttonCustomDetail.setText("Detail");
+        buttonCustomDetail.setText(bundle.getString("MainWindow.buttonCustomDetail.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 7;
@@ -800,18 +801,18 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         customTab.add(buttonCustomDetail, gridBagConstraints);
 
-        jTabbedPane1.addTab("Custom selection", customTab);
-        customTab.getAccessibleContext().setAccessibleName("");
+        jTabbedPane1.addTab(bundle.getString("MainWindow.customTab.TabConstraints.tabTitle"), customTab); // NOI18N
+        customTab.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.customTab.AccessibleContext.accessibleName")); // NOI18N
 
         getContentPane().add(jTabbedPane1);
-        jTabbedPane1.getAccessibleContext().setAccessibleName("");
+        jTabbedPane1.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.jTabbedPane1.AccessibleContext.accessibleName")); // NOI18N
 
         jPanel1.setMaximumSize(new java.awt.Dimension(150, 600));
         jPanel1.setMinimumSize(new java.awt.Dimension(150, 600));
         jPanel1.setPreferredSize(new java.awt.Dimension(150, 600));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        buttonDBrestart.setText("Clear DB");
+        buttonDBrestart.setText(bundle.getString("MainWindow.buttonDBrestart.text")); // NOI18N
         buttonDBrestart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDBrestartActionPerformed(evt);
@@ -825,7 +826,7 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(34, 10, 0, 10);
         jPanel1.add(buttonDBrestart, gridBagConstraints);
 
-        jButton1.setText("DB Stats");
+        jButton1.setText(bundle.getString("MainWindow.jButton1.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -833,10 +834,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1);
 
-        jMenu1.setText("File");
+        jMenu1.setText(bundle.getString("MainWindow.jMenu1.text")); // NOI18N
 
         menuExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
-        menuExit.setText("Exit");
+        menuExit.setText(bundle.getString("MainWindow.menuExit.text")); // NOI18N
         menuExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuExitActionPerformed(evt);
@@ -846,10 +847,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText(bundle.getString("MainWindow.jMenu2.text")); // NOI18N
 
         menuAddPerson.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        menuAddPerson.setText("Add Person");
+        menuAddPerson.setText(bundle.getString("MainWindow.menuAddPerson.text")); // NOI18N
         menuAddPerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuAddPersonActionPerformed(evt);
@@ -858,23 +859,23 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu2.add(menuAddPerson);
 
         menuAddLand.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
-        menuAddLand.setText("Add Land");
+        menuAddLand.setText(bundle.getString("MainWindow.menuAddLand.text")); // NOI18N
         jMenu2.add(menuAddLand);
 
         menuAddOwnership.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        menuAddOwnership.setText("Add Ownership");
+        menuAddOwnership.setText(bundle.getString("MainWindow.menuAddOwnership.text")); // NOI18N
         jMenu2.add(menuAddOwnership);
 
         menuResetDB.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        menuResetDB.setText("Reset Database");
+        menuResetDB.setText(bundle.getString("MainWindow.menuResetDB.text")); // NOI18N
         jMenu2.add(menuResetDB);
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("About");
+        jMenu3.setText(bundle.getString("MainWindow.jMenu3.text")); // NOI18N
 
         menuHelp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
-        menuHelp.setText("Help");
+        menuHelp.setText(bundle.getString("MainWindow.menuHelp.text")); // NOI18N
         menuHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuHelpActionPerformed(evt);
@@ -883,7 +884,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu3.add(menuHelp);
 
         menuAbout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
-        menuAbout.setText("About");
+        menuAbout.setText(bundle.getString("MainWindow.menuAbout.text")); // NOI18N
         jMenu3.add(menuAbout);
 
         jMenuBar1.add(jMenu3);

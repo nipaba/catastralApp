@@ -44,6 +44,9 @@ public class OwnershipInput extends javax.swing.JDialog {
         update = true;
         comboboxPerson.setModel(new DefaultComboBoxModel(personArrayID));
         comboboxLand.setModel(new DefaultComboBoxModel(landArrayId));
+        
+
+        
     }
     
     /**
@@ -58,8 +61,15 @@ public class OwnershipInput extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         update = true;
+        ownership = o;
         comboboxPerson.setModel(new DefaultComboBoxModel(personArrayID));
         comboboxLand.setModel(new DefaultComboBoxModel(landArrayId));
+        
+        if (ownership.getEndDate()!=null)
+        {
+            datePickerEndDate.setDate(ownership.getEndDate());
+        }
+        datePickerStartDate.setDate(ownership.getStartDate());
     }
 
     /**
@@ -97,9 +107,6 @@ public class OwnershipInput extends javax.swing.JDialog {
         labelSurname = new javax.swing.JLabel();
         labelTitleNewPerson = new javax.swing.JLabel();
         labelStartDate = new javax.swing.JLabel();
-        labelErrorLandID = new javax.swing.JLabel();
-        labelErrorPersonID = new javax.swing.JLabel();
-        labelErrorEndDate = new javax.swing.JLabel();
         labelEndDate = new javax.swing.JLabel();
         datePickerStartDate = new org.jdesktop.swingx.JXDatePicker();
         labelErrorStartDate = new javax.swing.JLabel();
@@ -182,24 +189,6 @@ public class OwnershipInput extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 33, 0, 33);
         getContentPane().add(labelStartDate, gridBagConstraints);
 
-        labelErrorLandID.setText(bundle.getString("OwnershipInput.labelErrorLandID.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        getContentPane().add(labelErrorLandID, gridBagConstraints);
-
-        labelErrorPersonID.setText(bundle.getString("OwnershipInput.labelErrorPersonID.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        getContentPane().add(labelErrorPersonID, gridBagConstraints);
-
-        labelErrorEndDate.setText(bundle.getString("OwnershipInput.labelErrorEndDate.text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 2;
-        getContentPane().add(labelErrorEndDate, gridBagConstraints);
-
         labelEndDate.setText(bundle.getString("OwnershipInput.labelEndDate.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -265,7 +254,7 @@ public class OwnershipInput extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonAddActionPerformed
 
     private void datePickerEndDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerEndDateFocusGained
-      labelErrorEndDate.setVisible(false);
+
     }//GEN-LAST:event_datePickerEndDateFocusGained
 
     private void datePickerStartDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_datePickerStartDateFocusGained
@@ -326,9 +315,6 @@ public class OwnershipInput extends javax.swing.JDialog {
     private org.jdesktop.swingx.JXDatePicker datePickerEndDate;
     private org.jdesktop.swingx.JXDatePicker datePickerStartDate;
     private javax.swing.JLabel labelEndDate;
-    private javax.swing.JLabel labelErrorEndDate;
-    private javax.swing.JLabel labelErrorLandID;
-    private javax.swing.JLabel labelErrorPersonID;
     private javax.swing.JLabel labelErrorStartDate;
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelStartDate;

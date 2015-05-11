@@ -338,7 +338,13 @@ public class OwnershipDaoImpl extends GenericDaoImpl implements OwnershipDao {
         st.setLong(1, ownership.getPersonID());
         st.setLong(2, ownership.getLandId());
         st.setDate(3, new java.sql.Date(ownership.getStartDate().getTime()));
-        st.setDate(4, new java.sql.Date(ownership.getStartDate().getTime()));
+        if (ownership.getEndDate()!=null){
+                    st.setDate(4, new java.sql.Date(ownership.getEndDate().getTime()));
+        }
+        else {
+             st.setNull(4, java.sql.Types.DATE);
+        }
+
         if (update) {
             st.setLong(5, ownership.getOwnerShipID());
         }

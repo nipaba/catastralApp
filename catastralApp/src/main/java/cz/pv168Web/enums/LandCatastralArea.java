@@ -71,7 +71,8 @@ public enum LandCatastralArea {
         }
        return 0;
                
-   }
+   } 
+    
     
 }
 

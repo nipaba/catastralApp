@@ -13,7 +13,6 @@ import cz.pv168Web.model.Land;
 import cz.pv168Web.model.Ownership;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -54,7 +53,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         panelPersonInfo.setVisible(false);
         panelLandInfo.setVisible(false);
-        
+
         mainManager = MM;
         personTableModel = (DefaultTableModel) personTable.getModel();
         landTableModel = (DefaultTableModel) landTable.getModel();
@@ -866,6 +865,7 @@ public class MainWindow extends javax.swing.JFrame {
                     synchronized (mainManager) {
                         mainManager.removePerson(personId);
                         refreshPersonTable(mainManager.getPersonList());
+                        refreshOwnershipTable(mainManager.getOwnershipList());
                     }
                 }
             };
@@ -951,7 +951,7 @@ public class MainWindow extends javax.swing.JFrame {
                     synchronized (mainManager) {
                         mainManager.removeLand(landId);
                         refreshLandTable(mainManager.getLandList());
-
+                        refreshOwnershipTable(mainManager.getOwnershipList());
                     }
                 }
             };
@@ -1142,13 +1142,13 @@ public class MainWindow extends javax.swing.JFrame {
                 public void run() {
                     synchronized (mainManager) {
                         refreshPersonTable(mainManager.getPersonListByLandId(landId));
-                        
+
                         panelPersonInfo.setVisible(false);
                         panelLandInfo.setVisible(true);
-        
+
                         labelSelectedLandIDValue.setText(landTable.getValueAt(rownNumber, 0).toString());
                         labelSelectedLandSizeValue.setText(landTable.getValueAt(rownNumber, 1).toString());
-                        labelSelectedLandOwnersCountValue.setText(personTable.getRowCount()+"");
+                        labelSelectedLandOwnersCountValue.setText(personTable.getRowCount() + "");
                         panely.setSelectedIndex(0);
                     }
                 }
@@ -1311,17 +1311,22 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void refreshPersonTable(List<Person> list) {
 
+        if (list == null) {
+            return;
+        }
         // clear table 
         while (personTableModel.getRowCount() > 0) {
             personTableModel.removeRow(personTableModel.getRowCount() - 1);
         }
         for (Person p : list) {
-            personTableModel.addRow(p.toArray());
+            personTableModel.addRow(mainManager.personToArray(p));
         }
     }
 
     private void refreshLandTable(List<Land> list) {
-
+        if (list == null) {
+            return;
+        }
         // clear table 
         while (landTableModel.getRowCount() > 0) {
             landTableModel.removeRow(landTableModel.getRowCount() - 1);
@@ -1332,13 +1337,15 @@ public class MainWindow extends javax.swing.JFrame {
 
         for (Land l : list) {
             if ((landType.isEmpty() || landType.equals(l.getType())) && (catastralArea.isEmpty() || catastralArea.equals(l.getCatastralArea()))) {
-                landTableModel.addRow(l.toArray());
+                landTableModel.addRow(mainManager.getLandArray(l));
             }
         }
     }
 
     private void refreshOwnershipTable(List<Ownership> list) {
-
+        if (list == null) {
+            return;
+        }
         while (ownershipTableModel.getRowCount() > 0) {
             ownershipTableModel.removeRow(ownershipTableModel.getRowCount() - 1);
         }

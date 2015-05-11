@@ -134,8 +134,7 @@ public class PersonDaoImpl extends GenericDaoImpl implements PersonDao {
       } finally {
          ConnectorDB.close(conn, st);
       }
-
-      printListOfPersons(list);
+      LOGGER.debug("List of persons returned");
       return list;
    }
 
@@ -166,7 +165,8 @@ public class PersonDaoImpl extends GenericDaoImpl implements PersonDao {
          ConnectorDB.close(conn, st);
       }
 
-      printListOfPersons(list);
+      LOGGER.debug("List of persons returned");
+      //printListOfPersons(list);
       return list;
    }
 

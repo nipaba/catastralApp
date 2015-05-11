@@ -15,38 +15,28 @@ import javax.sql.DataSource;
  * @author Tomas
  */
 public class ApplicationRunner {
-    
-    public static void main(String [] args) {
-        
-        
+
+    public static void main(String[] args) {
+
         // SHOW ENTRY WINDOW
-        
         //EntryWindow entryWindow = new EntryWindow();
         //entryWindow.show();
-        
         // LOAD CONFIGURATIONS
         DataSource dataSource = ConnectorDB.initDatasource();
-        
+
         // START DB
         MainManager mainManager = new MainManager(dataSource);
-        
-        mainManager.createDB();
-        mainManager.connectOrCreateDB();
-        
-        
-        
-        
-        // RUN MAIN GUI 
-        System.out.println("Start Aplikace");
-        MainWindow mainWindow = new MainWindow(mainManager) ;
-        
-        mainWindow.show();
-        
-        
-   
-            
-                
-        
-        
+
+        //mainManager.createDB();
+        if (mainManager.createDB()) {
+            System.out.println("Start Aplikace M.A.C.E. ");
+            MainWindow mainWindow = new MainWindow(mainManager);
+
+            mainWindow.show();
+        }
+        else {
+            System.err.println("Aplikace M.A.C.E. couldnt start");
+        }
+
     }
 }

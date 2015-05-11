@@ -201,23 +201,4 @@ public class Person implements Serializable {
                 + birthNumber + ", state=" + state + "]";
     }
 
-    /**
-     *
-     * @return the array of person data combined in strings
-     */
-    public String[] toArray() {
-        String[] list = new String[7];
-
-        list[0] = personId + "";
-        list[1] = name + "";
-        list[2] = surname + "";
-        list[3] = birthDate + "";  
-        list[4] = birthDate + "";
-        list[5] = birthNumber + "";
-        list[6] = state + "";
-  
-        return list;
-
-    }
-
 }

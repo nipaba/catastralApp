@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Vector;
 import javax.sql.DataSource;
 import javax.swing.JOptionPane;
 import org.slf4j.Logger;
@@ -90,7 +91,7 @@ public class MainManager {
     /**
      * Method to create database
      */
-    public void createDB() {
+    public boolean createDB() {
 
         try {
             personManager.createTablePerson();
@@ -99,30 +100,18 @@ public class MainManager {
         } catch (DatabaseException ex) {
             if (ex.toString().contains("already exists")) {
                 LOGGER.debug("DATABASE has been already setted up");
+                return true;
+            } else if (ex.toString().contains("Cannot create PoolableConnectionFactory")) {
+                printError("ERROR : PLEASE SHUT DOWN OTHER RUNNING APPLICATION");
+                return false;
             } else {
-                LOGGER.debug("ERROR : CREATING DB" + ex.toString());
+                
+                printError("ERROR : CREATING DB" + ex.toString());
+                return false;
             }
 
         }
-
-    }
-
-    void connectOrCreateDB() {
-        try {
-            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            personManager.createTablePerson();
-            landManager.createTableLand();
-            ownershipManager.createTableOwnership();
-        } catch (ClassNotFoundException ex) {
-            printError(ex.toString());
-        } catch (DatabaseException ex) {
-            if (ex.toString().contains("already exists")) {
-                LOGGER.debug("DATABASE has been already setted up");
-            } else {
-                LOGGER.debug("ERROR : CREATING DB" + ex.toString());
-            }
-        }
-
+        return true;
     }
 
     /**
@@ -364,34 +353,6 @@ public class MainManager {
 
     /**
      *
-     * @param o
-     * @return array of strings of ownership
-     */
-    public String[] getOwnershipArray(Ownership o) {
-
-        try {
-            Person p = personManager.getPersonById(o.getPersonID());
-
-            String[] ownershipArray = new String[8];
-
-            ownershipArray[0] = o.getOwnerShipID() + "";
-            ownershipArray[1] = p.getName();
-            ownershipArray[2] = p.getSurname();
-            ownershipArray[3] = p.getPersonId() + "";
-            ownershipArray[4] = o.getLandId() + "";
-            ownershipArray[5] = o.getStartDate().toString();
-            ownershipArray[6] = o.getEndDate().toString();
-            ownershipArray[7] = "";
-
-            return ownershipArray;
-        } catch (DatabaseException ex) {
-            printError(ex.toString());
-        }
-        return null;
-    }
-
-    /**
-     *
      * @param personId
      * @return list of lands with specific person id
      */
@@ -434,11 +395,6 @@ public class MainManager {
         return personList;
     }
 
-    private void printError(String msg) {
-        LOGGER.error(msg);
-        JOptionPane.showMessageDialog(null, msg, "Error with Database", JOptionPane.ERROR_MESSAGE);
-    }
-
     public List<Ownership> getOwnershipByPersonId(Long personId) {
         List<Ownership> ownerships = new ArrayList<>();
         try {
@@ -471,5 +427,80 @@ public class MainManager {
 
         return ownerships;
 
+    }
+
+    //------------------------------------------------------------------------------
+    // Array transformations for tables
+    /**
+     *
+     * @param p
+     * @return
+     */
+    public String[] personToArray(Person p) {
+        String[] list = new String[7];
+
+        list[0] = p.getPersonId() + "";
+        list[1] = p.getName() + "";
+        list[2] = p.getSurname() + "";
+        list[3] = p.getBirthDate() + "";
+        list[4] = p.getBirthDate() + "";
+        list[5] = p.getBirthNumber() + "";
+        list[6] = p.getState() + "";
+
+        return list;
+
+    }
+
+    /**
+     *
+     * @param o
+     * @return array of strings of ownership
+     */
+    public String[] getOwnershipArray(Ownership o) {
+
+        try {
+            Person p = personManager.getPersonById(o.getPersonID());
+
+            String[] ownershipArray = new String[8];
+
+            ownershipArray[0] = o.getOwnerShipID() + "";
+            ownershipArray[1] = p.getName();
+            ownershipArray[2] = p.getSurname();
+            ownershipArray[3] = p.getPersonId() + "";
+            ownershipArray[4] = o.getLandId() + "";
+            ownershipArray[5] = o.getStartDate().toString();
+            ownershipArray[6] = o.getEndDate().toString();
+            ownershipArray[7] = "";
+
+            return ownershipArray;
+        } catch (DatabaseException ex) {
+            printError(ex.toString());
+        }
+        return null;
+    }
+
+    public String[] getLandArray(Land l) {
+        String[] list = new String[6];
+
+        list[0] = l.getLandID() + "";
+        list[1] = l.getSize() + "";
+        list[2] = l.getCatastralArea() + "";
+        list[3] = l.getBuildUpArea() + "";
+        list[4] = l.getType() + "";
+        list[5] = l.getNotes() + "";
+
+        return list;
+
+    }
+    //--------------------------------------------------------------------------
+    //Error managing
+
+    /**
+     *
+     * @param msg
+     */
+    private void printError(String msg) {
+        LOGGER.error(msg);
+        JOptionPane.showMessageDialog(null, msg, "Error with Database", JOptionPane.ERROR_MESSAGE);
     }
 }

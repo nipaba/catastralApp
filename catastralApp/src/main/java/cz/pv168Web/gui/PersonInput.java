@@ -40,10 +40,12 @@ public class PersonInput extends javax.swing.JDialog {
      */
     public PersonInput(java.awt.Frame parent, boolean modal, Person updatePerson) {
         super(parent, modal);
+        update = true;
+        
         initComponents();
         customInit();
 
-        update = true;
+     
         person = updatePerson;
 
         System.out.println(person.toString());
@@ -401,6 +403,8 @@ public class PersonInput extends javax.swing.JDialog {
     }
 
     private void customInit() {
+      
+        
         labelErrorName.setVisible(false);
         labelErrorSurname.setVisible(false);
         labelErrorBirthNumber.setVisible(false);

@@ -143,26 +143,7 @@ public class Land implements Serializable {
             + ", notes=" + notes + "]";
    }
    
-    /**
-     *
-     * @return array of lands with parameters of each land combined in string
-     */
-    public String[] toArray() {
-        String[] list = new String[6];
-
-        list[0] = landID + "";
-        list[1] = Size + "";
-        list[2] = catastralArea + "";
-        list[3] = buildUpArea + "";  
-        list[4] = type + "";
-        list[5] = notes + "";
-        
-  
-        return list;
-
-    }
-
-   @Override
+  @Override
    public boolean equals(Object obj) {
       if (this == obj)
          return true;

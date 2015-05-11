@@ -46,8 +46,13 @@ public class OwnershipDetail extends javax.swing.JFrame {
             labelPersonStateValue.setText(p.getState());
             
             Date birthDate = p.getBirthDate();
-            labelPersonBirthdate.setText(format.format(birthDate));
+            labelPersonBirthdateValue.setText(format.format(birthDate));
             
+            LocalDate birth = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(birthDate));
+            LocalDate today = LocalDate.now();
+            
+            Period period = Period.between(birth, today);    
+            labelPersonAgeValue.setText(period.getYears()+"");
             //LAND
             labelLandIDvalue.setText(l.getLandID()+"");
             labelLandBuildUpAreaValue.setText(l.getBuildUpArea()+"");

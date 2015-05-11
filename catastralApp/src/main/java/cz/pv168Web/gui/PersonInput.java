@@ -8,7 +8,10 @@ package cz.pv168Web.gui;
 import cz.pv168Web.enums.State;
 import cz.pv168Web.model.Person;
 import java.util.regex.Pattern;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
+import org.apache.commons.lang3.time.DateUtils;
+
 
 /**
  *
@@ -383,6 +386,12 @@ public class PersonInput extends javax.swing.JDialog {
             tmp = false;
         }
         if (datePicker.getDate() == null) {
+            labelErrorDate.setVisible(true);
+            tmp = false;
+        }
+        
+        Date dateBefore18Years = DateUtils.addYears(new Date(), -18);
+        if (datePicker.getDate().after(dateBefore18Years)){
             labelErrorDate.setVisible(true);
             tmp = false;
         }

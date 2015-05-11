@@ -278,7 +278,9 @@ public class LandInput extends javax.swing.JDialog {
             land.setBuildUpArea(Double.valueOf(spinnerBuildUpArea.getValue().toString()));
             land.setCatastralArea((String) comboCatastralArea.getSelectedItem());
             land.setType((String) comboType.getSelectedItem());
-            land.setNotes(textLandNotes.getText());
+            if(!textLandNotes.getText().isEmpty()){
+                land.setNotes(textLandNotes.getText());
+            }
             valid = true;
             hide();
 
@@ -372,15 +374,7 @@ public class LandInput extends javax.swing.JDialog {
             labelErrorSize.setVisible(true);
             tmp = false;
         }
-        if (spinnerBuildUpArea.getValue() == null || (Double) spinnerBuildUpArea.getValue() <= 0.0) {
-            labelErrorBuildUpArea.setVisible(true);
-            tmp = false;
-        }
-        if (textLandNotes.getText().isEmpty()) {
-            labelErrorNotes.setVisible(true);
-            tmp = false;
-        }
-
+        
         return tmp;
     }
 

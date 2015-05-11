@@ -278,9 +278,9 @@ public class LandInput extends javax.swing.JDialog {
             land.setBuildUpArea(Double.valueOf(spinnerBuildUpArea.getValue().toString()));
             land.setCatastralArea((String) comboCatastralArea.getSelectedItem());
             land.setType((String) comboType.getSelectedItem());
-            if(!textLandNotes.getText().isEmpty()){
-                land.setNotes(textLandNotes.getText());
-            }
+            
+            land.setNotes(textLandNotes.getText());
+            
             valid = true;
             hide();
 
@@ -375,6 +375,11 @@ public class LandInput extends javax.swing.JDialog {
             tmp = false;
         }
         
+        if (textLandNotes.getText().isEmpty()) {
+            labelErrorNotes.setVisible(true);
+            tmp = false;
+        }
+
         return tmp;
     }
 

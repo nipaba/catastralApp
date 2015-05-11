@@ -469,7 +469,7 @@ public class MainManager {
             ownershipArray[3] = p.getPersonId() + "";
             ownershipArray[4] = o.getLandId() + "";
             ownershipArray[5] = o.getStartDate().toString();
-            ownershipArray[6] = o.getEndDate().toString();
+            ownershipArray[6] = o.getEndDate()==null ? "" : o.getEndDate().toString();
             ownershipArray[7] = "";
 
             return ownershipArray;

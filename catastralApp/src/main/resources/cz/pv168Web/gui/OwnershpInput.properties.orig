@@ -6,4 +6,8 @@ OwnershipInput.labelErrorStartDate.text=Needs to be today or before
 OwnershipInput.buttonAdd.text=Confirm
 OwnershipInput.buttonCancel.text=Cancel
 OwnershipInput.labelEndDate.text=End date
+<<<<<<< HEAD
 OwnershipInput.labelErrorEndDate.text=Needs to be at least today
+OwnershipInput.labelErrorPersonID.text=Error
+=======
+>>>>>>> b84da1ef845e542f43c67e9b43b800b0b0497d40

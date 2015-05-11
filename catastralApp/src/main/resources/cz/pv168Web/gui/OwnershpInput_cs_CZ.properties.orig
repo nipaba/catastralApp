@@ -6,4 +6,8 @@ OwnershipInput.labelErrorStartDate.text=Nejpozdej\u0161\u00ed dne\u0161nej datum
 OwnershipInput.buttonAdd.text=Potvrdit
 OwnershipInput.buttonCancel.text=Zru\u0161it
 OwnershipInput.labelEndDate.text=Datum ukon\u010den\u00ed
+<<<<<<< HEAD
 OwnershipInput.labelErrorEndDate.text=Nejbrzej\u0161\u00ed datum dnes
+OwnershipInput.labelErrorPersonID.text=Chyba
+=======
+>>>>>>> b84da1ef845e542f43c67e9b43b800b0b0497d40

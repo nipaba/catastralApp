@@ -388,6 +388,12 @@ public class MainWindow extends javax.swing.JFrame {
             landTable.getColumnModel().getColumn(0).setMinWidth(20);
             landTable.getColumnModel().getColumn(0).setPreferredWidth(20);
             landTable.getColumnModel().getColumn(0).setMaxWidth(20);
+            landTable.getColumnModel().getColumn(0).setHeaderValue(bundle.getString("MainWindow.landTable.columnModel.title0_1")); // NOI18N
+            landTable.getColumnModel().getColumn(1).setHeaderValue(bundle.getString("MainWindow.landTable.columnModel.title1_1")); // NOI18N
+            landTable.getColumnModel().getColumn(2).setHeaderValue(bundle.getString("MainWindow.landTable.columnModel.title2_1")); // NOI18N
+            landTable.getColumnModel().getColumn(3).setHeaderValue(bundle.getString("MainWindow.landTable.columnModel.title3_1")); // NOI18N
+            landTable.getColumnModel().getColumn(4).setHeaderValue(bundle.getString("MainWindow.landTable.columnModel.title4_1")); // NOI18N
+            landTable.getColumnModel().getColumn(5).setHeaderValue(bundle.getString("MainWindow.landTable.columnModel.title5_1")); // NOI18N
         }
 
         gridBagConstraints = new java.awt.GridBagConstraints();

@@ -46,13 +46,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
             labelPersonStateValue.setText(p.getState());
             
             Date birthDate = p.getBirthDate();
-            labelPersonBirthdate.setText(format.format(p.getBirthDate()));
-//           
-//            LocalDate birth = LocalDateTime.ofInstant(birthDate.toInstant(), ZoneId.systemDefault()).toLocalDate();
-//            LocalDate today = LocalDate.now();
-            
-//            Period period = Period.between(birth, today);    
-//            labelPersonAgeValue.setText(period.getYears()+"");
+            labelPersonBirthdate.setText(format.format(birthDate));
             
             //LAND
             labelLandIDvalue.setText(l.getLandID()+"");
@@ -63,8 +57,17 @@ public class OwnershipDetail extends javax.swing.JFrame {
             labelLandTypeValue.setText(l.getType());
             
             //OWNERSHIP
-//            labelOwnershipEndValue.setText(format.format(o.getEndDate()));
-//            labelOwnershipStartValue.setText(format.format(o.getStartDate()));
+            
+            Date startDate = o.getStartDate();
+            Date endDate = o.getEndDate();
+
+            labelOwnershipStartValue.setText(format.format(startDate));
+            if (endDate==null){
+                labelOwnershipEndValue.setText("-");
+            }
+            else{
+                 labelOwnershipEndValue.setText(format.format(endDate));
+            }
                     
             
         }
@@ -121,10 +124,15 @@ public class OwnershipDetail extends javax.swing.JFrame {
         jLabel1.setText(bundle.getString("OwnershipDetail.jLabel1.text")); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(null);
+        setPreferredSize(null);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         labelPersonState.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelPersonState.setText(bundle.getString("OwnershipDetail.labelPersonState.text")); // NOI18N
+        labelPersonState.setMaximumSize(new java.awt.Dimension(250, 17));
+        labelPersonState.setMinimumSize(new java.awt.Dimension(250, 17));
+        labelPersonState.setPreferredSize(new java.awt.Dimension(250, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
@@ -135,6 +143,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
 
         labelPersonBirthNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelPersonBirthNumber.setText(bundle.getString("OwnershipDetail.labelPersonBirthNumber.text")); // NOI18N
+        labelPersonBirthNumber.setMaximumSize(new java.awt.Dimension(250, 17));
+        labelPersonBirthNumber.setMinimumSize(new java.awt.Dimension(250, 17));
+        labelPersonBirthNumber.setPreferredSize(new java.awt.Dimension(250, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -145,6 +156,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
 
         labelPersonId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelPersonId.setText(bundle.getString("OwnershipDetail.labelPersonId.text")); // NOI18N
+        labelPersonId.setMaximumSize(new java.awt.Dimension(250, 17));
+        labelPersonId.setMinimumSize(new java.awt.Dimension(250, 17));
+        labelPersonId.setPreferredSize(new java.awt.Dimension(250, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -155,6 +169,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
 
         labelPersonDetailTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelPersonDetailTitle.setText(bundle.getString("OwnershipDetail.labelPersonDetailTitle.text")); // NOI18N
+        labelPersonDetailTitle.setMaximumSize(new java.awt.Dimension(250, 17));
+        labelPersonDetailTitle.setMinimumSize(new java.awt.Dimension(250, 17));
+        labelPersonDetailTitle.setPreferredSize(new java.awt.Dimension(250, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -165,6 +182,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
 
         labelPersonName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelPersonName.setText(bundle.getString("OwnershipDetail.labelPersonName.text")); // NOI18N
+        labelPersonName.setMaximumSize(new java.awt.Dimension(250, 17));
+        labelPersonName.setMinimumSize(new java.awt.Dimension(250, 17));
+        labelPersonName.setPreferredSize(new java.awt.Dimension(250, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -175,6 +195,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
 
         labelPersonSurname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelPersonSurname.setText(bundle.getString("OwnershipDetail.labelPersonSurname.text")); // NOI18N
+        labelPersonSurname.setMaximumSize(new java.awt.Dimension(250, 17));
+        labelPersonSurname.setMinimumSize(new java.awt.Dimension(250, 17));
+        labelPersonSurname.setPreferredSize(new java.awt.Dimension(250, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -185,6 +208,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
 
         labelPersonBirthdate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelPersonBirthdate.setText(bundle.getString("OwnershipDetail.labelPersonBirthdate.text")); // NOI18N
+        labelPersonBirthdate.setMaximumSize(new java.awt.Dimension(250, 17));
+        labelPersonBirthdate.setMinimumSize(new java.awt.Dimension(250, 17));
+        labelPersonBirthdate.setPreferredSize(new java.awt.Dimension(250, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -195,6 +221,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
 
         labelPersonAge.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelPersonAge.setText(bundle.getString("OwnershipDetail.labelPersonAge.text")); // NOI18N
+        labelPersonAge.setMaximumSize(new java.awt.Dimension(250, 17));
+        labelPersonAge.setMinimumSize(new java.awt.Dimension(250, 17));
+        labelPersonAge.setPreferredSize(new java.awt.Dimension(250, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -277,7 +306,6 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
         getContentPane().add(labelLandDetail, gridBagConstraints);
@@ -312,7 +340,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         labelLandCatastralAreaValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelLandCatastralAreaValue.setText(bundle.getString("OwnershipDetail.labelLandCatastralAreaValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
@@ -347,8 +375,11 @@ public class OwnershipDetail extends javax.swing.JFrame {
 
         labelLandIDvalue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelLandIDvalue.setText(bundle.getString("OwnershipDetail.labelLandIDvalue.text")); // NOI18N
+        labelLandIDvalue.setMaximumSize(new java.awt.Dimension(200, 17));
+        labelLandIDvalue.setMinimumSize(new java.awt.Dimension(200, 17));
+        labelLandIDvalue.setPreferredSize(new java.awt.Dimension(200, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
@@ -357,7 +388,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         labelLandSizeValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelLandSizeValue.setText(bundle.getString("OwnershipDetail.labelLandSizeValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
@@ -366,7 +397,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         labelLandBuildUpAreaValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelLandBuildUpAreaValue.setText(bundle.getString("OwnershipDetail.labelLandBuildUpAreaValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
@@ -375,7 +406,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         labelLandTypeValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelLandTypeValue.setText(bundle.getString("OwnershipDetail.labelLandTypeValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
@@ -384,7 +415,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         labelLandNotesValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelLandNotesValue.setText(bundle.getString("OwnershipDetail.labelLandNotesValue.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
@@ -392,10 +423,16 @@ public class OwnershipDetail extends javax.swing.JFrame {
 
         labelOwnershipDetail1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         labelOwnershipDetail1.setText(bundle.getString("OwnershipDetail.labelOwnershipDetail1.text")); // NOI18N
+        labelOwnershipDetail1.setMaximumSize(new java.awt.Dimension(250, 29));
+        labelOwnershipDetail1.setMinimumSize(new java.awt.Dimension(250, 29));
+        labelOwnershipDetail1.setPreferredSize(new java.awt.Dimension(250, 20));
         getContentPane().add(labelOwnershipDetail1, new java.awt.GridBagConstraints());
 
         labelOwnershipStart.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelOwnershipStart.setText(bundle.getString("OwnershipDetail.labelOwnershipStart.text")); // NOI18N
+        labelOwnershipStart.setMaximumSize(new java.awt.Dimension(250, 17));
+        labelOwnershipStart.setMinimumSize(new java.awt.Dimension(250, 17));
+        labelOwnershipStart.setPreferredSize(new java.awt.Dimension(250, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
@@ -405,6 +442,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
 
         labelOwnershipEnd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelOwnershipEnd.setText(bundle.getString("OwnershipDetail.labelOwnershipEnd.text")); // NOI18N
+        labelOwnershipEnd.setMaximumSize(new java.awt.Dimension(250, 17));
+        labelOwnershipEnd.setMinimumSize(new java.awt.Dimension(250, 17));
+        labelOwnershipEnd.setPreferredSize(new java.awt.Dimension(250, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
@@ -432,6 +472,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
 
         labelOwnershipDetail.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelOwnershipDetail.setText(bundle.getString("OwnershipDetail.labelOwnershipDetail.text")); // NOI18N
+        labelOwnershipDetail.setMaximumSize(new java.awt.Dimension(250, 17));
+        labelOwnershipDetail.setMinimumSize(new java.awt.Dimension(250, 17));
+        labelOwnershipDetail.setPreferredSize(new java.awt.Dimension(250, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;

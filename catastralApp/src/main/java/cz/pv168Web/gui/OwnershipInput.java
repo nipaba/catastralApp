@@ -344,7 +344,7 @@ public class OwnershipInput extends javax.swing.JDialog {
         }
         
         if(datePickerEndDate.getDate() != null  && datePickerStartDate.getDate().after(datePickerEndDate.getDate())){
-            
+  
             labelErrorStartDate.setVisible(true);
             tmp = false;
         }

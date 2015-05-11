@@ -5,13 +5,8 @@
  */
 package cz.pv168Web.mainPack;
 
-import cz.pv168Web.gui.EntryWindow;
 import cz.pv168Web.gui.MainWindow;
 import cz.pv168Web.utils.ConnectorDB;
-import cz.pv168Web.utils.DatabaseException;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 

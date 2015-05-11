@@ -61,12 +61,12 @@ public class LandDaoImpl extends GenericDaoImpl implements LandDao {
          conn.commit();
 
       } catch (SQLException | EntityException e) {
-         throw new DatabaseException("db connection problem" + e);
+         throw new DatabaseException("DB ConectionProblem: \n + " + e);
       } finally {
          ConnectorDB.close(conn, st);
       }
 
-      LOGGER.debug(" created : " + land.toString());
+      LOGGER.debug("Land created : " + land.toString());
    }
 
    /**
@@ -97,7 +97,7 @@ public class LandDaoImpl extends GenericDaoImpl implements LandDao {
          st.executeUpdate();
          conn.commit();
       } catch (SQLException | EntityException e1) {
-         throw new DatabaseException("db connection problem" + e1);
+         throw new DatabaseException("DB ConectionProblem: \n + " + e1);
       } finally {
          ConnectorDB.close(conn, st);
       }
@@ -124,7 +124,7 @@ public class LandDaoImpl extends GenericDaoImpl implements LandDao {
          st.executeUpdate();
          conn.commit();
       } catch (SQLException e1) {
-         throw new DatabaseException("db connection problem" + e1);
+         throw new DatabaseException("DB ConectionProblem: \n + " + e1);
       } finally {
          ConnectorDB.close(conn, st);
       }
@@ -155,16 +155,11 @@ public class LandDaoImpl extends GenericDaoImpl implements LandDao {
          }
 
       } catch (SQLException e1) {
-         throw new DatabaseException("getLandById : db connection problem" + e1);
+         throw new DatabaseException("DB ConectionProblem: \n + " + e1);
       } finally {
          ConnectorDB.close(conn, st);
       }
 
-      if (land == null) {
-         throw new DatabaseException("Land is not existing. ID : " + id);
-      } else {
-         LOGGER.debug("Land with id :" + id + "  -   " + land.toString());
-      }
       return land;
    }
 
@@ -189,12 +184,12 @@ public class LandDaoImpl extends GenericDaoImpl implements LandDao {
          }
 
       } catch (SQLException e1) {
-         throw new DatabaseException("db connection problem" + e1);
+         throw new DatabaseException("DB ConectionProblem: \n + " + e1);
       } finally {
          ConnectorDB.close(conn, st);
       }
 
-      printListOfLands(list);
+      LOGGER.debug("List of Lands returned");
       return list;
    }
 
@@ -224,7 +219,7 @@ public class LandDaoImpl extends GenericDaoImpl implements LandDao {
          }
 
       } catch (SQLException e1) {
-         throw new DatabaseException("db connection problem" + e1);
+         throw new DatabaseException("DB ConectionProblem: \n + " + e1);
       } finally {
          ConnectorDB.close(conn, st);
       }
@@ -262,7 +257,7 @@ public class LandDaoImpl extends GenericDaoImpl implements LandDao {
       sql.append("drop table proj.land");
 
       connectAndExecute(sql.toString());
-      LOGGER.debug("Table land dropped");
+      LOGGER.debug("Table Land dropped");
    }
 
    // ==============================================================================================-

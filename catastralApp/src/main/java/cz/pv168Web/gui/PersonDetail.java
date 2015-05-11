@@ -39,7 +39,7 @@ public class PersonDetail extends javax.swing.JFrame {
             
             DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
             Date birthDate = p.getBirthDate();
-            labelPersonBirthdate.setText(format.format(p.getBirthDate()));
+            labelPersonBirthdateValue.setText(format.format(p.getBirthDate()));
            
             LocalDate birth = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(birthDate));
             LocalDate today = LocalDate.now();
@@ -160,7 +160,11 @@ public class PersonDetail extends javax.swing.JFrame {
         getContentPane().add(labelPersonAge, gridBagConstraints);
 
         labelPersonIDvalue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPersonIDvalue.setText(bundle.getString("PersonDetail.labelPersonIDvalue.text")); // NOI18N
+        labelPersonIDvalue.setText(bundle.getString("PersonDetail.text")); // NOI18N
+        labelPersonIDvalue.setMaximumSize(new java.awt.Dimension(200, 17));
+        labelPersonIDvalue.setMinimumSize(new java.awt.Dimension(200, 17));
+        labelPersonIDvalue.setName(""); // NOI18N
+        labelPersonIDvalue.setPreferredSize(new java.awt.Dimension(200, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;

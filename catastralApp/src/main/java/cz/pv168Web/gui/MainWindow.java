@@ -21,11 +21,17 @@ import javax.swing.table.DefaultTableModel;
  * @author Tomas
  */
 public class MainWindow extends javax.swing.JFrame {
-    
+
+    private static final int ALL = 0;
+    private static final int PERSON_LAND = 0;
+
     private final MainManager mainManager;
     private DefaultTableModel personTableModel;
     private DefaultTableModel landTableModel;
     private DefaultTableModel ownershipTableModel;
+
+    private int option = ALL;
+    private Long selectedPerson = -1L;
 
     /**
      * Creates new form MainWindow
@@ -34,22 +40,26 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         mainManager = null;
     }
-    
+
     /**
      * constructor
+     *
      * @param MM
      */
     public MainWindow(MainManager MM) {
         initComponents();
-        
+
         comboCatastal.setModel(new DefaultComboBoxModel(LandCatastralArea.getLandCatastralAreaArray()));
         comboLandType.setModel(new DefaultComboBoxModel(LandType.getLandTypeArray()));
+
+        panelPersonInfo.setVisible(false);
+        panelLandInfo.setVisible(false);
         
         mainManager = MM;
         personTableModel = (DefaultTableModel) personTable.getModel();
         landTableModel = (DefaultTableModel) landTable.getModel();
         ownershipTableModel = (DefaultTableModel) ownershipTable1.getModel();
-        
+
         refreshAll();
     }
 
@@ -75,8 +85,8 @@ public class MainWindow extends javax.swing.JFrame {
         labelTitlePerson = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         personTable = new javax.swing.JTable();
-        showAll = new javax.swing.JButton();
-        showOwnedLands = new javax.swing.JButton();
+        showPersonsLands = new javax.swing.JButton();
+        showPersonsOwnerships = new javax.swing.JButton();
         landTab = new javax.swing.JPanel();
         labelTitleLand = new javax.swing.JLabel();
         buttonAddLand = new javax.swing.JButton();
@@ -86,10 +96,8 @@ public class MainWindow extends javax.swing.JFrame {
         labelTableLand = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         landTable = new javax.swing.JTable();
-        showOwners = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        comboCatastal = new javax.swing.JComboBox();
-        comboLandType = new javax.swing.JComboBox();
+        showLandsOwners = new javax.swing.JButton();
+        showLandsOwnerships = new javax.swing.JButton();
         ownershipTab = new javax.swing.JPanel();
         labelTitleOwnership = new javax.swing.JLabel();
         buttonAddOwnership = new javax.swing.JButton();
@@ -99,26 +107,46 @@ public class MainWindow extends javax.swing.JFrame {
         labelTableLand1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         ownershipTable1 = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        panelPersonInfo = new javax.swing.JPanel();
+        labelSelectedPesonID = new javax.swing.JLabel();
+        labelSelectedPesonIDValue = new javax.swing.JLabel();
+        labelSelectedPesonName = new javax.swing.JLabel();
+        labelSelectedPesonNameValue = new javax.swing.JLabel();
+        labelSelectedPesonSurname = new javax.swing.JLabel();
+        labelSelectedPesonSurnameValue = new javax.swing.JLabel();
+        labelSelectedPesonLandCounts = new javax.swing.JLabel();
+        labelSelectedPesonlandCountsValue = new javax.swing.JLabel();
+        panelFilterSelection = new javax.swing.JPanel();
+        showAll = new javax.swing.JButton();
+        comboCatastal = new javax.swing.JComboBox();
+        comboLandType = new javax.swing.JComboBox();
+        labelCatastralSelection = new javax.swing.JLabel();
+        labelLandTypeSelection = new javax.swing.JLabel();
+        labelFilters = new javax.swing.JLabel();
+        panelLandInfo = new javax.swing.JPanel();
+        labelSelectedLandID = new javax.swing.JLabel();
+        labelSelectedLandIDValue = new javax.swing.JLabel();
+        labelSelectedLandSizeValue = new javax.swing.JLabel();
+        labelSelectedLandSize = new javax.swing.JLabel();
+        labelSelectedLandOwnersCount = new javax.swing.JLabel();
+        labelSelectedLandOwnersCountValue = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        menuAddPerson = new javax.swing.JMenuItem();
-        menuAddLand = new javax.swing.JMenuItem();
-        menuAddOwnership = new javax.swing.JMenuItem();
         menuResetDB = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        menuHelp = new javax.swing.JMenuItem();
         menuAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 600));
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setMaximumSize(new java.awt.Dimension(800, 500));
+        setMinimumSize(new java.awt.Dimension(800, 500));
         setResizable(false);
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        panely.setMaximumSize(new java.awt.Dimension(800, 600));
-        panely.setMinimumSize(new java.awt.Dimension(800, 600));
+        panely.setMaximumSize(new java.awt.Dimension(800, 500));
+        panely.setMinimumSize(new java.awt.Dimension(800, 500));
         panely.setPreferredSize(new java.awt.Dimension(800, 600));
 
         personTab.setMaximumSize(new java.awt.Dimension(800, 600));
@@ -217,9 +245,13 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane1.setViewportView(personTable);
         personTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (personTable.getColumnModel().getColumnCount() > 0) {
-            personTable.getColumnModel().getColumn(0).setMinWidth(20);
-            personTable.getColumnModel().getColumn(0).setPreferredWidth(20);
-            personTable.getColumnModel().getColumn(0).setMaxWidth(20);
+            personTable.getColumnModel().getColumn(0).setHeaderValue(bundle.getString("MainWindow.personTable.columnModel.title0")); // NOI18N
+            personTable.getColumnModel().getColumn(1).setHeaderValue(bundle.getString("MainWindow.personTable.columnModel.title1")); // NOI18N
+            personTable.getColumnModel().getColumn(2).setHeaderValue(bundle.getString("MainWindow.personTable.columnModel.title2")); // NOI18N
+            personTable.getColumnModel().getColumn(3).setHeaderValue(bundle.getString("MainWindow.personTable.columnModel.title3")); // NOI18N
+            personTable.getColumnModel().getColumn(4).setHeaderValue(bundle.getString("MainWindow.personTable.columnModel.title4")); // NOI18N
+            personTable.getColumnModel().getColumn(5).setHeaderValue(bundle.getString("MainWindow.personTable.columnModel.title5")); // NOI18N
+            personTable.getColumnModel().getColumn(6).setHeaderValue(bundle.getString("MainWindow.personTable.columnModel.title6")); // NOI18N
         }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -235,28 +267,28 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         personTab.add(jScrollPane1, gridBagConstraints);
 
-        showAll.setText(bundle.getString("MainWindow.showAll.text")); // NOI18N
-        showAll.addActionListener(new java.awt.event.ActionListener() {
+        showPersonsLands.setText(bundle.getString("MainWindow.showPersonsLands.text")); // NOI18N
+        showPersonsLands.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showAllActionPerformed(evt);
+                showPersonsLandsActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        personTab.add(showPersonsLands, gridBagConstraints);
+
+        showPersonsOwnerships.setText(bundle.getString("MainWindow.showPersonsOwnerships.text")); // NOI18N
+        showPersonsOwnerships.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showPersonsOwnershipsActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        personTab.add(showAll, gridBagConstraints);
-
-        showOwnedLands.setText(bundle.getString("MainWindow.showOwnedLands.text")); // NOI18N
-        showOwnedLands.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showOwnedLandsActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        personTab.add(showOwnedLands, gridBagConstraints);
+        personTab.add(showPersonsOwnerships, gridBagConstraints);
 
         panely.addTab(bundle.getString("MainWindow.personTab.TabConstraints.tabTitle"), personTab); // NOI18N
         personTab.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.personTab.AccessibleContext.accessibleName")); // NOI18N
@@ -371,45 +403,28 @@ public class MainWindow extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         landTab.add(jScrollPane2, gridBagConstraints);
 
-        showOwners.setText(bundle.getString("MainWindow.showOwners.text")); // NOI18N
-        showOwners.addActionListener(new java.awt.event.ActionListener() {
+        showLandsOwners.setText(bundle.getString("MainWindow.showLandsOwners.text")); // NOI18N
+        showLandsOwners.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showOwnersActionPerformed(evt);
+                showLandsOwnersActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
-        landTab.add(showOwners, gridBagConstraints);
+        landTab.add(showLandsOwners, gridBagConstraints);
 
-        jButton1.setText(bundle.getString("MainWindow.jButton1.text")); // NOI18N
+        showLandsOwnerships.setText(bundle.getString("MainWindow.showLandsOwnerships.text")); // NOI18N
+        showLandsOwnerships.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showLandsOwnershipsActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        landTab.add(jButton1, gridBagConstraints);
-
-        comboCatastal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboCatastal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCatastalActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        landTab.add(comboCatastal, gridBagConstraints);
-
-        comboLandType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboLandType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboLandTypeActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        landTab.add(comboLandType, gridBagConstraints);
+        landTab.add(showLandsOwnerships, gridBagConstraints);
 
         panely.addTab(bundle.getString("MainWindow.landTab.TabConstraints.tabTitle"), landTab); // NOI18N
         landTab.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.landTab.AccessibleContext.accessibleName")); // NOI18N
@@ -494,11 +509,11 @@ public class MainWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID OwnerShip", "Name", "Surname", "Person ID", "Land ID", "Start Date", "End Date", "Duration"
+                "ID OwnerShip", "Name", "Surname", "Person ID", "Land ID", "Start Date", "End Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -512,6 +527,13 @@ public class MainWindow extends javax.swing.JFrame {
             ownershipTable1.getColumnModel().getColumn(0).setMinWidth(20);
             ownershipTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
             ownershipTable1.getColumnModel().getColumn(0).setMaxWidth(20);
+            ownershipTable1.getColumnModel().getColumn(0).setHeaderValue(bundle.getString("MainWindow.ownershipTable1.columnModel.title0")); // NOI18N
+            ownershipTable1.getColumnModel().getColumn(1).setHeaderValue(bundle.getString("MainWindow.ownershipTable1.columnModel.title1")); // NOI18N
+            ownershipTable1.getColumnModel().getColumn(2).setHeaderValue(bundle.getString("MainWindow.ownershipTable1.columnModel.title2")); // NOI18N
+            ownershipTable1.getColumnModel().getColumn(3).setHeaderValue(bundle.getString("MainWindow.ownershipTable1.columnModel.title3")); // NOI18N
+            ownershipTable1.getColumnModel().getColumn(4).setHeaderValue(bundle.getString("MainWindow.ownershipTable1.columnModel.title4")); // NOI18N
+            ownershipTable1.getColumnModel().getColumn(5).setHeaderValue(bundle.getString("MainWindow.ownershipTable1.columnModel.title5")); // NOI18N
+            ownershipTable1.getColumnModel().getColumn(6).setHeaderValue(bundle.getString("MainWindow.ownershipTable1.columnModel.title6")); // NOI18N
         }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -529,8 +551,218 @@ public class MainWindow extends javax.swing.JFrame {
         panely.addTab(bundle.getString("MainWindow.ownershipTab.TabConstraints.tabTitle"), ownershipTab); // NOI18N
         ownershipTab.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.ownershipTab.AccessibleContext.accessibleName")); // NOI18N
 
-        getContentPane().add(panely);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        getContentPane().add(panely, gridBagConstraints);
         panely.getAccessibleContext().setAccessibleName(bundle.getString("MainWindow.panely.AccessibleContext.accessibleName")); // NOI18N
+
+        jPanel1.setBackground(new java.awt.Color(102, 255, 102));
+        jPanel1.setMaximumSize(new java.awt.Dimension(800, 100));
+        jPanel1.setMinimumSize(new java.awt.Dimension(800, 100));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 100));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
+
+        panelPersonInfo.setLayout(new java.awt.GridBagLayout());
+
+        labelSelectedPesonID.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelSelectedPesonID.setText(bundle.getString("MainWindow.labelSelectedPesonID.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelPersonInfo.add(labelSelectedPesonID, gridBagConstraints);
+
+        labelSelectedPesonIDValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelSelectedPesonIDValue.setText(bundle.getString("MainWindow.labelSelectedPesonIDValue.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelPersonInfo.add(labelSelectedPesonIDValue, gridBagConstraints);
+
+        labelSelectedPesonName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelSelectedPesonName.setText(bundle.getString("MainWindow.labelSelectedPesonName.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelPersonInfo.add(labelSelectedPesonName, gridBagConstraints);
+
+        labelSelectedPesonNameValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelSelectedPesonNameValue.setText(bundle.getString("MainWindow.labelSelectedPesonNameValue.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelPersonInfo.add(labelSelectedPesonNameValue, gridBagConstraints);
+
+        labelSelectedPesonSurname.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelSelectedPesonSurname.setText(bundle.getString("MainWindow.labelSelectedPesonSurname.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelPersonInfo.add(labelSelectedPesonSurname, gridBagConstraints);
+
+        labelSelectedPesonSurnameValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelSelectedPesonSurnameValue.setText(bundle.getString("MainWindow.labelSelectedPesonSurnameValue.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelPersonInfo.add(labelSelectedPesonSurnameValue, gridBagConstraints);
+
+        labelSelectedPesonLandCounts.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelSelectedPesonLandCounts.setText(bundle.getString("MainWindow.labelSelectedPesonLandCounts.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelPersonInfo.add(labelSelectedPesonLandCounts, gridBagConstraints);
+
+        labelSelectedPesonlandCountsValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelSelectedPesonlandCountsValue.setText(bundle.getString("MainWindow.labelSelectedPesonlandCountsValue.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelPersonInfo.add(labelSelectedPesonlandCountsValue, gridBagConstraints);
+
+        jPanel1.add(panelPersonInfo);
+
+        panelFilterSelection.setLayout(new java.awt.GridBagLayout());
+
+        showAll.setText(bundle.getString("MainWindow.showAll.text")); // NOI18N
+        showAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAllActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelFilterSelection.add(showAll, gridBagConstraints);
+
+        comboCatastal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCatastal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCatastalActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelFilterSelection.add(comboCatastal, gridBagConstraints);
+
+        comboLandType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboLandType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboLandTypeActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelFilterSelection.add(comboLandType, gridBagConstraints);
+
+        labelCatastralSelection.setText(bundle.getString("MainWindow.labelCatastralSelection.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelFilterSelection.add(labelCatastralSelection, gridBagConstraints);
+
+        labelLandTypeSelection.setText(bundle.getString("MainWindow.labelLandTypeSelection.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelFilterSelection.add(labelLandTypeSelection, gridBagConstraints);
+
+        labelFilters.setText(bundle.getString("MainWindow.labelFilters.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelFilterSelection.add(labelFilters, gridBagConstraints);
+
+        jPanel1.add(panelFilterSelection);
+
+        panelLandInfo.setLayout(new java.awt.GridBagLayout());
+
+        labelSelectedLandID.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelSelectedLandID.setText(bundle.getString("MainWindow.labelSelectedLandID.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelLandInfo.add(labelSelectedLandID, gridBagConstraints);
+
+        labelSelectedLandIDValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelSelectedLandIDValue.setText(bundle.getString("MainWindow.labelSelectedLandIDValue.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelLandInfo.add(labelSelectedLandIDValue, gridBagConstraints);
+
+        labelSelectedLandSizeValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelSelectedLandSizeValue.setText(bundle.getString("MainWindow.labelSelectedLandSizeValue.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelLandInfo.add(labelSelectedLandSizeValue, gridBagConstraints);
+
+        labelSelectedLandSize.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelSelectedLandSize.setText(bundle.getString("MainWindow.labelSelectedLandSize.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelLandInfo.add(labelSelectedLandSize, gridBagConstraints);
+
+        labelSelectedLandOwnersCount.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelSelectedLandOwnersCount.setText(bundle.getString("MainWindow.labelSelectedLandOwnersCount.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelLandInfo.add(labelSelectedLandOwnersCount, gridBagConstraints);
+
+        labelSelectedLandOwnersCountValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelSelectedLandOwnersCountValue.setText(bundle.getString("MainWindow.labelSelectedLandOwnersCountValue.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        panelLandInfo.add(labelSelectedLandOwnersCountValue, gridBagConstraints);
+
+        jPanel1.add(panelLandInfo);
+
+        getContentPane().add(jPanel1, new java.awt.GridBagConstraints());
 
         jMenu1.setText(bundle.getString("MainWindow.jMenu1.text")); // NOI18N
 
@@ -547,23 +779,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenu2.setText(bundle.getString("MainWindow.jMenu2.text")); // NOI18N
 
-        menuAddPerson.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        menuAddPerson.setText(bundle.getString("MainWindow.menuAddPerson.text")); // NOI18N
-        menuAddPerson.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuAddPersonActionPerformed(evt);
-            }
-        });
-        jMenu2.add(menuAddPerson);
-
-        menuAddLand.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
-        menuAddLand.setText(bundle.getString("MainWindow.menuAddLand.text")); // NOI18N
-        jMenu2.add(menuAddLand);
-
-        menuAddOwnership.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        menuAddOwnership.setText(bundle.getString("MainWindow.menuAddOwnership.text")); // NOI18N
-        jMenu2.add(menuAddOwnership);
-
         menuResetDB.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         menuResetDB.setText(bundle.getString("MainWindow.menuResetDB.text")); // NOI18N
         menuResetDB.addActionListener(new java.awt.event.ActionListener() {
@@ -577,17 +792,13 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenu3.setText(bundle.getString("MainWindow.jMenu3.text")); // NOI18N
 
-        menuHelp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
-        menuHelp.setText(bundle.getString("MainWindow.menuHelp.text")); // NOI18N
-        menuHelp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuHelpActionPerformed(evt);
-            }
-        });
-        jMenu3.add(menuHelp);
-
         menuAbout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         menuAbout.setText(bundle.getString("MainWindow.menuAbout.text")); // NOI18N
+        menuAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAboutActionPerformed(evt);
+            }
+        });
         jMenu3.add(menuAbout);
 
         jMenuBar1.add(jMenu3);
@@ -610,7 +821,7 @@ public class MainWindow extends javax.swing.JFrame {
                     }
                 }
             };
-            
+
             new Thread(r).start();
         }
     }//GEN-LAST:event_buttonAddPersonActionPerformed
@@ -620,35 +831,35 @@ public class MainWindow extends javax.swing.JFrame {
         int rownNumber = personTable.getSelectedRow();
         if (rownNumber >= 0) {
             Long personId = Long.parseLong(personTableModel.getValueAt(rownNumber, 0).toString());
-            
+
             p = mainManager.getPersonById(personId);
             PersonInput personInput = new PersonInput(this, true, p);
             personInput.show();
             if (personInput.getValid()) {
-                
+
                 Runnable r = new Runnable() {
                     @Override
                     public void run() {
                         synchronized (mainManager) {
                             mainManager.updatePerson(personInput.getPerson());
                             refreshPersonTable(mainManager.getPersonList());
-                            
+
                         }
                     }
                 };
                 new Thread(r).start();
             }
-            
+
         }
 
     }//GEN-LAST:event_buttonUpdatePersonActionPerformed
 
     private void buttonRemovePersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemovePersonActionPerformed
         int rownNumber = personTable.getSelectedRow();
-        
+
         if (rownNumber >= 0) {
             Long personId = Long.parseLong(personTableModel.getValueAt(rownNumber, 0).toString());
-            
+
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
@@ -664,17 +875,17 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void buttonDetailPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDetailPersonActionPerformed
         int rownNumber = personTable.getSelectedRow();
-        
+
         if (rownNumber >= 0) {
             Long personId = Long.parseLong(personTableModel.getValueAt(rownNumber, 0).toString());
-            
+
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
                     synchronized (mainManager) {
                         PersonDetail pd = new PersonDetail(mainManager.getPersonById(personId));
                         pd.show();
-                        
+
                     }
                 }
             };
@@ -692,11 +903,11 @@ public class MainWindow extends javax.swing.JFrame {
                     synchronized (mainManager) {
                         mainManager.createLand(landInput.getLand());
                         refreshLandTable(mainManager.getLandList());
-                        
+
                     }
                 }
             };
-            
+
             new Thread(r).start();
         }
     }//GEN-LAST:event_buttonAddLandActionPerformed
@@ -706,41 +917,41 @@ public class MainWindow extends javax.swing.JFrame {
         int rownNumber = landTable.getSelectedRow();
         if (rownNumber >= 0) {
             Long landId = Long.parseLong(landTableModel.getValueAt(rownNumber, 0).toString());
-            
+
             l = mainManager.getLandById(landId);
             LandInput landInput = new LandInput(this, true, l);
             landInput.show();
             if (landInput.getValid()) {
-                
+
                 Runnable r = new Runnable() {
                     @Override
                     public void run() {
                         synchronized (mainManager) {
                             mainManager.updateLand(landInput.getLand());
                             refreshLandTable(mainManager.getLandList());
-                            
+
                         }
                     }
                 };
                 new Thread(r).start();
             }
-            
+
         }
     }//GEN-LAST:event_buttonUpdateLandActionPerformed
 
     private void buttonRemoveLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveLandActionPerformed
         int rownNumber = landTable.getSelectedRow();
-        
+
         if (rownNumber >= 0) {
             Long landId = Long.parseLong(landTableModel.getValueAt(rownNumber, 0).toString());
-            
+
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
                     synchronized (mainManager) {
                         mainManager.removeLand(landId);
                         refreshLandTable(mainManager.getLandList());
-                        
+
                     }
                 }
             };
@@ -750,18 +961,18 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void buttonDetailLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDetailLandActionPerformed
         int rownNumber = landTable.getSelectedRow();
-        
+
         if (rownNumber >= 0) {
             Long landId = Long.parseLong(landTableModel.getValueAt(rownNumber, 0).toString());
-            
+
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
                     synchronized (mainManager) {
-                        
+
                         LandDetail ld = new LandDetail(mainManager.getLandById(landId));
                         ld.show();
-                        
+
                     }
                 }
             };
@@ -769,33 +980,38 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonDetailLandActionPerformed
 
-    private void menuHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuHelpActionPerformed
-
     private void buttonDetailOwnershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDetailOwnershipActionPerformed
         int rownNumber = ownershipTable1.getSelectedRow();
-        
+
         if (rownNumber >= 0) {
             Long ownershipId = Long.parseLong(ownershipTableModel.getValueAt(rownNumber, 0).toString());
-            
-            Ownership ownership = mainManager.getOwnershipById(ownershipId);
-            Person person = mainManager.getPersonById(ownership.getPersonID());
-            Land land = mainManager.getLandById(ownership.getLandId());
-            
-            OwnershipDetail od = new OwnershipDetail(person, land, ownership);
-            od.show();
-            
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (mainManager) {
+                        Ownership ownership = mainManager.getOwnershipById(ownershipId);
+                        Person person = mainManager.getPersonById(ownership.getPersonID());
+                        Land land = mainManager.getLandById(ownership.getLandId());
+
+                        OwnershipDetail od = new OwnershipDetail(person, land, ownership);
+                        od.show();
+                    }
+                }
+
+            };
+            new Thread(r)
+                    .start();
+
         }
 
     }//GEN-LAST:event_buttonDetailOwnershipActionPerformed
 
     private void buttonRemoveOwnershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveOwnershipActionPerformed
         int rownNumber = ownershipTable1.getSelectedRow();
-        
+
         if (rownNumber >= 0) {
             Long ownershipId = Long.parseLong(ownershipTableModel.getValueAt(rownNumber, 0).toString());
-            
+
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
@@ -814,109 +1030,181 @@ public class MainWindow extends javax.swing.JFrame {
         int rownNumber = ownershipTable1.getSelectedRow();
         if (rownNumber >= 0) {
             Long ownershipId = Long.parseLong(ownershipTableModel.getValueAt(rownNumber, 0).toString());
-            
+
             o = mainManager.getOwnershipById(ownershipId);
             OwnershipInput ownershipInput = new OwnershipInput(this, true, mainManager.getPersonIDArray(), mainManager.getLandIDArray(), o);
             ownershipInput.show();
             if (ownershipInput.getValid()) {
-                
+
                 Runnable r = new Runnable() {
                     @Override
                     public void run() {
                         synchronized (mainManager) {
-                            
+
                             mainManager.updateOwnership(ownershipInput.getOwnership());
                             refreshOwnershipTable(mainManager.getOwnershipList());
-                            
+
                         }
                     }
                 };
                 new Thread(r).start();
             }
-            
+
         }
     }//GEN-LAST:event_buttonUpdateOwnershipActionPerformed
 
     private void buttonAddOwnershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddOwnershipActionPerformed
-        
+
         OwnershipInput ownershipInput = new OwnershipInput(this, true, mainManager.getPersonIDArray(), mainManager.getLandIDArray());
-        
+
         ownershipInput.show();
         if (ownershipInput.getValid()) {
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
                     synchronized (mainManager) {
-                        
+
                         mainManager.createOwnership(ownershipInput.getOwnership());
                         refreshOwnershipTable(mainManager.getOwnershipList());
-                        
+
                     }
                 }
             };
-            
+
             new Thread(r).start();
         }
 
     }//GEN-LAST:event_buttonAddOwnershipActionPerformed
-
-    private void menuAddPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAddPersonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuAddPersonActionPerformed
 
     private void menuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExitActionPerformed
         dispose();
     }//GEN-LAST:event_menuExitActionPerformed
 
     private void menuResetDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuResetDBActionPerformed
-        
+
         Runnable r = new Runnable() {
             @Override
             public void run() {
                 synchronized (mainManager) {
-                    
+
                     mainManager.deleteDB();
                     mainManager.createDB();
                     refreshPersonTable(mainManager.getPersonList());
-                    
+
                 }
             }
         };
-        
+
         new Thread(r).start();
     }//GEN-LAST:event_menuResetDBActionPerformed
 
     private void showAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllActionPerformed
+        option = ALL;
+        panelPersonInfo.setVisible(false);
+        panelLandInfo.setVisible(false);
         refreshAll();
     }//GEN-LAST:event_showAllActionPerformed
 
-    private void showOwnedLandsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showOwnedLandsActionPerformed
+    private void showPersonsLandsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPersonsLandsActionPerformed
         int rownNumber = personTable.getSelectedRow();
         if (rownNumber >= 0) {
-            Long personId = Long.parseLong(personTableModel.getValueAt(rownNumber, 0).toString());
-            refreshLandTable(mainManager.getLandListByPersonID(personId));
-            panely.setSelectedIndex(1);
-            
-        }
-    }//GEN-LAST:event_showOwnedLandsActionPerformed
+            option = PERSON_LAND;
 
-    private void showOwnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showOwnersActionPerformed
-        
+            Long personId = Long.parseLong(personTableModel.getValueAt(rownNumber, 0).toString());
+
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (mainManager) {
+                        refreshLandTable(mainManager.getLandListByPersonID(personId));
+                        panelLandInfo.setVisible(false);
+                        panelPersonInfo.setVisible(true);
+                        labelSelectedPesonIDValue.setText((String) personTable.getValueAt(rownNumber, 0));
+                        labelSelectedPesonNameValue.setText((String) personTable.getValueAt(rownNumber, 1));
+                        labelSelectedPesonSurnameValue.setText((String) personTable.getValueAt(rownNumber, 2));
+                        labelSelectedPesonlandCountsValue.setText(landTable.getRowCount() + "");
+                        panely.setSelectedIndex(1);
+
+                    }
+                }
+            };
+            new Thread(r).start();
+        }
+    }//GEN-LAST:event_showPersonsLandsActionPerformed
+
+    private void showLandsOwnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showLandsOwnersActionPerformed
+
         int rownNumber = landTable.getSelectedRow();
         if (rownNumber >= 0) {
             Long landId = Long.parseLong(landTable.getValueAt(rownNumber, 0).toString());
-            refreshPersonTable(mainManager.getPersonListByLandId(landId));
-            panely.setSelectedIndex(0);
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (mainManager) {
+                        refreshPersonTable(mainManager.getPersonListByLandId(landId));
+                        
+                        panelPersonInfo.setVisible(false);
+                        panelLandInfo.setVisible(true);
+        
+                        labelSelectedLandIDValue.setText(landTable.getValueAt(rownNumber, 0).toString());
+                        labelSelectedLandSizeValue.setText(landTable.getValueAt(rownNumber, 1).toString());
+                        labelSelectedLandOwnersCountValue.setText(personTable.getRowCount()+"");
+                        panely.setSelectedIndex(0);
+                    }
+                }
+            };
+            new Thread(r).start();
         }
-    }//GEN-LAST:event_showOwnersActionPerformed
+    }//GEN-LAST:event_showLandsOwnersActionPerformed
 
     private void comboLandTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLandTypeActionPerformed
-        refreshLandTable(mainManager.getLandList());
+
+        refreshLandWithOption();
+
     }//GEN-LAST:event_comboLandTypeActionPerformed
 
     private void comboCatastalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCatastalActionPerformed
-        refreshLandTable(mainManager.getLandList());
+        refreshLandWithOption();
     }//GEN-LAST:event_comboCatastalActionPerformed
+
+    private void showLandsOwnershipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showLandsOwnershipsActionPerformed
+        int rownNumber = landTable.getSelectedRow();
+        if (rownNumber >= 0) {
+            Long landId = Long.parseLong(landTable.getValueAt(rownNumber, 0).toString());
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (mainManager) {
+                        refreshOwnershipTable(mainManager.getOwnershipByLandId(landId));
+                        panely.setSelectedIndex(0);
+                    }
+                }
+            };
+            new Thread(r).start();
+        }
+    }//GEN-LAST:event_showLandsOwnershipsActionPerformed
+
+    private void showPersonsOwnershipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPersonsOwnershipsActionPerformed
+        int rownNumber = personTable.getSelectedRow();
+        if (rownNumber >= 0) {
+            Long personId = Long.parseLong(personTable.getValueAt(rownNumber, 0).toString());
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (mainManager) {
+                        refreshOwnershipTable(mainManager.getOwnershipByPersonId(personId));
+                        panely.setSelectedIndex(0);
+                    }
+                }
+            };
+            new Thread(r).start();
+        }
+    }//GEN-LAST:event_showPersonsOwnershipsActionPerformed
+
+    private void menuAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAboutActionPerformed
+        EntryWindow ew = new EntryWindow();
+        ew.show();
+    }//GEN-LAST:event_menuAboutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -968,15 +1256,32 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton buttonUpdatePerson;
     private javax.swing.JComboBox comboCatastal;
     private javax.swing.JComboBox comboLandType;
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel labelCatastralSelection;
+    private javax.swing.JLabel labelFilters;
+    private javax.swing.JLabel labelLandTypeSelection;
+    private javax.swing.JLabel labelSelectedLandID;
+    private javax.swing.JLabel labelSelectedLandIDValue;
+    private javax.swing.JLabel labelSelectedLandOwnersCount;
+    private javax.swing.JLabel labelSelectedLandOwnersCountValue;
+    private javax.swing.JLabel labelSelectedLandSize;
+    private javax.swing.JLabel labelSelectedLandSizeValue;
+    private javax.swing.JLabel labelSelectedPesonID;
+    private javax.swing.JLabel labelSelectedPesonIDValue;
+    private javax.swing.JLabel labelSelectedPesonLandCounts;
+    private javax.swing.JLabel labelSelectedPesonName;
+    private javax.swing.JLabel labelSelectedPesonNameValue;
+    private javax.swing.JLabel labelSelectedPesonSurname;
+    private javax.swing.JLabel labelSelectedPesonSurnameValue;
+    private javax.swing.JLabel labelSelectedPesonlandCountsValue;
     private javax.swing.JLabel labelTableLand;
     private javax.swing.JLabel labelTableLand1;
     private javax.swing.JLabel labelTablePerson;
@@ -986,21 +1291,22 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel landTab;
     private javax.swing.JTable landTable;
     private javax.swing.JMenuItem menuAbout;
-    private javax.swing.JMenuItem menuAddLand;
-    private javax.swing.JMenuItem menuAddOwnership;
-    private javax.swing.JMenuItem menuAddPerson;
     private javax.swing.JMenuItem menuExit;
-    private javax.swing.JMenuItem menuHelp;
     private javax.swing.JMenuItem menuResetDB;
     private javax.swing.JPanel ownershipTab;
     private javax.swing.JTable ownershipTable1;
+    private javax.swing.JPanel panelFilterSelection;
+    private javax.swing.JPanel panelLandInfo;
+    private javax.swing.JPanel panelPersonInfo;
     private javax.swing.JTabbedPane panely;
     private javax.swing.ButtonGroup personSortGroup;
     private javax.swing.JPanel personTab;
     private javax.swing.JTable personTable;
     private javax.swing.JButton showAll;
-    private javax.swing.JButton showOwnedLands;
-    private javax.swing.JButton showOwners;
+    private javax.swing.JButton showLandsOwners;
+    private javax.swing.JButton showLandsOwnerships;
+    private javax.swing.JButton showPersonsLands;
+    private javax.swing.JButton showPersonsOwnerships;
     // End of variables declaration//GEN-END:variables
 
     private void refreshPersonTable(List<Person> list) {
@@ -1010,39 +1316,39 @@ public class MainWindow extends javax.swing.JFrame {
             personTableModel.removeRow(personTableModel.getRowCount() - 1);
         }
         for (Person p : list) {
-            personTableModel.addRow(p.toArray());   
+            personTableModel.addRow(p.toArray());
         }
     }
-    
+
     private void refreshLandTable(List<Land> list) {
 
         // clear table 
         while (landTableModel.getRowCount() > 0) {
             landTableModel.removeRow(landTableModel.getRowCount() - 1);
         }
-        
+
         String catastralArea = (String) comboCatastal.getSelectedItem();
         String landType = (String) comboLandType.getSelectedItem();
-        
+
         for (Land l : list) {
             if ((landType.isEmpty() || landType.equals(l.getType())) && (catastralArea.isEmpty() || catastralArea.equals(l.getCatastralArea()))) {
                 landTableModel.addRow(l.toArray());
             }
         }
     }
-    
+
     private void refreshOwnershipTable(List<Ownership> list) {
-        
+
         while (ownershipTableModel.getRowCount() > 0) {
             ownershipTableModel.removeRow(ownershipTableModel.getRowCount() - 1);
-        } 
+        }
         for (Ownership o : list) {
             ownershipTableModel.addRow(mainManager.getOwnershipArray(o));
         }
     }
-    
+
     private void refreshAll() {
-        
+
         Runnable r = new Runnable() {
             @Override
             public void run() {
@@ -1053,9 +1359,25 @@ public class MainWindow extends javax.swing.JFrame {
                 }
             }
         };
-        
+
         new Thread(r).start();
-        
+
     }
-    
+
+    private void refreshLandWithOption() {
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                synchronized (mainManager) {
+                    if (option == ALL) {
+                        refreshLandTable(mainManager.getLandList());
+                    } else {
+                        refreshLandTable(mainManager.getLandListByPersonID(selectedPerson));
+                    }
+                }
+            }
+        };
+        new Thread(r).start();
+    }
+
 }

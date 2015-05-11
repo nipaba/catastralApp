@@ -71,7 +71,6 @@ public class LandDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
         getContentPane().add(labelLandDetail, gridBagConstraints);
@@ -141,6 +140,9 @@ public class LandDetail extends javax.swing.JFrame {
 
         labelLandIDvalue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelLandIDvalue.setText(bundle.getString("LandDetail.labelLandIDvalue.text")); // NOI18N
+        labelLandIDvalue.setMaximumSize(new java.awt.Dimension(200, 17));
+        labelLandIDvalue.setMinimumSize(new java.awt.Dimension(200, 17));
+        labelLandIDvalue.setPreferredSize(new java.awt.Dimension(200, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;

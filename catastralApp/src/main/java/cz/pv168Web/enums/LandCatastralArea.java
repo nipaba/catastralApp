@@ -15,9 +15,19 @@ import java.util.List;
 public enum LandCatastralArea {
     EMPTY(""),
     BRNO("Brno"),
-    PRAHA("Praha");
-    
-    
+    CESKE_BUDEJOVICE("Èeské Budìjovice"),
+    HAVIROV("Haviøov"),
+    HRADEC_KRALOVE("Hradec Králové"),
+    LIBEREC("Liberec"),
+    KLADNO("Kladno"),
+    OLOMOUC("Olomouc"),
+    OSTRAVA("Ostrava"),
+    PARDUBICE("Pardubice"),
+    PLZEN("Plzeò"),  
+    PRAHA("Praha"),
+    ZLIN("Zlín");
+
+     
     private String landCatastralArea;
     
     private LandCatastralArea(String s){

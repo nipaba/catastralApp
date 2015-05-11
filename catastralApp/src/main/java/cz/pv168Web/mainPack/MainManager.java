@@ -17,6 +17,7 @@ import cz.pv168Web.model.Land;
 import cz.pv168Web.model.Ownership;
 import cz.pv168Web.utils.DatabaseException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import javax.sql.DataSource;
@@ -37,6 +38,7 @@ public class MainManager {
 
     /**
      * constructor
+     *
      * @param ds
      */
     public MainManager(DataSource ds) {
@@ -48,6 +50,7 @@ public class MainManager {
 
     /**
      * method to create person
+     *
      * @param person
      */
     public void createPerson(Person person) {
@@ -60,6 +63,7 @@ public class MainManager {
 
     /**
      * method to create land
+     *
      * @param land
      */
     public void createLand(Land land) {
@@ -72,6 +76,7 @@ public class MainManager {
 
     /**
      * Method to create ownership
+     *
      * @param ownership
      */
     public void createOwnership(Ownership ownership) {
@@ -92,8 +97,12 @@ public class MainManager {
             landManager.createTableLand();
             ownershipManager.createTableOwnership();
         } catch (DatabaseException ex) {
-                //TODO
-                    
+            if (ex.toString().contains("already exists")) {
+                LOGGER.debug("DATABASE has been already setted up");
+            } else {
+                LOGGER.debug("ERROR : CREATING DB" + ex.toString());
+            }
+
         }
 
     }
@@ -107,7 +116,11 @@ public class MainManager {
         } catch (ClassNotFoundException ex) {
             printError(ex.toString());
         } catch (DatabaseException ex) {
-            printError(ex.toString());
+            if (ex.toString().contains("already exists")) {
+                LOGGER.debug("DATABASE has been already setted up");
+            } else {
+                LOGGER.debug("ERROR : CREATING DB" + ex.toString());
+            }
         }
 
     }
@@ -167,6 +180,7 @@ public class MainManager {
 
     /**
      * Method to remove specific person
+     *
      * @param personId
      */
     public void removePerson(Long personId) {
@@ -188,6 +202,7 @@ public class MainManager {
 
     /**
      * Method to remove specific land
+     *
      * @param landID
      */
     public void removeLand(Long landID) {
@@ -209,6 +224,7 @@ public class MainManager {
 
     /**
      * Method to remove specific ownership
+     *
      * @param ownershipId
      */
     public void removeOwnership(Long ownershipId) {
@@ -222,7 +238,7 @@ public class MainManager {
     }
 
     /**
-     * 
+     *
      * @param personId
      * @return person with specific id
      */
@@ -237,6 +253,7 @@ public class MainManager {
 
     /**
      * Method to update person
+     *
      * @param person
      */
     public void updatePerson(Person person) {
@@ -263,6 +280,7 @@ public class MainManager {
 
     /**
      * Method to update land
+     *
      * @param land
      */
     public void updateLand(Land land) {
@@ -289,6 +307,7 @@ public class MainManager {
 
     /**
      * Method to update ownership
+     *
      * @param ownership
      */
     public void updateOwnership(Ownership ownership) {
@@ -418,5 +437,39 @@ public class MainManager {
     private void printError(String msg) {
         LOGGER.error(msg);
         JOptionPane.showMessageDialog(null, msg, "Error with Database", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public List<Ownership> getOwnershipByPersonId(Long personId) {
+        List<Ownership> ownerships = new ArrayList<>();
+        try {
+            List<Ownership> list = ownershipManager.getOwnershipList();
+            for (Ownership o : list) {
+                if (o.getPersonID().equals(personId)) {
+                    ownerships.add(o);
+                }
+            }
+        } catch (DatabaseException ex) {
+            printError(ex.toString());
+        }
+
+        return ownerships;
+
+    }
+
+    public List<Ownership> getOwnershipByLandId(Long personId) {
+        List<Ownership> ownerships = new ArrayList<>();
+        try {
+            List<Ownership> list = ownershipManager.getOwnershipList();
+            for (Ownership o : list) {
+                if (o.getLandId().equals(personId)) {
+                    ownerships.add(o);
+                }
+            }
+        } catch (DatabaseException ex) {
+            printError(ex.toString());
+        }
+
+        return ownerships;
+
     }
 }

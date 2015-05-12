@@ -11,9 +11,7 @@ import cz.pv168Web.model.Person;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
-import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -129,6 +127,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         jLabel1.setText(bundle.getString("OwnershipDetail.jLabel1.text")); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle(bundle.getString("OwnershipDetail.title")); // NOI18N
         setMaximumSize(null);
         setPreferredSize(null);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -141,9 +140,10 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 113;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonState, gridBagConstraints);
 
         labelPersonBirthNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -154,9 +154,10 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 68;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonBirthNumber, gridBagConstraints);
 
         labelPersonId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -167,9 +168,10 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 85;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonId, gridBagConstraints);
 
         labelPersonDetailTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -193,9 +195,10 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 110;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonName, gridBagConstraints);
 
         labelPersonSurname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -206,9 +209,10 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 90;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonSurname, gridBagConstraints);
 
         labelPersonBirthdate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -219,9 +223,10 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 90;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonBirthdate, gridBagConstraints);
 
         labelPersonAge.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -232,9 +237,10 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 122;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonAge, gridBagConstraints);
 
         labelPersonIDvalue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -242,9 +248,10 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 62;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonIDvalue, gridBagConstraints);
 
         labelPersonNameValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -252,9 +259,10 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 41;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonNameValue, gridBagConstraints);
 
         labelPersonSurnameValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -262,9 +270,10 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 21;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonSurnameValue, gridBagConstraints);
 
         labelPersonBirthdateValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -272,9 +281,10 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 24;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonBirthdateValue, gridBagConstraints);
 
         labelPersonBirthNumberValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -282,8 +292,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonBirthNumberValue, gridBagConstraints);
 
         labelPersonStateValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -291,9 +302,10 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 49;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonStateValue, gridBagConstraints);
 
         labelPersonAgeValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -301,9 +313,10 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelPersonAgeValue, gridBagConstraints);
 
         labelLandDetail.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -320,8 +333,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelLandID, gridBagConstraints);
 
         labelLandSize.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -329,8 +343,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelLandSize, gridBagConstraints);
 
         labelLandCatastralArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -338,8 +353,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelLandCatastralArea, gridBagConstraints);
 
         labelLandCatastralAreaValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -347,8 +363,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelLandCatastralAreaValue, gridBagConstraints);
 
         labelLandBuildUpArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -356,8 +373,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelLandBuildUpArea, gridBagConstraints);
 
         labelLandType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -365,8 +383,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelLandType, gridBagConstraints);
 
         labelLandNotes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -374,8 +393,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelLandNotes, gridBagConstraints);
 
         labelLandIDvalue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -386,8 +406,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelLandIDvalue, gridBagConstraints);
 
         labelLandSizeValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -395,8 +416,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelLandSizeValue, gridBagConstraints);
 
         labelLandBuildUpAreaValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -404,8 +426,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelLandBuildUpAreaValue, gridBagConstraints);
 
         labelLandTypeValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -413,8 +436,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelLandTypeValue, gridBagConstraints);
 
         labelLandNotesValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -422,8 +446,9 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelLandNotesValue, gridBagConstraints);
 
         labelOwnershipDetail1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -442,7 +467,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelOwnershipStart, gridBagConstraints);
 
         labelOwnershipEnd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -454,7 +479,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelOwnershipEnd, gridBagConstraints);
 
         labelOwnershipStartValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -463,7 +488,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelOwnershipStartValue, gridBagConstraints);
 
         labelOwnershipEndValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -472,7 +497,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelOwnershipEndValue, gridBagConstraints);
 
         labelOwnershipDetail.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -485,7 +510,7 @@ public class OwnershipDetail extends javax.swing.JFrame {
         gridBagConstraints.gridy = 9;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(labelOwnershipDetail, gridBagConstraints);
 
         pack();

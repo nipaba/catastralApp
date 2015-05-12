@@ -106,9 +106,10 @@ public class PersonInput extends javax.swing.JDialog {
         labelErrorDate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/PersonInput"); // NOI18N
+        setTitle(bundle.getString("PersonInput.title")); // NOI18N
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/PersonInput"); // NOI18N
         buttonCancel.setText(bundle.getString("PersonInput.buttonCancel.text")); // NOI18N
         buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

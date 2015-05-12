@@ -95,9 +95,10 @@ public class LandInput extends javax.swing.JDialog {
         spinnerBuildUpArea = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/LandInput"); // NOI18N
+        setTitle(bundle.getString("LandInput.title")); // NOI18N
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/LandInput"); // NOI18N
         buttonCancel.setText(bundle.getString("LandInput.buttonCancel.text")); // NOI18N
         buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -372,6 +373,11 @@ public class LandInput extends javax.swing.JDialog {
         Boolean tmp = true;
         if (spinnerSize.getValue() == null || (Double) spinnerSize.getValue() <= 0.0) {
             labelErrorSize.setVisible(true);
+            tmp = false;
+        }
+        
+        if (spinnerBuildUpArea.getValue() == null || (Double) spinnerBuildUpArea.getValue() <= 0.0) {
+            labelErrorBuildUpArea.setVisible(true);
             tmp = false;
         }
         

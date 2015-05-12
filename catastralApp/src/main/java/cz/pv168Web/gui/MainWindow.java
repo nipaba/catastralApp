@@ -139,6 +139,8 @@ public class MainWindow extends javax.swing.JFrame {
         menuAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/MainWindow"); // NOI18N
+        setTitle(bundle.getString("MainWindow.title")); // NOI18N
         setMaximumSize(new java.awt.Dimension(800, 500));
         setMinimumSize(new java.awt.Dimension(800, 500));
         setResizable(false);
@@ -153,7 +155,6 @@ public class MainWindow extends javax.swing.JFrame {
         personTab.setPreferredSize(new java.awt.Dimension(800, 600));
         personTab.setLayout(new java.awt.GridBagLayout());
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/MainWindow"); // NOI18N
         buttonAddPerson.setText(bundle.getString("MainWindow.buttonAddPerson.text")); // NOI18N
         buttonAddPerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

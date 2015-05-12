@@ -116,9 +116,10 @@ public class OwnershipInput extends javax.swing.JDialog {
         labelErrorStartDate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/OwnershpInput"); // NOI18N
+        setTitle(bundle.getString("OwnershipInput.title")); // NOI18N
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/OwnershpInput"); // NOI18N
         buttonCancel.setText(bundle.getString("OwnershipInput.buttonCancel.text")); // NOI18N
         buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

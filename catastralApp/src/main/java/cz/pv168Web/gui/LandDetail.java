@@ -63,10 +63,11 @@ public class LandDetail extends javax.swing.JFrame {
         labelLandNotesValue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/LandDetail"); // NOI18N
+        setTitle(bundle.getString("LandDetail.title")); // NOI18N
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         labelLandDetail.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/LandDetail"); // NOI18N
         labelLandDetail.setText(bundle.getString("LandDetail.labelLandDetail.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

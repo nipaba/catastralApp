@@ -79,10 +79,11 @@ public class PersonDetail extends javax.swing.JFrame {
         labelPersonAgeValue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/PersonDetail"); // NOI18N
+        setTitle(bundle.getString("PersonDetail.title")); // NOI18N
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         labelPersonState.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/PersonDetail"); // NOI18N
         labelPersonState.setText(bundle.getString("PersonDetail.labelPersonState.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

@@ -404,7 +404,7 @@ public class LandInput extends javax.swing.JDialog {
             tmp = false;
         }
         
-        if (spinnerBuildUpArea.getValue() == null || (Double) spinnerBuildUpArea.getValue() <= 0.0) {
+        if (spinnerBuildUpArea.getValue() == null || (Double) spinnerBuildUpArea.getValue() < 0.0) {
             labelErrorCatastralArea.setVisible(true);
             tmp = false;
         }

@@ -1185,7 +1185,7 @@ public class MainWindow extends javax.swing.JFrame {
                 public void run() {
                     synchronized (mainManager) {
                         refreshOwnershipTable(mainManager.getOwnershipByLandId(landId));
-                        panely.setSelectedIndex(0);
+                        panely.setSelectedIndex(2);
                     }
                 }
             };
@@ -1202,7 +1202,7 @@ public class MainWindow extends javax.swing.JFrame {
                 public void run() {
                     synchronized (mainManager) {
                         refreshOwnershipTable(mainManager.getOwnershipByPersonId(personId));
-                        panely.setSelectedIndex(0);
+                        panely.setSelectedIndex(2);
                     }
                 }
             };

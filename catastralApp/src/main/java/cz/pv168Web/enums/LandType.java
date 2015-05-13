@@ -16,7 +16,12 @@ public enum LandType {
     EMPTY(""),
     STAVEBNI_PARCELA("Stavebni parcela"),
     BYT("Byt"),
-    DOM("Dom");
+    POLE("Pole"),
+    CESTA("Cesta"),
+    LES("Les"),
+    OBCHOD("Nakupni zona"),
+    TOVARNA("Továrna"),
+    DUM("Dùm");
 
     private String landType;
 

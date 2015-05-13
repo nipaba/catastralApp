@@ -45,6 +45,7 @@ public class OwnershipInput extends javax.swing.JDialog {
         labelErrorStartDate.setVisible(false);
         comboboxPerson.setModel(new DefaultComboBoxModel(personArrayID));
         comboboxLand.setModel(new DefaultComboBoxModel(landArrayId));
+        ownership = new Ownership();
         
 
         
@@ -243,7 +244,7 @@ public class OwnershipInput extends javax.swing.JDialog {
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         if(valideteOwnershipForm()){
 
-            ownership = new Ownership();
+            
 
             ownership.setPersonID(Long.parseLong((String) comboboxPerson.getSelectedItem()));
             ownership.setLandId(Long.parseLong((String) comboboxLand.getSelectedItem()));

@@ -294,7 +294,7 @@ public class OwnershipDaoImpl extends GenericDaoImpl implements OwnershipDao {
             msg.append("Cannot create ownership with StartDate = null");
         }
         if (ownership.getStartDate() != null && ownership.getEndDate() != null
-                && ownership.getStartDate().compareTo(ownership.getEndDate()) < 0) {
+                && ownership.getStartDate().after(ownership.getEndDate())) {
             msg.append("Cannot create ownership with StartDate>ENDDATE");
         }
 

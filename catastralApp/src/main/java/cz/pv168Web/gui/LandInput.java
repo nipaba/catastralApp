@@ -49,6 +49,9 @@ public class LandInput extends javax.swing.JDialog {
         textLandNotes.setText(land.getNotes());
         spinnerSize.setValue(land.getSize());
         spinnerBuildUpArea.setValue(land.getBuildUpArea());
+        
+        comboCatastralArea.setSelectedIndex(LandCatastralArea.getIndexOfCatastralArea(land.getCatastralArea()));
+        comboType.setSelectedIndex(LandType.getIndexOfLandType(land.getType()));
     }
 
     /**
@@ -86,13 +89,15 @@ public class LandInput extends javax.swing.JDialog {
         labelType = new javax.swing.JLabel();
         labelTitleNewPerson = new javax.swing.JLabel();
         labelNotes = new javax.swing.JLabel();
-        labelErrorBuildUpArea = new javax.swing.JLabel();
+        labelErrorCatastralArea = new javax.swing.JLabel();
         labelErrorSize = new javax.swing.JLabel();
         labelErrorNotes = new javax.swing.JLabel();
         textLandNotes = new javax.swing.JTextField();
         comboCatastralArea = new javax.swing.JComboBox();
         spinnerSize = new javax.swing.JSpinner();
         spinnerBuildUpArea = new javax.swing.JSpinner();
+        labelErrorBuildUpArea1 = new javax.swing.JLabel();
+        labelErrorTzpe = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("cz/pv168Web/gui/LandInput"); // NOI18N
@@ -192,11 +197,11 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 33, 0, 33);
         getContentPane().add(labelNotes, gridBagConstraints);
 
-        labelErrorBuildUpArea.setText(bundle.getString("LandInput.labelErrorBuildUpArea.text")); // NOI18N
+        labelErrorCatastralArea.setText(bundle.getString("LandInput.labelErrorCatastralArea.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        getContentPane().add(labelErrorBuildUpArea, gridBagConstraints);
+        gridBagConstraints.gridy = 3;
+        getContentPane().add(labelErrorCatastralArea, gridBagConstraints);
 
         labelErrorSize.setText(bundle.getString("LandInput.labelErrorSize.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -228,6 +233,11 @@ public class LandInput extends javax.swing.JDialog {
 
         comboCatastralArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboCatastralArea.setPreferredSize(new java.awt.Dimension(105, 22));
+        comboCatastralArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCatastralAreaActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -260,6 +270,18 @@ public class LandInput extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(spinnerBuildUpArea, gridBagConstraints);
 
+        labelErrorBuildUpArea1.setText(bundle.getString("LandInput.labelErrorBuildUpArea1.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        getContentPane().add(labelErrorBuildUpArea1, gridBagConstraints);
+
+        labelErrorTzpe.setText(bundle.getString("LandInput.labelErrorTzpe.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        getContentPane().add(labelErrorTzpe, gridBagConstraints);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -289,11 +311,11 @@ public class LandInput extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonAddActionPerformed
 
     private void comboTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTypeActionPerformed
-        // TODO add your handling code here:
+        labelErrorTzpe.setVisible(false);
     }//GEN-LAST:event_comboTypeActionPerformed
 
     private void textLandNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textLandNotesActionPerformed
-        // TODO add your handling code here:
+      labelErrorNotes.setVisible(false);
     }//GEN-LAST:event_textLandNotesActionPerformed
 
     private void spinnerSizeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_spinnerSizeFocusGained
@@ -301,12 +323,16 @@ public class LandInput extends javax.swing.JDialog {
     }//GEN-LAST:event_spinnerSizeFocusGained
 
     private void spinnerBuildUpAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_spinnerBuildUpAreaFocusGained
-        labelErrorBuildUpArea.setVisible(false);
+        labelErrorCatastralArea.setVisible(false);
     }//GEN-LAST:event_spinnerBuildUpAreaFocusGained
 
     private void textLandNotesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textLandNotesFocusGained
         labelErrorNotes.setVisible(false);
     }//GEN-LAST:event_textLandNotesFocusGained
+
+    private void comboCatastralAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCatastralAreaActionPerformed
+        labelErrorCatastralArea.setVisible(false);
+    }//GEN-LAST:event_comboCatastralAreaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -357,9 +383,11 @@ public class LandInput extends javax.swing.JDialog {
     private javax.swing.JComboBox comboType;
     private javax.swing.JLabel labelBuildUpArea;
     private javax.swing.JLabel labelCatastralArea;
-    private javax.swing.JLabel labelErrorBuildUpArea;
+    private javax.swing.JLabel labelErrorBuildUpArea1;
+    private javax.swing.JLabel labelErrorCatastralArea;
     private javax.swing.JLabel labelErrorNotes;
     private javax.swing.JLabel labelErrorSize;
+    private javax.swing.JLabel labelErrorTzpe;
     private javax.swing.JLabel labelNotes;
     private javax.swing.JLabel labelSize;
     private javax.swing.JLabel labelTitleNewPerson;
@@ -377,7 +405,7 @@ public class LandInput extends javax.swing.JDialog {
         }
         
         if (spinnerBuildUpArea.getValue() == null || (Double) spinnerBuildUpArea.getValue() <= 0.0) {
-            labelErrorBuildUpArea.setVisible(true);
+            labelErrorCatastralArea.setVisible(true);
             tmp = false;
         }
         
@@ -385,14 +413,26 @@ public class LandInput extends javax.swing.JDialog {
             labelErrorNotes.setVisible(true);
             tmp = false;
         }
-
+        String catastr = (String) comboCatastralArea.getSelectedItem();
+        if (catastr.isEmpty()) {
+            labelCatastralArea.setVisible(true);
+            tmp = false;
+        }
+        
+       String ltype = (String) comboType.getSelectedItem();
+        if (catastr.isEmpty()) {
+            labelErrorTzpe.setVisible(true);
+            tmp = false;
+        }
         return tmp;
     }
 
     private void customInit() {
         labelErrorSize.setVisible(false);
-        labelErrorBuildUpArea.setVisible(false);
+        labelErrorCatastralArea.setVisible(false);
         labelErrorNotes.setVisible(false);
+        labelErrorBuildUpArea1.setVisible(false);
+        labelErrorTzpe.setVisible(false);
         comboType.setModel(new DefaultComboBoxModel(LandType.getLandTypeArray()));
         comboCatastralArea.setModel(new DefaultComboBoxModel(LandCatastralArea.getLandCatastralAreaArray()));
    
